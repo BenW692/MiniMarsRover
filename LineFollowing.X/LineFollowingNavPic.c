@@ -86,11 +86,11 @@ int senseLine() {
 
 int read_QRD(unsigned int QRD_val) {
     if (QRD_val / QRD_HIGH) {
-        return 2; // HIGH VALUE
+        return 0; // LOW VALUE
     } else if (QRD_val / QRD_MED) {
         return 1; // MEDIUM VALUE
     } else {
-        return 0; // LOW VALUE
+        return 2; // HIGH VALUE
     }
 }
 
