@@ -9,6 +9,8 @@
 #include "xc.h"
 #pragma config FNOSC = FRCDIV
 #pragma config ICS = PGx3
+#pragma config OSCIOFNC = OFF
+#pragma config SOSCSRC = DIG
 
 //define pin names
 #define FRONT_DIR     _LATA0
@@ -16,9 +18,9 @@
 #define LEFT_DIR      _LATB9
 #define RIGHT_DIR     _LATB8
 
-#define LINE_STATE_PIN_1    PORTAbits.RA0 //whatever pin we choose
-#define LINE_STATE_PIN_2    PORTAbits.RA1 //whatever pin we choose
-#define LINE_STATE_PIN_3    PORTAbits.RA2 //whatever pin we choose
+#define LINE_STATE_PIN_1    PORTAbits.RA2 //whatever pin we choose
+#define LINE_STATE_PIN_2    PORTAbits.RA3 //whatever pin we choose
+#define LINE_STATE_PIN_3    PORTAbits.RB4 //whatever pin we choose
 
 //define global variables
 static enum {stop, straight, small_right, med_right, big_right, small_left, med_left, big_left} line_state = straight;
@@ -39,6 +41,7 @@ int med_turn_speed = 5000;
 int small_turn_speed = 7000;
 
 int current_line_state_word = STRAIGHT;
+unsigned int new_line_state_word = 0;
 
 #define BOOL unsigned char
 #define TRUE 1
@@ -97,20 +100,12 @@ void config_pwm()
     OC3CON2bits.SYNCSEL = 0x1F;
     OC3CON2bits.OCTRIG = 0; //use this OC module
     
-    //configure OC interrupt
-    _OC3IP = 4; //sets priority
-    _OC3IE = 1; //enables OC3 interrupt
-    _OC3IF = 0; //clears interrupt flag
+//    //configure OC interrupt
+//    _OC3IP = 4; //sets priority
+//    _OC3IE = 1; //enables OC3 interrupt
+//    _OC3IF = 0; //clears interrupt flag
     
     line_state = straight;//when the switch turns on, the state will go to straight
-    go_straight();
-}
-
-void go_straight()
-{
-    line_state = straight;
-    //change direction of left wheel to go back straight
-    dir_left ^= 1;
 }
 
 void update_motor_directions() 
@@ -135,43 +130,43 @@ void line_state_fsm_switch()
 {   
     switch (line_state) {
         case straight:
-            if (line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_right;
                 dir_right ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
+            else if (new_line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_right;
                 dir_right ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
                 line_state = big_right;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == SMALL_LEFT) //when med_right QRD goes off line a little bit
+            else if (new_line_state_word == SMALL_LEFT) //when med_right QRD goes off line a little bit
             {
                 line_state = small_left;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == MED_LEFT) //when med_right QRD goes off line a little bit
+            else if (new_line_state_word == MED_LEFT) //when med_right QRD goes off line a little bit
             {
                 line_state = med_left;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = big_left;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -180,44 +175,44 @@ void line_state_fsm_switch()
             break;
             
         case small_left:
-            if (line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
+            else if (new_line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
                 line_state = big_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = big_left;
                 
             }
-            else if (line_state_word == MED_LEFT)
+            else if (new_line_state_word == MED_LEFT)
             {
                 line_state = med_left;
                 
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -225,44 +220,44 @@ void line_state_fsm_switch()
             break;
             
         case med_left:
-            if (line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
                 line_state = big_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == SMALL_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == SMALL_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = small_left;
                 update_motor_directions();
             }
-            else if (line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = big_left;
                 update_motor_directions();
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -270,44 +265,44 @@ void line_state_fsm_switch()
             break;
             
         case big_left:
-            if (line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
                 line_state = big_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == SMALL_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == SMALL_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = small_left;
                 update_motor_directions();
             }
-            else if (line_state_word == MED_LEFT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == MED_LEFT) //when med_right QRD goes off line a lot
             {
                 line_state = med_left;
                 update_motor_directions();
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -315,44 +310,44 @@ void line_state_fsm_switch()
             break;            
             
         case small_right:
-            if (line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            if (line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
             {
                 line_state = big_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == MED_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == MED_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = med_right;
                 update_motor_directions();
             }
-            else if (line_state_word == BIG_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = big_right;
                 update_motor_directions();
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -360,44 +355,44 @@ void line_state_fsm_switch()
             break;    
 
         case med_right:
-            if (line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            if (line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
             {
                 line_state = big_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == SMALL_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == SMALL_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = small_right;
                 update_motor_directions();
             }
-            else if (line_state_word == BIG_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == BIG_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = big_right;
                 update_motor_directions();
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
@@ -405,44 +400,44 @@ void line_state_fsm_switch()
             break;
 
         case big_right:
-            if (line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == SMALL_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = small_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            if (line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
+            if (new_line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
             {
                 line_state = med_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
+            else if (new_line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
             {
                 line_state = big_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == SMALL_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == SMALL_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = small_right;
                 update_motor_directions();
             }
-            else if (line_state_word == MED_RIGHT) //when med_right QRD goes off line a lot
+            else if (new_line_state_word == MED_RIGHT) //when med_right QRD goes off line a lot
             {
                 line_state = med_right;
                 update_motor_directions();
             }
-            else if (line_state_word == STRAIGHT)
+            else if (new_line_state_word == STRAIGHT)
             {
                 line_state = straight;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == STOP) //both QRDs not on a line
+            else if (new_line_state_word == STOP) //both QRDs not on a line
             {
                 line_state = stop;
                 //in future builds this logic will switch global state to canyon
