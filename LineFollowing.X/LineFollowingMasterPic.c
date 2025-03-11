@@ -20,7 +20,7 @@
 
 #define LINE_STATE_PIN_1    PORTAbits.RA2 //whatever pin we choose
 #define LINE_STATE_PIN_2    PORTAbits.RA3 //whatever pin we choose
-#define LINE_STATE_PIN_3    PORTAbits.RB4 //whatever pin we choose
+#define LINE_STATE_PIN_3    PORTBbits.RB4 //whatever pin we choose
 
 //define global variables
 static enum {stop, straight, small_right, med_right, big_right, small_left, med_left, big_left} line_state = straight;
@@ -486,12 +486,12 @@ void line_state_action()
         case small_left:
             OC3R = small_turn_speed / 2;
             OC3RS = small_turn_speed;
-            current_line_state_word = SMALL_LEFT
+            current_line_state_word = SMALL_LEFT;
             break;
         case med_left:
             OC3R = med_turn_speed / 2;
             OC3RS = med_turn_speed;
-            current_line_state_word = MED_LEFT
+            current_line_state_word = MED_LEFT;
             break;
         case big_left:
             OC3R = big_turn_speed / 2;

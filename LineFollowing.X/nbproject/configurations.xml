@@ -196,7 +196,7 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="LineFollowingMasterPic.c" ex="true" overriding="false">
+      <item path="LineFollowingMasterPic.c" ex="false" overriding="false">
         <C30>
         </C30>
         <C30-AR>
@@ -209,6 +209,8 @@
         </C30-LD>
         <C30Global>
         </C30Global>
+      </item>
+      <item path="LineFollowingNavPic.c" ex="true" overriding="false">
       </item>
       <item path="LineStateMachine.c" ex="true" overriding="false">
         <C30>

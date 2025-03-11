@@ -16,7 +16,7 @@ Command:
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/LineFollowingNavPic.o \
+  build/default/production/LineFollowingMasterPic.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24F16KA301.gld.00 \
   --stack=16 \
@@ -62,20 +62,21 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xde           0x14d  (333)
-.text                        0x2de               0x24c           0x372  (882)
-.dinit                       0x52a                 0xe            0x15  (21)
+.text                        0x200                0xce           0x135  (309)
+.text                        0x2ce               0x656           0x981  (2433)
+.dinit                       0x924                0x1a            0x27  (39)
 
-                 Total "program" memory used (bytes):          0x4d4  (1236) 7%
+                 Total "program" memory used (bytes):          0xadd  (2781) 17%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                       0x800                   0             0x8  (8)
+.ndata                       0x800                   0            0x10  (16)
+.nbss                        0x810                   0             0x6  (6)
 
-                 Total "data" memory used (bytes):            0x8  (8) <1%
+                 Total "data" memory used (bytes):           0x16  (22) 1%
 
 
 Dynamic Memory Usage
@@ -83,20 +84,30 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x808                               0x7f8  (2040)
+stack                        0x816                               0x7ea  (2026)
 
-                 Maximum dynamic memory (bytes):          0x7f8  (2040)
+                 Maximum dynamic memory (bytes):          0x7ea  (2026)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _lineState
+                    0x0802                  _straight_speed
+                    0x0804                  _big_turn_speed
+                    0x0806                  _med_turn_speed
+                    0x0808                  _small_turn_speed
+                    0x080a                  _current_line_state_word
+                    0x0810                  _new_line_state_word
 
 External Symbols in Data Memory (by name):
 
-                    0x0800                  _lineState
+                    0x0804                  _big_turn_speed
+                    0x080a                  _current_line_state_word
+                    0x0806                  _med_turn_speed
+                    0x0810                  _new_line_state_word
+                    0x0808                  _small_turn_speed
+                    0x0802                  _straight_speed
 
 External Symbols in Program Memory (by address):
 
@@ -104,31 +115,27 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002d8                  __DefaultInterrupt
-                  0x0002de                  _main
-                  0x0002f2                  _senseLine
-                  0x00035e                  _read_QRD
-                  0x000380                  _lineFSM
-                  0x000410                  _sendWord1
-                  0x000460                  _sendWord2
-                  0x0004b0                  _pinSetup
-                  0x0004da                  _config_ADC
+                  0x0002c8                  __DefaultInterrupt
+                  0x0002ce                  _config_pwm
+                  0x00037a                  _update_motor_directions
+                  0x0003ce                  _poll_slave_line_state
+                  0x0003fc                  _line_state_fsm_switch
+                  0x0007f2                  _line_state_action
+                  0x0008b6                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x0002d8                  __DefaultInterrupt
+                  0x0002c8                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0004da                  _config_ADC
-                  0x000380                  _lineFSM
-                  0x0002de                  _main
-                  0x0004b0                  _pinSetup
-                  0x00035e                  _read_QRD
-                  0x000410                  _sendWord1
-                  0x000460                  _sendWord2
-                  0x0002f2                  _senseLine
+                  0x0002ce                  _config_pwm
+                  0x0007f2                  _line_state_action
+                  0x0003fc                  _line_state_fsm_switch
+                  0x0008b6                  _main
+                  0x0003ce                  _poll_slave_line_state
+                  0x00037a                  _update_motor_directions
 
 Memory Configuration
 
@@ -152,7 +159,7 @@ FDS              0xf80010           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/LineFollowingNavPic.o
+LOAD build/default/production/LineFollowingMasterPic.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
@@ -178,7 +185,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xde
+.text             0x000200         0xce
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -190,16 +197,16 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002d8          0x4 default_isr
-                  0x0002d8                  __DefaultInterrupt
+ .isr             0x0002c8          0x4 default_isr
+                  0x0002c8                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002dc          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x0002dc                  __crt_start_mode
-                  0x0002dc                  __crt_start_mode_normal
+                  0x0002cc          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x0002cc                  __crt_start_mode
+                  0x0002cc                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -231,26 +238,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xef3
+.debug_info       0x000000       0x1352
  *(.debug_info)
- .debug_info      0x000000        0xef3 build/default/production/LineFollowingNavPic.o
+ .debug_info      0x000000       0x1352 build/default/production/LineFollowingMasterPic.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1d2
+.debug_abbrev     0x000000        0x17a
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1d2 build/default/production/LineFollowingNavPic.o
+ .debug_abbrev    0x000000        0x17a build/default/production/LineFollowingMasterPic.o
 
-.debug_line       0x000000        0x154
+.debug_line       0x000000        0x2ef
  *(.debug_line)
- .debug_line      0x000000        0x154 build/default/production/LineFollowingNavPic.o
+ .debug_line      0x000000        0x2ef build/default/production/LineFollowingMasterPic.o
 
-.debug_frame      0x000000         0xe4
+.debug_frame      0x000000         0xb0
  *(.debug_frame)
- .debug_frame     0x000000         0xe4 build/default/production/LineFollowingNavPic.o
+ .debug_frame     0x000000         0xb0 build/default/production/LineFollowingMasterPic.o
 
-.debug_str        0x000000         0xb2
+.debug_str        0x000000        0x125
  *(.debug_str)
- .debug_str       0x000000         0xb2 build/default/production/LineFollowingNavPic.o
+ .debug_str       0x000000        0x125 build/default/production/LineFollowingMasterPic.o
 
 .debug_loc
  *(.debug_loc)
@@ -259,10 +266,10 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0x88
+                  0x000000        0x112
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x88 build/default/production/LineFollowingNavPic.o
+                  0x000000        0x112 build/default/production/LineFollowingMasterPic.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -270,7 +277,7 @@ __FDS
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/LineFollowingNavPic.o
+                  0x000000         0x18 build/default/production/LineFollowingMasterPic.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -886,44 +893,52 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a
 END GROUP
 OUTPUT(dist/default/production/LineFollowing.X.production.elf elf32-pic30)
-LOAD jump_table
 LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000018        0x13a
+                  0x000018        0x17e
  .debug_pubtypes
-                  0x000018        0x13a build/default/production/LineFollowingNavPic.o
+                  0x000018        0x17e build/default/production/LineFollowingMasterPic.o
 
 __c30_signature
-                  0x000152         0x12
+                  0x000196         0x12
  __c30_signature
-                  0x000152          0x6 build/default/production/LineFollowingNavPic.o
+                  0x000196          0x6 build/default/production/LineFollowingMasterPic.o
  __c30_signature
-                  0x000158          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x00019c          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x00015e          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x0001a2          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
-.ndata              0x0800          0x8
- .ndata             0x0800          0x8 build/default/production/LineFollowingNavPic.o
-                    0x0800                  _lineState
+.ndata              0x0800         0x10
+ .ndata             0x0800         0x10 build/default/production/LineFollowingMasterPic.o
+                    0x0802                  _straight_speed
+                    0x0804                  _big_turn_speed
+                    0x0806                  _med_turn_speed
+                    0x0808                  _small_turn_speed
+                    0x080a                  _current_line_state_word
+
+.nbss               0x0810          0x6
+ .nbss              0x0810          0x6 build/default/production/LineFollowingMasterPic.o
+                    0x0810                  _new_line_state_word
 
 .config_ICS       0xf8000e          0x2
- .config_ICS      0xf8000e          0x2 build/default/production/LineFollowingNavPic.o
+ .config_ICS      0xf8000e          0x2 build/default/production/LineFollowingMasterPic.o
+
+.config_FCKSM     0xf80008          0x2
+ .config_FCKSM    0xf80008          0x2 build/default/production/LineFollowingMasterPic.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/default/production/LineFollowingNavPic.o
+ .config_IESO     0xf80006          0x2 build/default/production/LineFollowingMasterPic.o
 
-.text             0x0002de        0x24c
- .text            0x0002de        0x24c build/default/production/LineFollowingNavPic.o
-                  0x0002de                  _main
-                  0x0002f2                  _senseLine
-                  0x00035e                  _read_QRD
-                  0x000380                  _lineFSM
-                  0x000410                  _sendWord1
-                  0x000460                  _sendWord2
-                  0x0004b0                  _pinSetup
-                  0x0004da                  _config_ADC
+.text             0x0002ce        0x656
+ .text            0x0002ce        0x656 build/default/production/LineFollowingMasterPic.o
+                  0x0002ce                  _config_pwm
+                  0x00037a                  _update_motor_directions
+                  0x0003ce                  _poll_slave_line_state
+                  0x0003fc                  _line_state_fsm_switch
+                  0x0007f2                  _line_state_action
+                  0x0008b6                  _main
 
-.dinit            0x00052a          0xe
- .dinit           0x00052a          0xe data_init
+.dinit            0x000924         0x1a
+ .dinit           0x000924         0x1a data_init

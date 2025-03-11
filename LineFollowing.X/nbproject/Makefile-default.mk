@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=LineFollowingNavPic.c
+SOURCEFILES_QUOTED_IF_SPACED=LineFollowingMasterPic.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LineFollowingNavPic.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/LineFollowingNavPic.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LineFollowingMasterPic.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/LineFollowingMasterPic.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/LineFollowingNavPic.o
+OBJECTFILES=${OBJECTDIR}/LineFollowingMasterPic.o
 
 # Source Files
-SOURCEFILES=LineFollowingNavPic.c
+SOURCEFILES=LineFollowingMasterPic.c
 
 
 
@@ -95,18 +95,18 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/LineFollowingNavPic.o: LineFollowingNavPic.c  .generated_files/flags/default/8b0eee7227a339494365ed9704519e4d1968dc4 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
+${OBJECTDIR}/LineFollowingMasterPic.o: LineFollowingMasterPic.c  .generated_files/flags/default/ed63d980854fa7f399999186ece4d24f04489eb7 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o.d 
-	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingNavPic.c  -o ${OBJECTDIR}/LineFollowingNavPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingNavPic.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
+	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o.d 
+	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingMasterPic.c  -o ${OBJECTDIR}/LineFollowingMasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingMasterPic.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
 	
 else
-${OBJECTDIR}/LineFollowingNavPic.o: LineFollowingNavPic.c  .generated_files/flags/default/71b29751ee78f793248f8f0ac1409c68e75c836e .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
+${OBJECTDIR}/LineFollowingMasterPic.o: LineFollowingMasterPic.c  .generated_files/flags/default/291fe0a1dd756ffe827af7106c0bef78fdf07b3 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o.d 
-	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingNavPic.c  -o ${OBJECTDIR}/LineFollowingNavPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingNavPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
+	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o.d 
+	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingMasterPic.c  -o ${OBJECTDIR}/LineFollowingMasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingMasterPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
 	
 endif
 
