@@ -46,22 +46,6 @@ int main(void) {
     config_ADC();
     
     while(TRUE) {
-        WORD1BIT1 = 0;
-        WORD1BIT2 = 0;
-        WORD1BIT3 = 0;
-
-        if (read_QRD(QRD1)) {
-            WORD1BIT1 = 1;
-        }
-        if (read_QRD(QRD2)) {
-            WORD1BIT2 = 1;
-        }
-        if (read_QRD(QRD3)) {
-            WORD1BIT3 = 1;
-        }
-    }
-    
-    while(TRUE) {
         lineState = senseLine();
         lineFSM();        
     }
@@ -206,7 +190,7 @@ void config_ADC() {
     _NVCFG = 0;   // use VSS as negative reference
     _BUFREGEN = 1;// store results in buffer corresponding to channel number
     _CSCNA = 1;   // enable scanning mode
-    _SMPI = 1;    // begin new sampling sequence after 2 samples
+    _SMPI = 2;    // begin new sampling sequence after 3 samples
     _ALTS = 0;    // sample MUXA only
 
     // AD1CON3
