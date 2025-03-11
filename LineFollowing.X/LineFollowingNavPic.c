@@ -46,6 +46,22 @@ int main(void) {
     config_ADC();
     
     while(TRUE) {
+        WORD1BIT1 = 0;
+        WORD1BIT2 = 0;
+        WORD1BIT3 = 0;
+
+        if (read_QRD(QRD1)) {
+            WORD1BIT1 = 1;
+        }
+        if (read_QRD(QRD2)) {
+            WORD1BIT2 = 1;
+        }
+        if (read_QRD(QRD3)) {
+            WORD1BIT3 = 1;
+        }
+    }
+    
+    while(TRUE) {
         lineState = senseLine();
         lineFSM();        
     }
