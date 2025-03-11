@@ -20,6 +20,7 @@
                    projectFiles="true">
       <itemPath>LineStateMachine.c</itemPath>
       <itemPath>LineFollowingMasterPic.c</itemPath>
+      <itemPath>LineFollowingNavPic.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -195,6 +196,10 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
+      <item path="LineFollowingMasterPic.c" ex="true" overriding="false">
+      </item>
+      <item path="LineStateMachine.c" ex="true" overriding="false">
+      </item>
     </conf>
   </confs>
 </configurationDescriptor>

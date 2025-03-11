@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=LineStateMachine.c LineFollowingMasterPic.c
+SOURCEFILES_QUOTED_IF_SPACED=LineFollowingNavPic.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LineStateMachine.o ${OBJECTDIR}/LineFollowingMasterPic.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/LineStateMachine.o.d ${OBJECTDIR}/LineFollowingMasterPic.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/LineFollowingNavPic.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/LineFollowingNavPic.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/LineStateMachine.o ${OBJECTDIR}/LineFollowingMasterPic.o
+OBJECTFILES=${OBJECTDIR}/LineFollowingNavPic.o
 
 # Source Files
-SOURCEFILES=LineStateMachine.c LineFollowingMasterPic.c
+SOURCEFILES=LineFollowingNavPic.c
 
 
 
@@ -89,30 +89,18 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/LineStateMachine.o: LineStateMachine.c  .generated_files/flags/default/62dca3ee6de3ff236d8b8ab36cb3ddfb5fdafc7a .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/LineFollowingNavPic.o: LineFollowingNavPic.c  .generated_files/flags/default/38dfd88b0c1ebdc98f15b6b7b4960d1b09be69e6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineStateMachine.o.d 
-	@${RM} ${OBJECTDIR}/LineStateMachine.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineStateMachine.c  -o ${OBJECTDIR}/LineStateMachine.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineStateMachine.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
-	
-${OBJECTDIR}/LineFollowingMasterPic.o: LineFollowingMasterPic.c  .generated_files/flags/default/4d100f5b632b07605aaa5ffc1c22776317a3c4ae .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o.d 
-	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingMasterPic.c  -o ${OBJECTDIR}/LineFollowingMasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingMasterPic.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o.d 
+	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingNavPic.c  -o ${OBJECTDIR}/LineFollowingNavPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingNavPic.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/LineStateMachine.o: LineStateMachine.c  .generated_files/flags/default/278c9d4f99bb2a23ad8915751fccd0d334ba3ef7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/LineFollowingNavPic.o: LineFollowingNavPic.c  .generated_files/flags/default/c6a9f8ead39494a539d776f37629e1252e54fcc2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineStateMachine.o.d 
-	@${RM} ${OBJECTDIR}/LineStateMachine.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineStateMachine.c  -o ${OBJECTDIR}/LineStateMachine.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineStateMachine.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
-	
-${OBJECTDIR}/LineFollowingMasterPic.o: LineFollowingMasterPic.c  .generated_files/flags/default/78eba249f29300c2308205302520b5f3d3b760fe .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o.d 
-	@${RM} ${OBJECTDIR}/LineFollowingMasterPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingMasterPic.c  -o ${OBJECTDIR}/LineFollowingMasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingMasterPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o.d 
+	@${RM} ${OBJECTDIR}/LineFollowingNavPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  LineFollowingNavPic.c  -o ${OBJECTDIR}/LineFollowingNavPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/LineFollowingNavPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 
