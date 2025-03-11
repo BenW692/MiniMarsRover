@@ -21,19 +21,22 @@
 #define LINE_STATE_PIN_3    PORTAbits.RA2 //whatever pin we choose
 
 //define global variables
-static enum {stop, straight, right, fast_right, fast_left, left} line_state = straight;
-          //{ 000, 001, 010, 011, 100, 101}
+static enum {stop, straight, small_right, med_right, big_right, small_left, med_left, big_left} line_state = straight;
 
-#define STOP 0b000
-#define STRAIGHT 0b001
-#define RIGHT 0b010
-#define FAST_RIGHT 0b011
-#define LEFT 0b100
-#define FAST_LEFT 0b101
+
+#define STOP 0b000 // potentially put into header file with global var
+#define STRAIGHT 0b001 
+#define SMALL_RIGHT 0b010
+#define MED_RIGHT 0b011
+#define BIG_RIGHT 0b100
+#define SMALL_LEFT 0b101
+#define MED_LEFT 0b110
+#define BIG_LEFT 0b111
 
 int straight_speed = 1500;
-int fast_turn_speed = 3500;
-int slow_turn_speed = 5000;
+int big_turn_speed = 3500;
+int med_turn_speed = 5000;
+int small_turn_speed = 7000;
 
 #define BOOL unsigned char
 #define TRUE 1
@@ -134,27 +137,27 @@ void line_state_fsm()
     
     switch (line_state) {
         case straight:
-            if (line_state_word == RIGHT) //when left QRD goes off line a little bit
+            if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
-                line_state = right;
+                line_state = med_right;
                 dir_right ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == FAST_RIGHT) //when left QRD goes off line a lot
+            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
-                line_state = fast_right;
+                line_state = big_right;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == LEFT) //when right QRD goes off line a little bit
+            else if (line_state_word == MED_LEFT) //when med_right QRD goes off line a little bit
             {
-                line_state = left;
+                line_state = med_left;
                 dir_left ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == FAST_LEFT) //when right QRD goes off line a lot
+            else if (line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
             {
-                line_state = fast_left;
+                line_state = big_left;
                 dir_left ^= 1;
                 update_motor_directions();
             }
@@ -166,24 +169,24 @@ void line_state_fsm()
 
             break;
 
-        case left: 
-            if (line_state_word == RIGHT) //when left QRD goes off line a little bit
+        case med_left: 
+            if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
-                line_state = right; //we have to switch hard so both motors change direction
+                line_state = med_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == FAST_RIGHT) //when left QRD goes off line a lot
+            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
-                line_state = fast_right; //we have to switch hard so both motors change direction
+                line_state = big_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == FAST_LEFT) //when right QRD goes off line a lot
+            else if (line_state_word == BIG_LEFT) //when med_right QRD goes off line a lot
             {
-                line_state = fast_left;
+                line_state = big_left;
                 update_motor_directions();
             }
             else if (line_state_word == STRAIGHT)
@@ -199,24 +202,24 @@ void line_state_fsm()
             }
             break;
             
-        case fast_left:
-            if (line_state_word == RIGHT) //when left QRD goes off line a little bit
+        case big_left:
+            if (line_state_word == MED_RIGHT) //when med_left QRD goes off line a little bit
             {
-                line_state = right; //we have to switch hard so both motors change direction
+                line_state = med_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == FAST_RIGHT) //when left QRD goes off line a lot
+            else if (line_state_word == BIG_RIGHT) //when med_left QRD goes off line a lot
             {
-                line_state = fast_right; //we have to switch hard so both motors change direction
+                line_state = big_right; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == LEFT) //when right QRD goes off line a lot
+            else if (line_state_word == MED_LEFT) //when med_right QRD goes off line a lot
             {
-                line_state = left;
+                line_state = med_left;
                 update_motor_directions();
             }
             else if (line_state_word == STRAIGHT)
@@ -233,24 +236,24 @@ void line_state_fsm()
             break;
             
 
-        case right:
-            if (line_state_word == LEFT) //when left QRD goes off line a little bit
+        case med_right:
+            if (line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
             {
-                line_state = left; //we have to switch hard so both motors change direction
+                line_state = med_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == FAST_LEFT) //when left QRD goes off line a lot
+            else if (line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
             {
-                line_state = fast_left; //we have to switch hard so both motors change direction
+                line_state = big_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == FAST_RIGHT) //when right QRD goes off line a lot
+            else if (line_state_word == BIG_RIGHT) //when med_right QRD goes off line a lot
             {
-                line_state = fast_right;
+                line_state = big_right;
                 update_motor_directions();
             }
             else if (line_state_word == STRAIGHT)
@@ -266,24 +269,24 @@ void line_state_fsm()
             }
             break;
 
-        case fast_right:
-            if (line_state_word == LEFT) //when left QRD goes off line a little bit
+        case big_right:
+            if (line_state_word == MED_LEFT) //when med_left QRD goes off line a little bit
             {
-                line_state = left; //we have to switch hard so both motors change direction
+                line_state = med_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_left ^= 1;
                 update_motor_directions();
             } 
-            else if (line_state_word == FAST_LEFT) //when left QRD goes off line a lot
+            else if (line_state_word == BIG_LEFT) //when med_left QRD goes off line a lot
             {
-                line_state = fast_left; //we have to switch hard so both motors change direction
+                line_state = big_left; //we have to switch hard so both motors change direction
                 dir_right ^= 1;
                 dir_right ^= 1;
                 update_motor_directions();
             }
-            else if (line_state_word == RIGHT) //when right QRD goes off line a lot
+            else if (line_state_word == MED_RIGHT) //when med_right QRD goes off line a lot
             {
-                line_state = right;
+                line_state = med_right;
                 update_motor_directions();
             }
             else if (line_state_word == STRAIGHT)
