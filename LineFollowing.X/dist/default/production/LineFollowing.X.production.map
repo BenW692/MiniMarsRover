@@ -62,11 +62,11 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xda           0x147  (327)
-.text                        0x2da               0x25c           0x38a  (906)
-.dinit                       0x536                 0xe            0x15  (21)
+.text                        0x200                0xde           0x14d  (333)
+.text                        0x2de               0x24c           0x372  (882)
+.dinit                       0x52a                 0xe            0x15  (21)
 
-                 Total "program" memory used (bytes):          0x4e6  (1254) 7%
+                 Total "program" memory used (bytes):          0x4d4  (1236) 7%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -104,31 +104,31 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002d4                  __DefaultInterrupt
-                  0x0002da                  _main
-                  0x0002fe                  _senseLine
-                  0x00036a                  _read_QRD
-                  0x00038c                  _lineFSM
-                  0x00041c                  _sendWord1
-                  0x00046c                  _sendWord2
-                  0x0004bc                  _pinSetup
-                  0x0004e6                  _config_ADC
+                  0x0002d8                  __DefaultInterrupt
+                  0x0002de                  _main
+                  0x0002f2                  _senseLine
+                  0x00035e                  _read_QRD
+                  0x000380                  _lineFSM
+                  0x000410                  _sendWord1
+                  0x000460                  _sendWord2
+                  0x0004b0                  _pinSetup
+                  0x0004da                  _config_ADC
 
 External Symbols in Program Memory (by name):
 
-                  0x0002d4                  __DefaultInterrupt
+                  0x0002d8                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0004e6                  _config_ADC
-                  0x00038c                  _lineFSM
-                  0x0002da                  _main
-                  0x0004bc                  _pinSetup
-                  0x00036a                  _read_QRD
-                  0x00041c                  _sendWord1
-                  0x00046c                  _sendWord2
-                  0x0002fe                  _senseLine
+                  0x0004da                  _config_ADC
+                  0x000380                  _lineFSM
+                  0x0002de                  _main
+                  0x0004b0                  _pinSetup
+                  0x00035e                  _read_QRD
+                  0x000410                  _sendWord1
+                  0x000460                  _sendWord2
+                  0x0002f2                  _senseLine
 
 Memory Configuration
 
@@ -178,7 +178,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xda
+.text             0x000200         0xde
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -190,16 +190,16 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002d4          0x4 default_isr
-                  0x0002d4                  __DefaultInterrupt
+ .isr             0x0002d8          0x4 default_isr
+                  0x0002d8                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002d8          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x0002d8                  __crt_start_mode
-                  0x0002d8                  __crt_start_mode_normal
+                  0x0002dc          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x0002dc                  __crt_start_mode
+                  0x0002dc                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -231,26 +231,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xee2
+.debug_info       0x000000        0xef3
  *(.debug_info)
- .debug_info      0x000000        0xee2 build/default/production/LineFollowingNavPic.o
+ .debug_info      0x000000        0xef3 build/default/production/LineFollowingNavPic.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1c1
+.debug_abbrev     0x000000        0x1d2
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1c1 build/default/production/LineFollowingNavPic.o
+ .debug_abbrev    0x000000        0x1d2 build/default/production/LineFollowingNavPic.o
 
-.debug_line       0x000000        0x15e
+.debug_line       0x000000        0x154
  *(.debug_line)
- .debug_line      0x000000        0x15e build/default/production/LineFollowingNavPic.o
+ .debug_line      0x000000        0x154 build/default/production/LineFollowingNavPic.o
 
 .debug_frame      0x000000         0xe4
  *(.debug_frame)
  .debug_frame     0x000000         0xe4 build/default/production/LineFollowingNavPic.o
 
-.debug_str        0x000000         0xa8
+.debug_str        0x000000         0xb2
  *(.debug_str)
- .debug_str       0x000000         0xa8 build/default/production/LineFollowingNavPic.o
+ .debug_str       0x000000         0xb2 build/default/production/LineFollowingNavPic.o
 
 .debug_loc
  *(.debug_loc)
@@ -914,16 +914,16 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/LineFollowingNavPic.o
 
-.text             0x0002da        0x25c
- .text            0x0002da        0x25c build/default/production/LineFollowingNavPic.o
-                  0x0002da                  _main
-                  0x0002fe                  _senseLine
-                  0x00036a                  _read_QRD
-                  0x00038c                  _lineFSM
-                  0x00041c                  _sendWord1
-                  0x00046c                  _sendWord2
-                  0x0004bc                  _pinSetup
-                  0x0004e6                  _config_ADC
+.text             0x0002de        0x24c
+ .text            0x0002de        0x24c build/default/production/LineFollowingNavPic.o
+                  0x0002de                  _main
+                  0x0002f2                  _senseLine
+                  0x00035e                  _read_QRD
+                  0x000380                  _lineFSM
+                  0x000410                  _sendWord1
+                  0x000460                  _sendWord2
+                  0x0004b0                  _pinSetup
+                  0x0004da                  _config_ADC
 
-.dinit            0x000536          0xe
- .dinit           0x000536          0xe data_init
+.dinit            0x00052a          0xe
+ .dinit           0x00052a          0xe data_init
