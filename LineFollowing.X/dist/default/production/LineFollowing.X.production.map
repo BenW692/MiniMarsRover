@@ -63,10 +63,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xce           0x135  (309)
-.text                        0x2ce               0x656           0x981  (2433)
-.dinit                       0x924                0x1a            0x27  (39)
+.text                        0x2ce               0x844           0xc66  (3174)
+.dinit                       0xb12                0x1a            0x27  (39)
 
-                 Total "program" memory used (bytes):          0xadd  (2781) 17%
+                 Total "program" memory used (bytes):          0xdc2  (3522) 21%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -238,18 +238,18 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x1352
+.debug_info       0x000000       0x1551
  *(.debug_info)
- .debug_info      0x000000       0x1352 build/default/production/LineFollowingMasterPic.o
+ .debug_info      0x000000       0x1551 build/default/production/LineFollowingMasterPic.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x17a
+.debug_abbrev     0x000000        0x185
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x17a build/default/production/LineFollowingMasterPic.o
+ .debug_abbrev    0x000000        0x185 build/default/production/LineFollowingMasterPic.o
 
-.debug_line       0x000000        0x2ef
+.debug_line       0x000000        0x2f8
  *(.debug_line)
- .debug_line      0x000000        0x2ef build/default/production/LineFollowingMasterPic.o
+ .debug_line      0x000000        0x2f8 build/default/production/LineFollowingMasterPic.o
 
 .debug_frame      0x000000         0xb0
  *(.debug_frame)
@@ -931,8 +931,8 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/LineFollowingMasterPic.o
 
-.text             0x0002ce        0x656
- .text            0x0002ce        0x656 build/default/production/LineFollowingMasterPic.o
+.text             0x0002ce        0x844
+ .text            0x0002ce        0x844 build/default/production/LineFollowingMasterPic.o
                   0x0002ce                  _config_pwm
                   0x00037a                  _update_motor_directions
                   0x0003ce                  _poll_slave_line_state
@@ -940,5 +940,5 @@ __c30_signature
                   0x0007f2                  _line_state_action
                   0x0008b6                  _main
 
-.dinit            0x000924         0x1a
- .dinit           0x000924         0x1a data_init
+.dinit            0x000b12         0x1a
+ .dinit           0x000b12         0x1a data_init
