@@ -23,10 +23,15 @@
 #define MED_LEFT 0b110
 #define BIG_LEFT 0b111
 
+#define STRAIGHT_SPEED 1500
+#define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
+#define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
+#define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
+
 #define PERIOD_1 OC3RS
 #define DUTY_CYCLE_1 OC3R
 
-//define pin names
+/* Define Pins */
 #define FRONT_DIR     _LATA0
 #define BACK_DIR      _LATA1
 #define LEFT_DIR      _LATB9
@@ -36,17 +41,16 @@
 #define WORD1BIT2 PORTAbits.RA3 
 #define WORD1BIT3 PORTBbits.RB4
 
-#define STRAIGHT_SPEED 1500
-#define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
-#define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
-#define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
-
 int lineState = STRAIGHT;
 
 int main(void) {
+    setupPins();
+    config_PWM();
     
-    PERIOD_1 = STRAIGHT_SPEED;
-    while (TRUE);
+    
+//    _LATB14 = 1;
+//    setSpeed1(STRAIGHT_SPEED);
+//    while (TRUE);
     
     while (TRUE) {
         lineState = poll_slave_line_state();
@@ -65,55 +69,47 @@ void lineFSM() {
     
     switch(lineState) {
         case STOP:
-            PERIOD_1 = 0;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(0);
             break;
             
         case STRAIGHT:
-            PERIOD_1 = STRAIGHT_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(STRAIGHT_SPEED);
             RIGHT_DIR = 1;
             LEFT_DIR = 0;
             break;
             
         case SMALL_RIGHT:
-            PERIOD_1 = SMALL_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(SMALL_TURN_SPEED);
             RIGHT_DIR = 1;
             LEFT_DIR = 1;
             break;
             
         case MED_RIGHT:
-            PERIOD_1 = MED_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(MED_TURN_SPEED);
             RIGHT_DIR = 1;
             LEFT_DIR = 1;
             break;
             
         case BIG_RIGHT:
-            PERIOD_1 = BIG_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(BIG_TURN_SPEED);
             RIGHT_DIR = 1;
             LEFT_DIR = 1;
             break;
             
         case SMALL_LEFT:
-            PERIOD_1 = SMALL_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(SMALL_TURN_SPEED);
             RIGHT_DIR = 0;
             LEFT_DIR = 0;
             break;
             
         case MED_LEFT:
-            PERIOD_1 = MED_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(MED_TURN_SPEED);
             RIGHT_DIR = 0;
             LEFT_DIR = 0;
             break;
             
         case BIG_LEFT:
-            PERIOD_1 = BIG_TURN_SPEED;
-            DUTY_CYCLE_1 = PERIOD_1 / 2;
+            setSpeed1(BIG_TURN_SPEED);
             RIGHT_DIR = 0;
             LEFT_DIR = 0;
             break;
@@ -130,6 +126,11 @@ int poll_slave_line_state()
     line_state_word |= (WORD1BIT2 << 1);
     line_state_word |= (WORD1BIT3 << 2); //MSB
     return line_state_word;
+}
+
+void setSpeed1(int speed) {
+    PERIOD_1 = speed;
+    DUTY_CYCLE_1 = PERIOD_1 / 2;
 }
 
 void setupPins() {
