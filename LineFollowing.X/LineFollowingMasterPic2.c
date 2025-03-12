@@ -80,38 +80,38 @@ void lineFSM() {
             
         case SMALL_RIGHT:
             setSpeed1(SMALL_TURN_SPEED);
-            RIGHT_DIR = 1;
-            LEFT_DIR = 1;
+            RIGHT_DIR = 0;
+            LEFT_DIR = 0;
             break;
             
         case MED_RIGHT:
             setSpeed1(MED_TURN_SPEED);
-            RIGHT_DIR = 1;
-            LEFT_DIR = 1;
+            RIGHT_DIR = 0;
+            LEFT_DIR = 0;
             break;
             
         case BIG_RIGHT:
             setSpeed1(BIG_TURN_SPEED);
-            RIGHT_DIR = 1;
-            LEFT_DIR = 1;
+            RIGHT_DIR = 0;
+            LEFT_DIR = 0;
             break;
             
         case SMALL_LEFT:
             setSpeed1(SMALL_TURN_SPEED);
-            RIGHT_DIR = 0;
-            LEFT_DIR = 0;
+            RIGHT_DIR = 1;
+            LEFT_DIR = 1;
             break;
             
         case MED_LEFT:
             setSpeed1(MED_TURN_SPEED);
-            RIGHT_DIR = 0;
-            LEFT_DIR = 0;
+            RIGHT_DIR = 1;
+            LEFT_DIR = 1;
             break;
             
         case BIG_LEFT:
             setSpeed1(BIG_TURN_SPEED);
-            RIGHT_DIR = 0;
-            LEFT_DIR = 0;
+            RIGHT_DIR = 1;
+            LEFT_DIR = 1;
             break;
     }
     
