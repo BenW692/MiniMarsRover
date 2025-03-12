@@ -23,7 +23,7 @@
 #define MED_LEFT 0b110
 #define BIG_LEFT 0b111
 
-#define STRAIGHT_SPEED 1500
+#define STRAIGHT_SPEED 2500
 #define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
 #define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
 #define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
@@ -37,17 +37,17 @@
 #define LEFT_DIR      _LATB9
 #define RIGHT_DIR     _LATB8
 
-#define WORD1BIT1 PORTAbits.RA2 
+
+#define WORD1BIT1 PORTBbits.RB4
 #define WORD1BIT2 PORTAbits.RA3 
-#define WORD1BIT3 PORTBbits.RB4
+#define WORD1BIT3 PORTAbits.RA2
 
 int lineState = STRAIGHT;
 
 int main(void) {
     setupPins();
     config_PWM();
-    
-    
+
 //    _LATB14 = 1;
 //    setSpeed1(STRAIGHT_SPEED);
 //    while (TRUE);
@@ -61,7 +61,7 @@ int main(void) {
 }
 
 void lineFSM() {
-    static int oldState = STOP;
+    static int oldState = -1;
     
     if (oldState == lineState) {
         return;
@@ -75,45 +75,46 @@ void lineFSM() {
         case STRAIGHT:
             setSpeed1(STRAIGHT_SPEED);
             RIGHT_DIR = 1;
-            LEFT_DIR = 0;
+            LEFT_DIR = 1;
             break;
             
         case SMALL_RIGHT:
             setSpeed1(SMALL_TURN_SPEED);
-            RIGHT_DIR = 0;
+            RIGHT_DIR = 1;
             LEFT_DIR = 0;
             break;
             
         case MED_RIGHT:
             setSpeed1(MED_TURN_SPEED);
-            RIGHT_DIR = 0;
+            RIGHT_DIR = 1;
             LEFT_DIR = 0;
             break;
             
         case BIG_RIGHT:
             setSpeed1(BIG_TURN_SPEED);
-            RIGHT_DIR = 0;
+            RIGHT_DIR = 1;
             LEFT_DIR = 0;
             break;
-            
+
         case SMALL_LEFT:
             setSpeed1(SMALL_TURN_SPEED);
-            RIGHT_DIR = 1;
+            RIGHT_DIR = 0;
             LEFT_DIR = 1;
             break;
             
         case MED_LEFT:
             setSpeed1(MED_TURN_SPEED);
-            RIGHT_DIR = 1;
+            RIGHT_DIR = 0;
             LEFT_DIR = 1;
             break;
             
         case BIG_LEFT:
             setSpeed1(BIG_TURN_SPEED);
-            RIGHT_DIR = 1;
+            RIGHT_DIR = 0;
             LEFT_DIR = 1;
             break;
     }
+            
     
     oldState = lineState;
 }
