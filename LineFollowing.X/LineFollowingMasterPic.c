@@ -8,7 +8,6 @@
 
 #include "xc.h"
 #pragma config FNOSC = FRCDIV
-#pragma config ICS = PGx3
 #pragma config OSCIOFNC = OFF
 #pragma config SOSCSRC = DIG
 
@@ -503,34 +502,6 @@ void line_state_action()
 
 int main(void) {
     config_pwm();
-    
-    while(1) {
-        OC3RS = 1500;
-        OC3R = OC3RS / 2;
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-
-        OC3R = 0;
-        OC3RS = OC3R / 2;
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-        for (int i = 0; i < 10000; i++);
-    }
     
     while(1)
     {
