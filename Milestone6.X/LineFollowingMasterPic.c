@@ -14,20 +14,22 @@
 #define FALSE 0
 #define BOOL unsigned char
 
-#define STOP 0b000 // potentially put into header file with global var
-#define STRAIGHT 0b001 
-#define SMALL_RIGHT 0b010
-#define MED_RIGHT 0b011
-#define BIG_RIGHT 0b100
-#define SMALL_LEFT 0b101
-#define MED_LEFT 0b110
-#define BIG_LEFT 0b111
+#define STOP 0b0000 // potentially put into header file with global var
+#define STRAIGHT 0b0001 
+#define SMALL_RIGHT 0b0010
+#define MED_RIGHT 0b0011
+#define BIG_RIGHT 0b0100
+#define SMALL_LEFT 0b0101
+#define MED_LEFT 0b0110
+#define BIG_LEFT 0b0111
 
 #define STRAIGHT_SPEED 2500
 #define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
 #define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
 #define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
 
+
+//this code has not incorporated seperate pwms for the left and right motor
 #define PERIOD_1 OC3RS
 #define DUTY_CYCLE_1 OC3R
 
@@ -38,20 +40,32 @@
 #define RIGHT_DIR     _LATB8
 
 
-#define WORD1BIT1 PORTBbits.RB4
-#define WORD1BIT2 PORTAbits.RA3 
-#define WORD1BIT3 PORTAbits.RA2
+#define WORD1BIT1 PORTBbits.RB15
+#define WORD1BIT2 PORTAbits.RB14 
+#define WORD1BIT3 PORTAbits.RB13
+#define WORD1BIT4 PORTAbits.RB12
 
 int lineState = STRAIGHT;
+
+
+void _ISR _CNInterrupt(void)
+{
+    _CNIF = 0; // Clear interrupt flag (IFS1 register)
+// Figure out which pin changed if you?re looking at multiple pins
+// Do something here
+//if (WORD1BIT4)
+//{
+//    return
+//}
+}
+
+
 
 int main(void) {
     setupPins();
     config_PWM();
-
-//    _LATB14 = 1;
-//    setSpeed1(STRAIGHT_SPEED);
-//    while (TRUE);
-    
+    config_CN_interrupt(); 
+            
     while (TRUE) {
         lineState = poll_slave_line_state();
         lineFSM();
@@ -144,9 +158,10 @@ void setupPins() {
     LATB = 0;
     
     /* Enable input pins */
-    _TRISA2 = 1;
-    _TRISA3 = 1;
-    _TRISB4 = 1;
+    _TRISB15 = 1; //wordbit1
+    _TRISB14 = 1; //wordbit2
+    _TRISB13 = 1; //wordbit3
+    _TRISB12 = 1; //wordbit4
 }
 
 void config_PWM() {
@@ -157,4 +172,13 @@ void config_PWM() {
     OC3CON1bits.OCM = 0b110; //edge aligned output
     OC3CON2bits.SYNCSEL = 0x1F;
     OC3CON2bits.OCTRIG = 0; //use this OC module
+}
+
+void config_CN_interrupt() 
+{
+    _CN14IE = 1; // Enable CN on pin 15 (CNEN1 register)
+    _CN5PUE = 0; // Disable pull-up resistor (CNPU1 register)
+    _CNIP = 6; // Set CN interrupt priority (IPC4 register)
+    _CNIF = 0; // Clear interrupt flag (IFS1 register)
+    _CNIE = 1; // Enable CN interrupts (IEC1 register)
 }

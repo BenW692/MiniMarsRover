@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=LineFollowing.X
+PROJECTNAME=Milestone6.X
 
 # Active Configuration
 DEFAULTCONF=default
