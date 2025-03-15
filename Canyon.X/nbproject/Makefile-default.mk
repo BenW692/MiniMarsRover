@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=
+SOURCEFILES_QUOTED_IF_SPACED=MasterFSMV1.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=
-POSSIBLE_DEPFILES=
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MasterFSMV1.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/MasterFSMV1.o.d
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES=${OBJECTDIR}/MasterFSMV1.o
 
 # Source Files
-SOURCEFILES=
+SOURCEFILES=MasterFSMV1.c
 
 
 
@@ -89,7 +89,19 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
+${OBJECTDIR}/MasterFSMV1.o: MasterFSMV1.c  .generated_files/flags/default/972e9e85ca1f05cce0e87afbe8b7c5e2b2554905 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/MasterFSMV1.o.d 
+	@${RM} ${OBJECTDIR}/MasterFSMV1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFSMV1.c  -o ${OBJECTDIR}/MasterFSMV1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFSMV1.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 else
+${OBJECTDIR}/MasterFSMV1.o: MasterFSMV1.c  .generated_files/flags/default/e23d4fdf442741b74a79bbb4c6927ec3b46557f5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/MasterFSMV1.o.d 
+	@${RM} ${OBJECTDIR}/MasterFSMV1.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFSMV1.c  -o ${OBJECTDIR}/MasterFSMV1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFSMV1.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	
 endif
 
 # ------------------------------------------------------------------------------------

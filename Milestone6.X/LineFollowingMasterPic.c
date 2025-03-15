@@ -40,10 +40,10 @@
 #define RIGHT_DIR     _LATB8
 
 
-#define WORD1BIT1 PORTBbits.RB15
-#define WORD1BIT2 PORTAbits.RB14 
-#define WORD1BIT3 PORTAbits.RB13
-#define WORD1BIT4 PORTAbits.RB12
+#define WORDBIT1 PORTBbits.RB15
+#define WORDBIT2 PORTAbits.RB14 
+#define WORDBIT3 PORTAbits.RB13
+#define WORDBIT4 PORTAbits.RB12
 
 int lineState = STRAIGHT;
 
@@ -53,10 +53,18 @@ void _ISR _CNInterrupt(void)
     _CNIF = 0; // Clear interrupt flag (IFS1 register)
 // Figure out which pin changed if you?re looking at multiple pins
 // Do something here
-//if (WORD1BIT4)
-//{
-//    return
-//}
+    if (WORDBIT4)
+    {
+        // if the bit4 goes high do canyon
+    }
+    else if (WORDBIT4 && WORDBIT3)
+    {
+        // if bit4 and bit3 are high we need to check for ball pick up, ball drop, go lander
+    }
+    else
+    {
+        // if bit4 goes low default to line state
+    }
 }
 
 
@@ -137,9 +145,12 @@ int poll_slave_line_state()
 {
     unsigned int line_state_word = 0;
     //the weird syntax below forces the int to change at the 0, 1, or 2 bit spot in the digital word
-    line_state_word |= (WORD1BIT1 << 0);  // LSB
-    line_state_word |= (WORD1BIT2 << 1);
-    line_state_word |= (WORD1BIT3 << 2); //MSB
+    line_state_word |= (WORDBIT1 << 0);  // LSB
+    line_state_word |= (WORDBIT2 << 1);
+    line_state_word |= (WORDBIT3 << 2);
+    
+    //we don't have to check bit 4 because it will always be zero in the line following state
+    //line_state_word |= (WORD1BIT4 << 3); //MSB 
     return line_state_word;
 }
 
