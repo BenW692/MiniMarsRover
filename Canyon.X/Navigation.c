@@ -9,7 +9,8 @@
 #include "xc.h"
 
 #pragma config FNOSC = FRCDIV // 8 MHz osccilator 
-#pragma config ICS = PGx3 // defines pins 9 and 10 for debug & programming
+#pragma config OSCIOFNC = OFF
+#pragma config SOSCSRC = DIG
 
 #define TRUE 1
 #define FALSE 0
@@ -42,12 +43,7 @@ int main(void) {
     pinSetup();
     config_ADC();
     
-    WORDBIT1 = 1;
-    WORDBIT2 = 1;
-    WORDBIT3 = 1;
-    WORDBIT4 = 1;
-    while(TRUE);
-    
+
     while(TRUE) {
         lineState = senseLine();
         lineFSM();        
@@ -172,17 +168,10 @@ void pinSetup() {
     LATA = 0;
     LATB = 0;
     
-    /* I/O */
+    /* Enable Inputs */
     _TRISA0 = 1;
     _TRISA1 = 1;
     _TRISB0 = 1;
-
-    _TRISB7 = 0;
-    _TRISB8 = 0;
-    _TRISB9 = 0;
-    _TRISA6 = 0;
-    _TRISB12 = 0;
-    _TRISB13 = 0;
     
     /* Enable Analog */
     _ANSA0 = 1;

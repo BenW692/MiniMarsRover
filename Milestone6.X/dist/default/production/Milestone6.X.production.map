@@ -7,7 +7,7 @@ Command:
   -p24F16KA301 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
-  dist/default/production/Canyon.X.production.elf \
+  dist/default/production/Milestone6.X.production.elf \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
   -LC:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16/bin/../support/PIC24F/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../lib \
@@ -18,7 +18,7 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/Navigation.o \
+  build/default/production/LineFollowingNavPic2.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24F16KA301.gld.00 \
   --stack=16 \
@@ -32,7 +32,7 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/Canyon.X.production.map \
+  -Map=dist/default/production/Milestone6.X.production.map \
   --report-mem \
   --memorysummary \
   dist/default/production/memoryfile.xml \
@@ -64,11 +64,11 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200                0xde           0x14d  (333)
-.text                        0x2de               0x1da           0x2c7  (711)
-.dinit                       0x4b8                0x12            0x1b  (27)
+.text                        0x200                0xda           0x147  (327)
+.text                        0x2da               0x1e6           0x2d9  (729)
+.dinit                       0x4c0                0x12            0x1b  (27)
 
-                 Total "program" memory used (bytes):          0x42f  (1071) 6%
+                 Total "program" memory used (bytes):          0x43b  (1083) 6%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -107,29 +107,29 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002d8                  __DefaultInterrupt
-                  0x0002de                  _main
-                  0x0002f2                  _senseLine
-                  0x000340                  _read_QRD
-                  0x000362                  _lineFSM
-                  0x000402                  _sendWord1
-                  0x00044a                  _pinSetup
-                  0x000468                  _config_ADC
+                  0x0002d4                  __DefaultInterrupt
+                  0x0002da                  _main
+                  0x0002ee                  _senseLine
+                  0x00033c                  _read_QRD
+                  0x00035e                  _lineFSM
+                  0x0003fe                  _sendWord1
+                  0x000446                  _pinSetup
+                  0x000470                  _config_ADC
 
 External Symbols in Program Memory (by name):
 
-                  0x0002d8                  __DefaultInterrupt
+                  0x0002d4                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000468                  _config_ADC
-                  0x000362                  _lineFSM
-                  0x0002de                  _main
-                  0x00044a                  _pinSetup
-                  0x000340                  _read_QRD
-                  0x000402                  _sendWord1
-                  0x0002f2                  _senseLine
+                  0x000470                  _config_ADC
+                  0x00035e                  _lineFSM
+                  0x0002da                  _main
+                  0x000446                  _pinSetup
+                  0x00033c                  _read_QRD
+                  0x0003fe                  _sendWord1
+                  0x0002ee                  _senseLine
 
 Memory Configuration
 
@@ -153,7 +153,7 @@ FDS              0xf80010           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/Navigation.o
+LOAD build/default/production/LineFollowingNavPic2.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
@@ -181,7 +181,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200         0xde
+.text             0x000200         0xda
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -193,16 +193,16 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr             0x0002d8          0x4 default_isr
-                  0x0002d8                  __DefaultInterrupt
+ .isr             0x0002d4          0x4 default_isr
+                  0x0002d4                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002dc          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x0002dc                  __crt_start_mode
-                  0x0002dc                  __crt_start_mode_normal
+                  0x0002d8          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x0002d8                  __crt_start_mode
+                  0x0002d8                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -234,26 +234,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xecf
+.debug_info       0x000000        0xeaf
  *(.debug_info)
- .debug_info      0x000000        0xecf build/default/production/Navigation.o
+ .debug_info      0x000000        0xeaf build/default/production/LineFollowingNavPic2.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1bb
+.debug_abbrev     0x000000        0x1aa
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1bb build/default/production/Navigation.o
+ .debug_abbrev    0x000000        0x1aa build/default/production/LineFollowingNavPic2.o
 
-.debug_line       0x000000        0x168
+.debug_line       0x000000        0x17c
  *(.debug_line)
- .debug_line      0x000000        0x168 build/default/production/Navigation.o
+ .debug_line      0x000000        0x17c build/default/production/LineFollowingNavPic2.o
 
 .debug_frame      0x000000         0xca
  *(.debug_frame)
- .debug_frame     0x000000         0xca build/default/production/Navigation.o
+ .debug_frame     0x000000         0xca build/default/production/LineFollowingNavPic2.o
 
-.debug_str        0x000000         0xb2
+.debug_str        0x000000         0xa8
  *(.debug_str)
- .debug_str       0x000000         0xb2 build/default/production/Navigation.o
+ .debug_str       0x000000         0xa8 build/default/production/LineFollowingNavPic2.o
 
 .debug_loc
  *(.debug_loc)
@@ -265,7 +265,7 @@ __FDS
                   0x000000         0x7a
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x7a build/default/production/Navigation.o
+                  0x000000         0x7a build/default/production/LineFollowingNavPic2.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -273,7 +273,7 @@ __FDS
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/Navigation.o
+                  0x000000         0x18 build/default/production/LineFollowingNavPic2.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -888,7 +888,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a
 END GROUP
-OUTPUT(dist/default/production/Canyon.X.production.elf elf32-pic30)
+OUTPUT(dist/default/production/Milestone6.X.production.elf elf32-pic30)
 LOAD jump_table
 LOAD default_isr
 LOAD data_init
@@ -896,39 +896,42 @@ LOAD data_init
 .debug_pubtypes
                   0x000018        0x13a
  .debug_pubtypes
-                  0x000018        0x13a build/default/production/Navigation.o
+                  0x000018        0x13a build/default/production/LineFollowingNavPic2.o
 
 __c30_signature
                   0x000152         0x12
  __c30_signature
-                  0x000152          0x6 build/default/production/Navigation.o
+                  0x000152          0x6 build/default/production/LineFollowingNavPic2.o
  __c30_signature
                   0x000158          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
                   0x00015e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
 .ndata              0x0800          0x6
- .ndata             0x0800          0x6 build/default/production/Navigation.o
+ .ndata             0x0800          0x6 build/default/production/LineFollowingNavPic2.o
                     0x0800                  _lineState
 
 .nbss               0x0806          0x4
- .nbss              0x0806          0x4 build/default/production/Navigation.o
+ .nbss              0x0806          0x4 build/default/production/LineFollowingNavPic2.o
+
+.config_ICS       0xf8000e          0x2
+ .config_ICS      0xf8000e          0x2 build/default/production/LineFollowingNavPic2.o
 
 .config_FCKSM     0xf80008          0x2
- .config_FCKSM    0xf80008          0x2 build/default/production/Navigation.o
+ .config_FCKSM    0xf80008          0x2 build/default/production/LineFollowingNavPic2.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/default/production/Navigation.o
+ .config_IESO     0xf80006          0x2 build/default/production/LineFollowingNavPic2.o
 
-.text             0x0002de        0x1da
- .text            0x0002de        0x1da build/default/production/Navigation.o
-                  0x0002de                  _main
-                  0x0002f2                  _senseLine
-                  0x000340                  _read_QRD
-                  0x000362                  _lineFSM
-                  0x000402                  _sendWord1
-                  0x00044a                  _pinSetup
-                  0x000468                  _config_ADC
+.text             0x0002da        0x1e6
+ .text            0x0002da        0x1e6 build/default/production/LineFollowingNavPic2.o
+                  0x0002da                  _main
+                  0x0002ee                  _senseLine
+                  0x00033c                  _read_QRD
+                  0x00035e                  _lineFSM
+                  0x0003fe                  _sendWord1
+                  0x000446                  _pinSetup
+                  0x000470                  _config_ADC
 
-.dinit            0x0004b8         0x12
- .dinit           0x0004b8         0x12 data_init
+.dinit            0x0004c0         0x12
+ .dinit           0x0004c0         0x12 data_init
