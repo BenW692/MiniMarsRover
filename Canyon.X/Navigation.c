@@ -16,14 +16,19 @@
 #define FALSE 0
 #define BOOL unsigned char
 
-#define STOP 0b000 // potentially put into header file with global var
-#define STRAIGHT 0b001 
-#define SMALL_RIGHT 0b010
-#define MED_RIGHT 0b011
-#define BIG_RIGHT 0b100
-#define SMALL_LEFT 0b101
-#define MED_LEFT 0b110
-#define BIG_LEFT 0b111
+#define STOP 0b0000 // potentially put into header file with global var
+#define STRAIGHT 0b0001 
+#define SMALL_RIGHT 0b0010
+#define MED_RIGHT 0b0011
+#define BIG_RIGHT 0b0100
+#define SMALL_LEFT 0b0101
+#define MED_LEFT 0b0110
+#define BIG_LEFT 0b0111
+
+#define DRIVE_NORTH 0b1000
+#define DRIVE_EAST 0b1001
+#define DRIVE_SOUTH 0b1010
+#define DRIVE_WEST 0b1011
 
 #define QRD1 ADC1BUF0
 #define QRD2 ADC1BUF1
@@ -32,32 +37,99 @@
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
 
+#define SONAR_N ADC1BUF3 // pin5
+#define SONAR_E ADC1BUF4 // pin6
+#define SONAR_S ADC1BUF13 // pin7
+#define SONAR_W ADC1BUF14 // pin8
+
+#define SONAR_HIGH 900 // Sense Wall 
+#define SONAR_LOW 511 // Close enought to wall (Half of 1023... goal is 4.5-5 inches from wall)
+
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
 #define WORDBIT3 _LATB8
 #define WORDBIT4 _LATB7
 
-int lineState = STRAIGHT;
+int bitWord = STRAIGHT;
+
+int qrd1 = 0;
+int qrd2 = 2;
+int qrd3 = 0;
 
 int main(void) {
     pinSetup();
     config_ADC();
     
+    while(1) {
+        if (SONAR_N < SONAR_HIGH) {
+            WORDBIT1 = 1;
+        } else {
+            WORDBIT1 = 0;
+        }
+        if (SONAR_E < SONAR_HIGH) {
+            WORDBIT2 = 1;
+        } else {
+            WORDBIT2 = 0;
+        }
+        if (SONAR_S < SONAR_HIGH) {
+            WORDBIT3 = 1;
+        } else {
+            WORDBIT3 = 0;
+        }
+        if (SONAR_W < SONAR_HIGH) {
+            WORDBIT4 = 1;
+        } else {
+            WORDBIT4 = 0;
+        }
+    }
 
     while(TRUE) {
-        lineState = senseLine();
-        lineFSM();        
+        bitWord = senseLine();
+        
+        if (isCanyonSensed()) {
+            bitWord = senseWall();
+        }
+        
+        fourBit_FSM();        
     }
     
     return 0;
 }
 
+void senseWall() {
+    static int sonarN = 1023;
+    static int sonarE = 1023;
+    static int sonarS = 1023;
+    static int sonarW = 1023;
+
+    sonarN = read_Sonar(SONAR_N);
+    sonarE = read_Sonar(SONAR_E);
+    sonarS = read_Sonar(SONAR_S);
+    sonarW = read_Sonar(SONAR_W);
+    
+    if (1) {} // this is logic to determine where the pic goes
+}
+
+BOOL isCanyonSensed() {
+    if (!qrd1 && !qrd2 && !qrd3){
+        if (SONAR_W < SONAR_HIGH && SONAR_E < SONAR_HIGH) {
+            return TRUE;
+        }
+    } else {
+        return FALSE;
+    }
+}
+
+BOOL read_Sonar(unsigned int sonarVal) {
+    if (sonarVal / SONAR_LOW) { //only small dip in qrd readout
+        return FALSE; // off the line
+    } else {
+        return TRUE; // on the line
+    }
+}
+
 int senseLine()
 {
-    static int qrd1 = 0;
-    static int qrd2 = 2;
-    static int qrd3 = 0;
-    
     qrd1 = read_QRD(QRD1);
     qrd2 = read_QRD(QRD2);
     qrd3 = read_QRD(QRD3);
@@ -96,14 +168,14 @@ int read_QRD(unsigned int QRD_val) {
 }
 
 
-void lineFSM() { 
+void fourBit_FSM() { 
     static int oldState = -1;
     
-    if (oldState == lineState) {
+    if (oldState == bitWord) {
         return;
     }
     
-    switch(lineState) {
+    switch(bitWord) {
         case STOP:
             sendWord1(0, 0, 0);
             break;
@@ -130,7 +202,7 @@ void lineFSM() {
             break;
     }
     
-    oldState = lineState;
+    oldState = bitWord;
 
 //    corse correction try later OR WITH A TIMER
 //    static int lastLineState = STOP;
@@ -173,14 +245,24 @@ void pinSetup() {
     _TRISA1 = 1;
     _TRISB0 = 1;
     
+    _TRISB1 = 1;
+    _TRISB2 = 1;
+    _TRISA2 = 1;
+    _TRISA3 = 1;
+    
     /* Enable Analog */
     _ANSA0 = 1;
     _ANSA1 = 1;    
-    _ANSB0 = 1;        
+    _ANSB0 = 1;   
+    
+    _ANSB1 = 1;
+    _ANSB2 = 1;
+    _ANSA2 = 1;
+    _ANSA3 = 1;
 }
 
 void config_ADC() {
-    /* Pins 2, 3, 4 */  
+    /* Pins 2, 3, 4 (QRDS) && 5, 6, 7, 8 (Sonars) */  
     _ADON = 0;    // Disable A/D module during configuration
     
     // AD1CON1
@@ -194,7 +276,7 @@ void config_ADC() {
     _NVCFG = 0;   // use VSS as negative reference
     _BUFREGEN = 1;// store results in buffer corresponding to channel number
     _CSCNA = 1;   // enable scanning mode
-    _SMPI = 2;    // begin new sampling sequence after 3 samples
+    _SMPI = 6;    // begin new sampling sequence after 7 samples
     _ALTS = 0;    // sample MUXA only
 
     // AD1CON3
@@ -203,7 +285,8 @@ void config_ADC() {
     _ADCS = 0x3F; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
-    AD1CSSL = 0b111; // Select AN0, AN1, AN2 (pins 2, 3, 4)
+    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN14 (pins 5, 6, 7, 8)
+    AD1CSSL = 0b110000000011111; 
     
     _ADON = 1;    // enable module after configuration
 }
