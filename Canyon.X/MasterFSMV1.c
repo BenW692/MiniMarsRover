@@ -8,15 +8,15 @@
 
 #include "xc.h"
 
-//#define NORTH 0b1000 
-//#define WEST 0b1001 
-//#define EAST 0b1010
-//#define SOUTH 0b1011
+#define NORTH 0b1000 
+#define WEST 0b1001 
+#define EAST 0b1010
+#define SOUTH 0b1011
 
-#define NORTH 0b00 
-#define WEST 0b01 
-#define EAST 0b10
-#define SOUTH 0b11
+//#define NORTH 0b00 
+//#define WEST 0b01 
+//#define EAST 0b10
+//#define SOUTH 0b11
 
 //this code has not incorporated seperate pwms for the left and right motor
 #define LR_PERIOD OC3RS
@@ -37,8 +37,10 @@
 
 #define STRAFE_SPEED 2500
 
-static int current_speed = 0;
-static int target_speed = 0;
+
+static int target_speed_LR = 0;
+static int target_speed_FB = 0;
+
 
 int canyonState = -1;
 
@@ -46,9 +48,21 @@ void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
 {
     _OC3IF = 0;
     
-    if (current_speed > target_speed)
+    if (LR_PERIOD > target_speed_LR) //if period is bigger it needs to get smaller to go faster
     {
-        current_speed;
+        LR_PERIOD--;
+        LR_DUTY_CYCLE = LR_PERIOD / 2;
+    }
+}
+
+void __attribute__((interrupt, no_auto_psv))_OC2Interrupt(void)
+{
+    _OC2IF = 0;
+    
+    if (FB_PERIOD > target_speed_FB) //if period is bigger it needs to get smaller to go faster
+    {
+        FB_PERIOD--;
+        FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
 }
 
@@ -71,50 +85,25 @@ void canyon_fsm()
 {
     static int oldState = -1;
     
-    if (oldState == canyonState) {
+    if (oldState == canyonState) 
+    {
         return;
     }
     
-    current_speed = 0;
-    
     switch (canyonState)
     {
-        case NORTH:
-            //setStrafeSpeed(STRAIGHT_SPEED);
-            RIGHT_DIR = 1;
-            LEFT_DIR = 1;
-            LR_PERIOD = STRAFE_SPEED;
-            LR_DUTY_CYCLE = STRAFE_SPEED / 2;
-            FB_PERIOD = 0;
-            FB_DUTY_CYCLE = 0;
-            break;
-        case SOUTH:
-            //setStrafeSpeed(STRAIGHT_SPEED);
-            RIGHT_DIR = 0;
-            LEFT_DIR = 0;
-            LR_PERIOD = STRAFE_SPEED;
-            LR_DUTY_CYCLE = STRAFE_SPEED / 2;
-            FB_PERIOD = 0;
-            FB_DUTY_CYCLE = 0;
-            break;
-        case WEST:
-            //setStrafeSpeed(STRAIGHT_SPEED);
-            FRONT_DIR = 1;
-            BACK_DIR = 1;
-            FB_PERIOD = STRAFE_SPEED;
-            FB_DUTY_CYCLE = STRAFE_SPEED / 2;
-            LR_PERIOD = 0;
-            LR_DUTY_CYCLE = 0; 
-            break;
-        case EAST:
-            //setStrafeSpeed(STRAIGHT_SPEED);
-            FRONT_DIR = 0;
-            BACK_DIR = 0;
-            FB_PERIOD = STRAFE_SPEED;
-            FB_DUTY_CYCLE = STRAFE_SPEED / 2;
-            LR_PERIOD = 0;
-            LR_DUTY_CYCLE = 0; 
-            break;  
+    case NORTH:
+        setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // Left & Right motors forward
+        break;
+    case SOUTH:
+        setStrafeSpeed(0, 0, -1, -1, STRAFE_SPEED); // Left & Right motors backward
+        break;
+    case WEST:
+        setStrafeSpeed(-1, -1, 1, 1, STRAFE_SPEED); // Front & Back motors forward
+        break;
+    case EAST:
+        setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
+        break;
     }
     oldState = canyonState;
 }
@@ -126,18 +115,46 @@ int poll_slave_canyon_state()
     //the weird syntax below forces the int to change at the 0, 1, or 2 bit spot in the digital word
     canyon_state_word |= (WORDBIT1 << 0);  // LSB
     canyon_state_word |= (WORDBIT2 << 1);
-    
-    //we don't have to check last two bits because they don't affect canyon state
-    //line_state_word |= (WORDBIT3 << 2);
-    //line_state_word |= (WORDBIT4 << 3); //MSB 
+    canyon_state_word |= (WORDBIT3 << 2);
+    canyon_state_word |= (WORDBIT4 << 3); //MSB 
     
     return canyon_state_word;
 }
 
-//void setStrafeSpeed(int speed) {
-//    PERIOD_1 = speed;
-//    DUTY_CYCLE_1 = PERIOD_1 / 2;
-//}
+void setStrafeSpeed(int left, int right, int front, int back, int speed)
+// 1 is forward, 0 is backward, -1 turns off PWM to those motors and lock those wheels
+{
+    LEFT_DIR = left;
+    RIGHT_DIR = right;
+    FRONT_DIR = front;
+    BACK_DIR = back;
+
+    if (front != -1 || back != -1) 
+    { // Control Front-Back Motors
+        target_speed_FB = speed;
+        FB_PERIOD = 5000;
+        FB_DUTY_CYCLE = 5000;
+    } 
+    else 
+    {
+        FB_PERIOD = 0;
+        FB_DUTY_CYCLE = 0;
+    }
+
+    if (left != -1 || right != -1) 
+    { // Control Left-Right Motors
+        target_speed_LR = speed;
+        LR_PERIOD = 5000;
+        LR_DUTY_CYCLE = 5000;
+    } 
+    else 
+    {
+        LR_PERIOD = 0;
+        LR_DUTY_CYCLE = 0;
+    }
+}
+
+    
 
 void setupPins() {
     /* Clear registers */
