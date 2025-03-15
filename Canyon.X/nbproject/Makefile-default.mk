@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=MasterFSMV1.c Navigation.c
+SOURCEFILES_QUOTED_IF_SPACED=Navigation.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MasterFSMV1.o ${OBJECTDIR}/Navigation.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/MasterFSMV1.o.d ${OBJECTDIR}/Navigation.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Navigation.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/Navigation.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/MasterFSMV1.o ${OBJECTDIR}/Navigation.o
+OBJECTFILES=${OBJECTDIR}/Navigation.o
 
 # Source Files
-SOURCEFILES=MasterFSMV1.c Navigation.c
+SOURCEFILES=Navigation.c
 
 
 
@@ -95,25 +95,13 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/MasterFSMV1.o: MasterFSMV1.c  .generated_files/flags/default/1f03b2dbd8e937a6e9407a8940a31753feae151b .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterFSMV1.o.d 
-	@${RM} ${OBJECTDIR}/MasterFSMV1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFSMV1.c  -o ${OBJECTDIR}/MasterFSMV1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFSMV1.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
-	
-${OBJECTDIR}/Navigation.o: Navigation.c  .generated_files/flags/default/ae33d7bb225f98c297712a9c55eec419a4da38d6 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
+${OBJECTDIR}/Navigation.o: Navigation.c  .generated_files/flags/default/574a5f485ae8e183cc48a89a1302f8f7a2452d08 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Navigation.o.d 
 	@${RM} ${OBJECTDIR}/Navigation.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Navigation.c  -o ${OBJECTDIR}/Navigation.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Navigation.o.d"      -g -D__DEBUG     -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
+	${MP_CC} $(MP_EXTRA_CC_PRE)  Navigation.c  -o ${OBJECTDIR}/Navigation.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Navigation.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
 	
 else
-${OBJECTDIR}/MasterFSMV1.o: MasterFSMV1.c  .generated_files/flags/default/eb397e3f4b22c1b402fdb39cd72030f1af6758b1 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
-	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterFSMV1.o.d 
-	@${RM} ${OBJECTDIR}/MasterFSMV1.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFSMV1.c  -o ${OBJECTDIR}/MasterFSMV1.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFSMV1.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off   
-	
 ${OBJECTDIR}/Navigation.o: Navigation.c  .generated_files/flags/default/dc75bd6ff2f70c85b2911ceca72870a6cbd948e0 .generated_files/flags/default/7dab310884e5de58b737751714b62c5515706f0f
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/Navigation.o.d 
@@ -139,7 +127,7 @@ endif
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
 ${DISTDIR}/Canyon.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk    
 	@${MKDIR} ${DISTDIR} 
-	${MP_CC} $(MP_EXTRA_LD_PRE)  -o ${DISTDIR}/Canyon.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG   -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)      -Wl,,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,${DISTDIR}/memoryfile.xml$(MP_EXTRA_LD_POST)  
+	${MP_CC} $(MP_EXTRA_LD_PRE)  -o ${DISTDIR}/Canyon.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}  ${OBJECTFILES_QUOTED_IF_SPACED}      -mcpu=$(MP_PROCESSOR_OPTION)        -D__DEBUG=__DEBUG -D__MPLAB_DEBUGGER_PK3=1  -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)   -mreserve=data@0x800:0x81F -mreserve=data@0x820:0x821 -mreserve=data@0x822:0x823 -mreserve=data@0x824:0x825 -mreserve=data@0x826:0x84F   -Wl,,,--defsym=__MPLAB_BUILD=1,--defsym=__MPLAB_DEBUG=1,--defsym=__DEBUG=1,-D__DEBUG=__DEBUG,--defsym=__MPLAB_DEBUGGER_PK3=1,$(MP_LINKER_FILE_OPTION),--stack=16,--check-sections,--data-init,--pack-data,--handles,--isr,--no-gc-sections,--fill-upper=0,--stackguard=16,--no-force-link,--smart-io,-Map="${DISTDIR}/${PROJECTNAME}.${IMAGE_TYPE}.map",--report-mem,--memorysummary,${DISTDIR}/memoryfile.xml$(MP_EXTRA_LD_POST)  
 	
 else
 ${DISTDIR}/Canyon.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}: ${OBJECTFILES}  nbproject/Makefile-${CND_CONF}.mk   

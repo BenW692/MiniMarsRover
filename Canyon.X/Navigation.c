@@ -31,10 +31,6 @@
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
 
-#define WORD1BIT1 _LATB13
-#define WORD1BIT2 _LATB12
-#define WORD1BIT3 _LATA6
-
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
 #define WORDBIT3 _LATB8
@@ -45,6 +41,17 @@ int lineState = STRAIGHT;
 int main(void) {
     pinSetup();
     config_ADC();
+    
+    WORDBIT1 = 1;
+    WORDBIT2 = 1;
+    WORDBIT3 = 1;
+    WORDBIT4 = 1;
+    while(TRUE);
+    
+    while(TRUE) {
+        lineState = senseLine();
+        lineFSM();        
+    }
     
     return 0;
 }
