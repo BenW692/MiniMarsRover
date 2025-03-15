@@ -46,7 +46,7 @@ void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
 {
     _OC3IF = 0;
     
-    if (current_speed < target_speed)
+    if (current_speed > target_speed)
     {
         current_speed;
     }
