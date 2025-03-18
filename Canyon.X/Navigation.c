@@ -14,7 +14,7 @@
 
 #define TRUE 1
 #define FALSE 0
-#define BOOL unsigned char
+#define BOOL int
 
 #define STOP 0b0000 // potentially put into header file with global var
 #define STRAIGHT 0b0001 
