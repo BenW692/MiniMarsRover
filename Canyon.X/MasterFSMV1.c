@@ -8,10 +8,19 @@
 
 #include "xc.h"
 
-#define NORTH 0b1000 
-#define WEST 0b1001 
-#define EAST 0b1010
-#define SOUTH 0b1011
+#define DRIVE_NORTH 0b1000
+#define DRIVE_EAST 0b1001
+#define DRIVE_SOUTH 0b1010
+#define DRIVE_WEST 0b1011
+
+#define NO_LINE 0b0000 //potentially put into header file with global var
+#define STRAIGHT 0b0001 
+#define SMALL_RIGHT 0b0010
+#define MED_RIGHT 0b0011
+#define BIG_RIGHT 0b0100
+#define SMALL_LEFT 0b0101
+#define MED_LEFT 0b0110
+#define BIG_LEFT 0b0111
 
 //#define NORTH 0b00 
 //#define WEST 0b01 
@@ -74,23 +83,23 @@ int main(void) {
     while(1)
     {
         canyonState = poll_slave_canyon_state();
-        canyon_fsm();
+        fourBit_FSM();
     
     }
     
     return 0;
 }
 
-void canyon_fsm()
+void fourBit_FSM()
 {
     static int oldState = -1;
     
-    if (oldState == canyonState) 
+    if (oldState == bitWord) 
     {
         return;
     }
     
-    switch (canyonState)
+    switch (bitWord)
     {
     case NORTH:
         setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // Left & Right motors forward
@@ -124,10 +133,10 @@ int poll_slave_canyon_state()
 void setStrafeSpeed(int left, int right, int front, int back, int speed)
 // 1 is forward, 0 is backward, -1 turns off PWM to those motors and lock those wheels
 {
-    LEFT_DIR = left;
-    RIGHT_DIR = right;
-    FRONT_DIR = front;
-    BACK_DIR = back;
+    LEFT_DIR = (left == -1) ? 0 : left;
+    RIGHT_DIR = (right == -1) ? 0 : right;
+    FRONT_DIR = (front == -1) ? 0 : front;
+    BACK_DIR = (back == -1) ? 0 : back;
 
     if (front != -1 || back != -1) 
     { // Control Front-Back Motors

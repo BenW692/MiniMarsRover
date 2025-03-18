@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=Navigation.c
+SOURCEFILES_QUOTED_IF_SPACED=NavigationSuperFSM.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/Navigation.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/Navigation.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/NavigationSuperFSM.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/NavigationSuperFSM.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/Navigation.o
+OBJECTFILES=${OBJECTDIR}/NavigationSuperFSM.o
 
 # Source Files
-SOURCEFILES=Navigation.c
+SOURCEFILES=NavigationSuperFSM.c
 
 
 
@@ -89,18 +89,18 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/Navigation.o: Navigation.c  .generated_files/flags/default/481de18272e0070578e903f38c61e3a5b6f5f436 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/NavigationSuperFSM.o: NavigationSuperFSM.c  .generated_files/flags/default/9ac8eff4ebbfadd22d5439259e6e668071cc8ec .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Navigation.o.d 
-	@${RM} ${OBJECTDIR}/Navigation.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Navigation.c  -o ${OBJECTDIR}/Navigation.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Navigation.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/NavigationSuperFSM.o.d 
+	@${RM} ${OBJECTDIR}/NavigationSuperFSM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  NavigationSuperFSM.c  -o ${OBJECTDIR}/NavigationSuperFSM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/NavigationSuperFSM.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/Navigation.o: Navigation.c  .generated_files/flags/default/47770e1878dd3901e03110bb4c82b201c7405ce0 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/NavigationSuperFSM.o: NavigationSuperFSM.c  .generated_files/flags/default/dcdb9896eba1da05055bec3f5e03662fa9a3d9f6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/Navigation.o.d 
-	@${RM} ${OBJECTDIR}/Navigation.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  Navigation.c  -o ${OBJECTDIR}/Navigation.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/Navigation.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/NavigationSuperFSM.o.d 
+	@${RM} ${OBJECTDIR}/NavigationSuperFSM.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  NavigationSuperFSM.c  -o ${OBJECTDIR}/NavigationSuperFSM.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/NavigationSuperFSM.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

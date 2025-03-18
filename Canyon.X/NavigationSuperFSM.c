@@ -42,16 +42,17 @@
 #define SONAR_S ADC1BUF13 // pin7
 #define SONAR_W ADC1BUF14 // pin8
 
-#define SONAR_HIGH 220 // Sense Wall 
-#define SONAR_LOW 140 // Close enough to wall
+#define SONAR_HIGH 300 // Sense Wall 
+#define SONAR_LOW 220 // Close enough to wall
 
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
 #define WORDBIT3 _LATB8
 #define WORDBIT4 _LATB7
 
-int bitWord = STRAIGHT;
+int bitWord = DRIVE_NORTH;
 int lineState = -1;
+int oldState = -1;
 
 int qrd1 = 0;
 int qrd2 = 2;
@@ -113,17 +114,23 @@ int main(void) {
 //        }
 //    }
 
-    while(TRUE) {
-        bitWord = senseLine();
-        
-        if (isCanyonSensed()) {
-            bitWord = senseWall();
-        }
-        
-        fourBit_FSM();        
+    while (TRUE) {
+        locateTurn();
+        fourBit_FSM();
     }
-    
-    return 0;
+//    while(TRUE) {
+//        
+//        if (isCanyonSensed())
+//        {
+//            bitWord = senseWall();
+//        }
+//        else
+//        {
+//            bitWord = senseLine();
+//        }
+//        
+//        fourBit_FSM();
+//        
 }
 
 void senseWall() {
@@ -131,26 +138,69 @@ void senseWall() {
     static int sonarE = 0;
     static int sonarS = 0;
     static int sonarW = 0;
-    static enum Direction current_direction = north;
+    //static enum Direction current_direction = north;
 
     sonarN = read_Sonar(SONAR_N);
     sonarE = read_Sonar(SONAR_E);
     sonarS = read_Sonar(SONAR_S);
     sonarW = read_Sonar(SONAR_W);
     
-    if (SONAR_N > SONAR_LOW) {
-        bitWord = DRIVE_NORTH;
-    } else {
-        locateTurn();
-    }
 }
 
-void locateTurn(enum Direction cur_dir) {
-    switch(cur_dir) {
-        case NORTH:
-        case EAST:
-        case SOUTH:
-        case WEST:
+void locateTurn() {
+    switch(bitWord) {
+        case DRIVE_NORTH:
+            if (SONAR_N < SONAR_LOW)
+            {
+                if (SONAR_W < SONAR_HIGH) 
+                {
+                    bitWord = DRIVE_EAST;
+                }
+                else if (SONAR_E < SONAR_HIGH)
+                {
+                    bitWord = DRIVE_WEST;
+                }
+            }
+            break;
+        case DRIVE_EAST:
+            if (SONAR_E < SONAR_LOW)
+            {
+                if (SONAR_N < SONAR_HIGH) 
+                {
+                    bitWord = DRIVE_SOUTH;
+                }
+                else if (SONAR_S < SONAR_HIGH)
+                {
+                    bitWord = DRIVE_NORTH;
+                }
+            }
+            break;
+        case DRIVE_SOUTH:
+            if (SONAR_S < SONAR_LOW)
+            {
+                if (SONAR_W < SONAR_HIGH) 
+                {
+                    bitWord = DRIVE_EAST;
+                }
+                else if (SONAR_E < SONAR_HIGH)
+                {
+                    bitWord = DRIVE_WEST;
+                }
+            }
+            break;
+        case DRIVE_WEST:
+            if (SONAR_W < SONAR_LOW)
+            {
+                if (SONAR_N < SONAR_HIGH) 
+                {
+                    bitWord = DRIVE_SOUTH;
+                }
+                else if (SONAR_S < SONAR_HIGH)
+                {
+                    bitWord = DRIVE_NORTH;
+                }
+            }
+            break;
     }
 }
 
@@ -217,8 +267,6 @@ int read_QRD(unsigned int QRD_val) {
 
 
 void fourBit_FSM() { 
-    static int oldState = -1; //I think we are going to want to put this line in the main loop
-    //so it doesn't reset every time we call fourBit_FSM
     
     if (oldState == bitWord) {
         return;
@@ -226,29 +274,41 @@ void fourBit_FSM() {
     
     switch(bitWord) {
         case NO_LINE:
-            sendWord1(0, 0, 0);
+            sendWord1(0, 0, 0, 0);
             break;
         case STRAIGHT:
-            sendWord1(0, 0, 1);
+            sendWord1(0, 0, 0, 1);
             break;
         case SMALL_RIGHT:
-            sendWord1(0, 1, 0);
+            sendWord1(0, 0, 1, 0);
             break;
         case MED_RIGHT:
-            sendWord1(0, 1, 1);
+            sendWord1(0, 0, 1, 1);
             break;
         case BIG_RIGHT:
-            sendWord1(1, 0, 0);
+            sendWord1(0, 1, 0, 0);
             break;
         case SMALL_LEFT:
-            sendWord1(1, 0, 1);
+            sendWord1(0, 1, 0, 1);
             break;
         case MED_LEFT:
-            sendWord1(1, 1, 0);
+            sendWord1(0, 1, 1, 0);
             break;
         case BIG_LEFT:
-            sendWord1(1, 1, 1);
+            sendWord1(0, 1, 1, 1);
             break;
+        case DRIVE_NORTH:
+            sendWord1(1, 0, 0, 0);
+            break;
+        case DRIVE_EAST:
+            sendWord1(1, 0, 0, 1);
+            break; 
+        case DRIVE_SOUTH:
+            sendWord1(1, 0, 1, 0);
+            break;
+        case DRIVE_WEST:
+            sendWord1(1, 0, 1, 1);
+            break;    
     }
     
     oldState = bitWord;
@@ -261,11 +321,11 @@ void fourBit_FSM() {
 //    }
 }
 
-void sendWord1(int s1, int s2, int s3) {
+void sendWord1(int s1, int s2, int s3, int s4) {
     WORDBIT1 = s1;
     WORDBIT2 = s2;
     WORDBIT3 = s3;
-    //WORDBIT4 = s4;
+    WORDBIT4 = s4;
 }
 
 //void sendWord2(int s1, int s2, int s3) {
