@@ -16,7 +16,7 @@
 #define FALSE 0
 #define BOOL int
 
-#define NO_LINE 0b0000 // change this !!!! potentially put into header file with global var
+#define NO_LINE 0b0000 //potentially put into header file with global var
 #define STRAIGHT 0b0001 
 #define SMALL_RIGHT 0b0010
 #define MED_RIGHT 0b0011
@@ -57,6 +57,8 @@ int qrd1 = 0;
 int qrd2 = 2;
 int qrd3 = 0;
 
+enum Direction {north, east, south, west};
+
 int main(void) {
     _RCDIV = 0;
     pinSetup();
@@ -85,60 +87,71 @@ int main(void) {
 //        }
 //    }
     
-    while(TRUE) //test canyon start detection
-    {
-        lineState = senseLine();
-        if (SONAR_W < SONAR_HIGH)
-        {
-            WORDBIT4 = 1;
-            if (SONAR_E < SONAR_HIGH)
-                WORDBIT2 = 1;
-            {
-                if (lineState == NO_LINE)
-                {
-                    WORDBIT1 = 1;
-                    WORDBIT3 = 1;
-                }
-                    
-            }
-        }
-        else
-        {
-            WORDBIT1 = 0;
-            WORDBIT2 = 0;
-            WORDBIT3 = 0;
-            WORDBIT4 = 0;
-        }
-    }
+//    while(TRUE) //test canyon start detection
+//    {
+//        lineState = senseLine();
+//        if (SONAR_W < SONAR_HIGH)
+//        {
+//            WORDBIT4 = 1;
+//            if (SONAR_E < SONAR_HIGH)
+//                WORDBIT2 = 1;
+//            {
+//                if (lineState == NO_LINE)
+//                {
+//                    WORDBIT1 = 1;
+//                    WORDBIT3 = 1;
+//                }
+//                    
+//            }
+//        }
+//        else
+//        {
+//            WORDBIT1 = 0;
+//            WORDBIT2 = 0;
+//            WORDBIT3 = 0;
+//            WORDBIT4 = 0;
+//        }
+//    }
 
     while(TRUE) {
         bitWord = senseLine();
         
         if (isCanyonSensed()) {
             bitWord = senseWall();
-            WORDBIT1 = 1;
-        } else {
-            WORDBIT1 = 0;
         }
         
-//        fourBit_FSM();        
+        fourBit_FSM();        
     }
     
     return 0;
 }
 
 void senseWall() {
-    static int sonarN = 1023;
-    static int sonarE = 1023;
-    static int sonarS = 1023;
-    static int sonarW = 1023;
+    static int sonarN = 0;
+    static int sonarE = 0;
+    static int sonarS = 0;
+    static int sonarW = 0;
+    static enum Direction current_direction = north;
 
     sonarN = read_Sonar(SONAR_N);
     sonarE = read_Sonar(SONAR_E);
     sonarS = read_Sonar(SONAR_S);
     sonarW = read_Sonar(SONAR_W);
     
-    if (1) {} // this is logic to determine where the pic goes
+    if (SONAR_N > SONAR_LOW) {
+        bitWord = DRIVE_NORTH;
+    } else {
+        findTurn();
+    }
+}
+
+void findTurn(enum Direction cur_dir) {
+    switch(cur_dir) {
+        case north: // change case
+        case east:
+        case south:
+        case west:
+    }
 }
 
 BOOL isCanyonSensed() {
@@ -152,10 +165,10 @@ BOOL isCanyonSensed() {
 }
 
 BOOL read_Sonar(unsigned int sonarVal) {
-    if (sonarVal / SONAR_LOW) { //only small dip in qrd readout
-        return FALSE; // off the line
+    if (sonarVal < SONAR_LOW) { //only small dip in qrd readout
+        return TRUE; // close enough to wall
     } else {
-        return TRUE; // on the line
+        return FALSE;
     }
 }
 
