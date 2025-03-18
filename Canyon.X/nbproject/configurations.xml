@@ -196,7 +196,7 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="MasterFSMV1.c" ex="true" overriding="false">
+      <item path="MasterFSMV1.c" ex="false" overriding="false">
         <C30>
         </C30>
         <C30-AR>
@@ -211,6 +211,32 @@
         </C30Global>
       </item>
       <item path="Navigation.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="NavigationSuperFSM.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
       <PICkit3PlatformTool>
         <property key="firmware.download.all" value="false"/>

@@ -8,11 +8,6 @@
 
 #include "xc.h"
 
-#define DRIVE_NORTH 0b1000
-#define DRIVE_EAST 0b1001
-#define DRIVE_SOUTH 0b1010
-#define DRIVE_WEST 0b1011
-
 #define NO_LINE 0b0000 //potentially put into header file with global var
 #define STRAIGHT 0b0001 
 #define SMALL_RIGHT 0b0010
@@ -22,10 +17,10 @@
 #define MED_LEFT 0b0110
 #define BIG_LEFT 0b0111
 
-//#define NORTH 0b00 
-//#define WEST 0b01 
-//#define EAST 0b10
-//#define SOUTH 0b11
+#define DRIVE_NORTH 0b1000
+#define DRIVE_EAST 0b1001
+#define DRIVE_SOUTH 0b1010
+#define DRIVE_WEST 0b1011
 
 //this code has not incorporated seperate pwms for the left and right motor
 #define LR_PERIOD OC3RS
@@ -40,18 +35,24 @@
 #define RIGHT_DIR     _LATB8
 
 #define WORDBIT1 PORTBbits.RB15
-#define WORDBIT2 PORTAbits.RB14 //saying this pin doesn't exist
-#define WORDBIT3 PORTAbits.RB13 
-#define WORDBIT4 PORTAbits.RB12
+#define WORDBIT2 PORTBbits.RB14 //saying this pin doesn't exist
+#define WORDBIT3 PORTBbits.RB13 
+#define WORDBIT4 PORTBbits.RB12
 
 #define STRAFE_SPEED 2500
 
+#define STRAIGHT_SPEED 2500
+#define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
+#define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
+#define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
 
 static int target_speed_LR = 0;
 static int target_speed_FB = 0;
 
+static int oldWord = -1;
+int bitWord = -1;
 
-int canyonState = -1;
+
 
 void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
 {
@@ -78,13 +79,22 @@ void __attribute__((interrupt, no_auto_psv))_OC2Interrupt(void)
 
 
 int main(void) {
-    int canyonState = -1;
+    setupPins();
+    config_OC_interrupt();
+    config_PWM();
+    
+    target_speed_FB = 1000;
+    FB_PERIOD = 2000;
+    FB_DUTY_CYCLE = FB_PERIOD / 2;
+    target_speed_LR = 2500;
+    LR_PERIOD = 5000;
+    LR_DUTY_CYCLE = LR_PERIOD / 2;
+    while(1);
     
     while(1)
     {
-        canyonState = poll_slave_canyon_state();
+        bitWord = poll_bitWord();
         fourBit_FSM();
-    
     }
     
     return 0;
@@ -92,42 +102,92 @@ int main(void) {
 
 void fourBit_FSM()
 {
-    static int oldState = -1;
     
-    if (oldState == bitWord) 
+    if (oldWord == bitWord) 
     {
         return;
     }
     
     switch (bitWord)
     {
-    case NORTH:
+    case NO_LINE:
+        setSpeed1(STRAIGHT_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 1;
+        break;
+
+    case STRAIGHT:
+        setSpeed1(STRAIGHT_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 1;
+        break;
+
+    case SMALL_RIGHT:
+        setSpeed1(SMALL_TURN_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 0;
+        break;
+
+    case MED_RIGHT:
+        setSpeed1(MED_TURN_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 0;
+        break;
+
+    case BIG_RIGHT:
+        setSpeed1(BIG_TURN_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 0;
+        break;
+
+    case SMALL_LEFT:
+        setSpeed1(SMALL_TURN_SPEED);
+        RIGHT_DIR = 0;
+        LEFT_DIR = 1;
+        break;
+
+    case MED_LEFT:
+        setSpeed1(MED_TURN_SPEED);
+        RIGHT_DIR = 0;
+        LEFT_DIR = 1;
+        break;
+
+    case BIG_LEFT:
+        setSpeed1(BIG_TURN_SPEED);
+        RIGHT_DIR = 0;
+        LEFT_DIR = 1;
+        break;    
+        
+    case DRIVE_NORTH:
         setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // Left & Right motors forward
         break;
-    case SOUTH:
+        
+    case DRIVE_SOUTH:
         setStrafeSpeed(0, 0, -1, -1, STRAFE_SPEED); // Left & Right motors backward
         break;
-    case WEST:
+        
+    case DRIVE_WEST:
         setStrafeSpeed(-1, -1, 1, 1, STRAFE_SPEED); // Front & Back motors forward
         break;
-    case EAST:
+        
+    case DRIVE_EAST:
         setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
         break;
     }
-    oldState = canyonState;
+    oldWord = bitWord;
 }
 
 
-int poll_slave_canyon_state()
+int poll_bitWord()
 {
-    unsigned int canyon_state_word = 0;
+    unsigned int word = 0;
     //the weird syntax below forces the int to change at the 0, 1, or 2 bit spot in the digital word
-    canyon_state_word |= (WORDBIT1 << 0);  // LSB
-    canyon_state_word |= (WORDBIT2 << 1);
-    canyon_state_word |= (WORDBIT3 << 2);
-    canyon_state_word |= (WORDBIT4 << 3); //MSB 
+    word |= (WORDBIT1 << 0);  // LSB
+    word |= (WORDBIT2 << 1);
+    word |= (WORDBIT3 << 2);
+    word |= (WORDBIT4 << 3); //MSB 
     
-    return canyon_state_word;
+    return word;
 }
 
 void setStrafeSpeed(int left, int right, int front, int back, int speed)
@@ -141,8 +201,8 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (front != -1 || back != -1) 
     { // Control Front-Back Motors
         target_speed_FB = speed;
-        FB_PERIOD = 5000;
-        FB_DUTY_CYCLE = 5000;
+        FB_PERIOD = speed * 2;
+        FB_DUTY_CYCLE = FB_PERIOD / 2;
     } 
     else 
     {
@@ -153,8 +213,8 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (left != -1 || right != -1) 
     { // Control Left-Right Motors
         target_speed_LR = speed;
-        LR_PERIOD = 5000;
-        LR_DUTY_CYCLE = 5000;
+        LR_PERIOD = speed * 2;
+        LR_DUTY_CYCLE = LR_PERIOD / 2;
     } 
     else 
     {
@@ -182,6 +242,14 @@ void setupPins() {
 }
 
 void config_PWM() {
+    /* Front Back Stepper PWM pin 4 */
+    OC2CON1 = 0;
+    OC2CON2 = 0;
+    OC2CON1bits.OCTSEL = 0b111; //output compare timer is system clock
+    OC2CON1bits.OCM = 0b110; //edge aligned output
+    OC2CON2bits.SYNCSEL = 0x1F;
+    OC2CON2bits.OCTRIG = 0; //use this OC module
+    
     /* Left Right Stepper PWM pin 5 */
     OC3CON1 = 0;
     OC3CON2 = 0;
@@ -189,6 +257,12 @@ void config_PWM() {
     OC3CON1bits.OCM = 0b110; //edge aligned output
     OC3CON2bits.SYNCSEL = 0x1F;
     OC3CON2bits.OCTRIG = 0; //use this OC module
+    
+    /* Clear period and duty cycles*/
+    FB_PERIOD = 0;
+    FB_DUTY_CYCLE = 0;
+    LR_PERIOD = 0;
+    LR_DUTY_CYCLE = 0;
 }
 
 void config_OC_interrupt()
@@ -196,4 +270,9 @@ void config_OC_interrupt()
     _OC3IP = 4; //sets priority
     _OC3IE = 1; //enables OC3 interrupt
     _OC3IF = 0; //clears interrupt flag
+}
+
+void setSpeed1(int speed) {
+    LR_PERIOD = speed;
+    LR_DUTY_CYCLE = LR_PERIOD / 2;
 }

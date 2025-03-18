@@ -64,7 +64,7 @@ int main(void) {
     _RCDIV = 0;
     pinSetup();
     config_ADC();
-    
+
 //    while(1) {
 //        if (SONAR_N < SONAR_HIGH) {
 //            WORDBIT1 = 1;
@@ -322,10 +322,10 @@ void fourBit_FSM() {
 }
 
 void sendWord1(int s1, int s2, int s3, int s4) {
-    WORDBIT1 = s1;
-    WORDBIT2 = s2;
-    WORDBIT3 = s3;
-    WORDBIT4 = s4;
+    WORDBIT1 = s4;
+    WORDBIT2 = s3;
+    WORDBIT3 = s2;
+    WORDBIT4 = s1;
 }
 
 //void sendWord2(int s1, int s2, int s3) {
