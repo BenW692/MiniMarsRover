@@ -57,7 +57,7 @@ int qrd1 = 0;
 int qrd2 = 2;
 int qrd3 = 0;
 
-enum Direction {north, east, south, west};
+enum Direction {NORTH, EAST, SOUTH, WEST};
 
 int main(void) {
     _RCDIV = 0;
@@ -141,16 +141,16 @@ void senseWall() {
     if (SONAR_N > SONAR_LOW) {
         bitWord = DRIVE_NORTH;
     } else {
-        findTurn();
+        locateTurn();
     }
 }
 
-void findTurn(enum Direction cur_dir) {
+void locateTurn(enum Direction cur_dir) {
     switch(cur_dir) {
-        case north: // change case
-        case east:
-        case south:
-        case west:
+        case NORTH:
+        case EAST:
+        case SOUTH:
+        case WEST:
     }
 }
 
