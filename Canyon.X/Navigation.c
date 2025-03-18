@@ -16,7 +16,7 @@
 #define FALSE 0
 #define BOOL int
 
-#define STOP 0b0000 // potentially put into header file with global var
+#define NO_LINE 0b0000 // change this !!!! potentially put into header file with global var
 #define STRAIGHT 0b0001 
 #define SMALL_RIGHT 0b0010
 #define MED_RIGHT 0b0011
@@ -42,8 +42,8 @@
 #define SONAR_S ADC1BUF13 // pin7
 #define SONAR_W ADC1BUF14 // pin8
 
-#define SONAR_HIGH 900 // Sense Wall 
-#define SONAR_LOW 511 // Close enought to wall (Half of 1023... goal is 4.5-5 inches from wall)
+#define SONAR_HIGH 220 // Sense Wall 
+#define SONAR_LOW 140 // Close enough to wall
 
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
@@ -51,34 +51,62 @@
 #define WORDBIT4 _LATB7
 
 int bitWord = STRAIGHT;
+int lineState = -1;
 
 int qrd1 = 0;
 int qrd2 = 2;
 int qrd3 = 0;
 
 int main(void) {
+    _RCDIV = 0;
     pinSetup();
     config_ADC();
     
-    while(1) {
-        if (SONAR_N < SONAR_HIGH) {
-            WORDBIT1 = 1;
-        } else {
-            WORDBIT1 = 0;
-        }
-        if (SONAR_E < SONAR_HIGH) {
-            WORDBIT2 = 1;
-        } else {
-            WORDBIT2 = 0;
-        }
-        if (SONAR_S < SONAR_HIGH) {
-            WORDBIT3 = 1;
-        } else {
-            WORDBIT3 = 0;
-        }
-        if (SONAR_W < SONAR_HIGH) {
+//    while(1) {
+//        if (SONAR_N < SONAR_HIGH) {
+//            WORDBIT1 = 1;
+//        } else {
+//            WORDBIT1 = 0;
+//        }
+//        if (SONAR_E < SONAR_HIGH) {
+//            WORDBIT2 = 1;
+//        } else {
+//            WORDBIT2 = 0;
+//        }
+//        if (SONAR_S < SONAR_HIGH) {
+//            WORDBIT3 = 1;
+//        } else {
+//            WORDBIT3 = 0;
+//        }
+//        if (SONAR_W < SONAR_HIGH) {
+//            WORDBIT4 = 1;
+//        } else {
+//            WORDBIT4 = 0;
+//        }
+//    }
+    
+    while(TRUE) //test canyon start detection
+    {
+        lineState = senseLine();
+        if (SONAR_W < SONAR_HIGH)
+        {
             WORDBIT4 = 1;
-        } else {
+            if (SONAR_E < SONAR_HIGH)
+                WORDBIT2 = 1;
+            {
+                if (lineState == NO_LINE)
+                {
+                    WORDBIT1 = 1;
+                    WORDBIT3 = 1;
+                }
+                    
+            }
+        }
+        else
+        {
+            WORDBIT1 = 0;
+            WORDBIT2 = 0;
+            WORDBIT3 = 0;
             WORDBIT4 = 0;
         }
     }
@@ -88,9 +116,12 @@ int main(void) {
         
         if (isCanyonSensed()) {
             bitWord = senseWall();
+            WORDBIT1 = 1;
+        } else {
+            WORDBIT1 = 0;
         }
         
-        fourBit_FSM();        
+//        fourBit_FSM();        
     }
     
     return 0;
@@ -150,9 +181,13 @@ int senseLine()
     {
         return MED_LEFT;
     }
-    else
+    else if (qrd2)
     {
         return STRAIGHT;
+    }
+    else
+    {
+        return NO_LINE;
     }
     
 }
@@ -176,7 +211,7 @@ void fourBit_FSM() {
     }
     
     switch(bitWord) {
-        case STOP:
+        case NO_LINE:
             sendWord1(0, 0, 0);
             break;
         case STRAIGHT:
@@ -282,7 +317,7 @@ void config_ADC() {
     // AD1CON3
     _ADRC = 0;    // use system clock
     _SAMC = 1;    // sample every A/D period
-    _ADCS = 0x3F; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
+    _ADCS = 32; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
     // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN14 (pins 5, 6, 7, 8)
@@ -290,3 +325,4 @@ void config_ADC() {
     
     _ADON = 1;    // enable module after configuration
 }
+

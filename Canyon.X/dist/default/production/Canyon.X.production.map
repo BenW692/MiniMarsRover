@@ -1,21 +1,23 @@
-Microchip Technology Inc, v2.00 (A)
+Microchip Technology Inc, v2.10 (B)
 
 Tool Name:
-  c:\program files\microchip\xc16\v2.00\bin\bin\..\bin/elf-ld.exe
+  c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
   -p24F16KA301 \
+  --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
   dist/default/production/Canyon.X.production.elf \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/.. \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../lib \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24E/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24F/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24H/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC30F/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33C/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33E/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
+  -LC:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16/bin/../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../lib \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24H/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC30F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
   build/default/production/Navigation.o \
   --defsym=__MPLAB_BUILD=1 \
   -Tp24F16KA301.gld.00 \
@@ -44,15 +46,15 @@ Command:
 Optional library libpPIC24Fxxx.a not found
 Archive member included because of file (symbol)
 
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
-                              c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o) (__data_init_standard)
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                              c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o) (__data_init_standard)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
                               (__crt_start_mode_normal)
 
 
-xc16-ld 2.00 (A)
+xc16-ld 2.10 (B)
 
 Default Code Model: Small
 Default Data Model: Small
@@ -63,20 +65,20 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xda           0x147  (327)
-.text                        0x2da               0x286           0x3c9  (969)
-.dinit                       0x560                0x18            0x24  (36)
+.text                        0x2da               0x288           0x3cc  (972)
+.dinit                       0x562                0x1a            0x27  (39)
 
-                 Total "program" memory used (bytes):          0x534  (1332) 8%
+                 Total "program" memory used (bytes):          0x53a  (1338) 8%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                       0x800                   0             0xe  (14)
-.nbss                        0x80e                   0             0x4  (4)
+.ndata                       0x800                   0            0x10  (16)
+.nbss                        0x810                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):           0x12  (18) <1%
+                 Total "data" memory used (bytes):           0x14  (20) <1%
 
 
 Dynamic Memory Usage
@@ -84,9 +86,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x812                               0x7ee  (2030)
+stack                        0x814                               0x7ec  (2028)
 
-                 Maximum dynamic memory (bytes):          0x7ee  (2030)
+                 Maximum dynamic memory (bytes):          0x7ec  (2028)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -94,16 +96,18 @@ Info: Project is using a large data memory model when small data memory model is
 External Symbols in Data Memory (by address):
 
                     0x0800                  _bitWord
-                    0x0802                  _qrd2
-                    0x080e                  _qrd1
-                    0x0810                  _qrd3
+                    0x0802                  _lineState
+                    0x0804                  _qrd2
+                    0x0810                  _qrd1
+                    0x0812                  _qrd3
 
 External Symbols in Data Memory (by name):
 
                     0x0800                  _bitWord
-                    0x080e                  _qrd1
-                    0x0802                  _qrd2
-                    0x0810                  _qrd3
+                    0x0802                  _lineState
+                    0x0810                  _qrd1
+                    0x0804                  _qrd2
+                    0x0812                  _qrd3
 
 External Symbols in Program Memory (by address):
 
@@ -117,11 +121,11 @@ External Symbols in Program Memory (by address):
                   0x00033c                  _isCanyonSensed
                   0x00036c                  _read_Sonar
                   0x000382                  _senseLine
-                  0x0003d0                  _read_QRD
-                  0x0003f2                  _fourBit_FSM
-                  0x000492                  _sendWord1
-                  0x0004e2                  _pinSetup
-                  0x000510                  _config_ADC
+                  0x0003da                  _read_QRD
+                  0x0003fc                  _fourBit_FSM
+                  0x00049c                  _sendWord1
+                  0x0004e4                  _pinSetup
+                  0x000512                  _config_ADC
 
 External Symbols in Program Memory (by name):
 
@@ -130,14 +134,14 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000510                  _config_ADC
-                  0x0003f2                  _fourBit_FSM
+                  0x000512                  _config_ADC
+                  0x0003fc                  _fourBit_FSM
                   0x00033c                  _isCanyonSensed
                   0x0002da                  _main
-                  0x0004e2                  _pinSetup
-                  0x0003d0                  _read_QRD
+                  0x0004e4                  _pinSetup
+                  0x0003da                  _read_QRD
                   0x00036c                  _read_Sonar
-                  0x000492                  _sendWord1
+                  0x00049c                  _sendWord1
                   0x000382                  _senseLine
                   0x00031e                  _senseWall
 
@@ -166,7 +170,7 @@ Linker script and memory map
 LOAD build/default/production/Navigation.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
                     0xf80004                  __FGS = 0xf80004
                     0xf80006                  __FOSCSEL = 0xf80006
@@ -182,6 +186,8 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                     0x0104                  __AIVT_BASE = 0x104
                     0x0800                  __DATA_BASE = 0x800
                     0x0800                  __DATA_LENGTH = 0x800
+                    0x7ffe00                  __EEDATA_BASE = 0x7ffe00
+                    0x0200                  __EEDATA_LENGTH = 0x200
 
 .reset            0x000000          0x4
                   0x000000          0x2 SHORT 0x200 ABSOLUTE (__reset)
@@ -191,11 +197,11 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
 
 .text             0x000200         0xda
  *(.init)
- .init            0x000200         0x4c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+ .init            0x000200         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
                   0x000200                  __reset
                   0x00023c                  __psv_init
- .init            0x00024c         0x7c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+ .init            0x00024c         0x7c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
  *(.user_init)
@@ -208,7 +214,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x0002d8          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x0002d8          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
                   0x0002d8                  __crt_start_mode
                   0x0002d8                  __crt_start_mode_normal
 
@@ -242,26 +248,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000        0xffc
+.debug_info       0x000000       0x1192
  *(.debug_info)
- .debug_info      0x000000        0xffc build/default/production/Navigation.o
+ .debug_info      0x000000       0x1192 build/default/production/Navigation.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1d2
+.debug_abbrev     0x000000        0x1e1
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1d2 build/default/production/Navigation.o
+ .debug_abbrev    0x000000        0x1e1 build/default/production/Navigation.o
 
-.debug_line       0x000000        0x163
+.debug_line       0x000000        0x199
  *(.debug_line)
- .debug_line      0x000000        0x163 build/default/production/Navigation.o
+ .debug_line      0x000000        0x199 build/default/production/Navigation.o
 
 .debug_frame      0x000000        0x118
  *(.debug_frame)
  .debug_frame     0x000000        0x118 build/default/production/Navigation.o
 
-.debug_str        0x000000         0xcf
+.debug_str        0x000000         0xee
  *(.debug_str)
- .debug_str       0x000000         0xcf build/default/production/Navigation.o
+ .debug_str       0x000000         0xee build/default/production/Navigation.o
 
 .debug_loc
  *(.debug_loc)
@@ -270,10 +276,10 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0xc7
+                  0x000000         0xd5
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0xc7 build/default/production/Navigation.o
+                  0x000000         0xd5 build/default/production/Navigation.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -892,9 +898,9 @@ __FDS
                     0x0230                  UART2 = 0x230
                     0x0230                  _UART2 = 0x230
 START GROUP
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a
 END GROUP
 OUTPUT(dist/default/production/Canyon.X.production.elf elf32-pic30)
 LOAD jump_table
@@ -902,28 +908,29 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000018        0x13a
+                  0x000018        0x15b
  .debug_pubtypes
-                  0x000018        0x13a build/default/production/Navigation.o
+                  0x000018        0x15b build/default/production/Navigation.o
 
 __c30_signature
-                  0x000152         0x12
+                  0x000173         0x12
  __c30_signature
-                  0x000152          0x6 build/default/production/Navigation.o
+                  0x000173          0x6 build/default/production/Navigation.o
  __c30_signature
-                  0x000158          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x000179          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x00015e          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x00017f          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
-.ndata              0x0800          0xe
- .ndata             0x0800          0xe build/default/production/Navigation.o
+.ndata              0x0800         0x10
+ .ndata             0x0800         0x10 build/default/production/Navigation.o
                     0x0800                  _bitWord
-                    0x0802                  _qrd2
+                    0x0802                  _lineState
+                    0x0804                  _qrd2
 
-.nbss               0x080e          0x4
- .nbss              0x080e          0x4 build/default/production/Navigation.o
-                    0x080e                  _qrd1
-                    0x0810                  _qrd3
+.nbss               0x0810          0x4
+ .nbss              0x0810          0x4 build/default/production/Navigation.o
+                    0x0810                  _qrd1
+                    0x0812                  _qrd3
 
 .config_FCKSM     0xf80008          0x2
  .config_FCKSM    0xf80008          0x2 build/default/production/Navigation.o
@@ -931,18 +938,18 @@ __c30_signature
 .config_IESO      0xf80006          0x2
  .config_IESO     0xf80006          0x2 build/default/production/Navigation.o
 
-.text             0x0002da        0x286
- .text            0x0002da        0x286 build/default/production/Navigation.o
+.text             0x0002da        0x288
+ .text            0x0002da        0x288 build/default/production/Navigation.o
                   0x0002da                  _main
                   0x00031e                  _senseWall
                   0x00033c                  _isCanyonSensed
                   0x00036c                  _read_Sonar
                   0x000382                  _senseLine
-                  0x0003d0                  _read_QRD
-                  0x0003f2                  _fourBit_FSM
-                  0x000492                  _sendWord1
-                  0x0004e2                  _pinSetup
-                  0x000510                  _config_ADC
+                  0x0003da                  _read_QRD
+                  0x0003fc                  _fourBit_FSM
+                  0x00049c                  _sendWord1
+                  0x0004e4                  _pinSetup
+                  0x000512                  _config_ADC
 
-.dinit            0x000560         0x18
- .dinit           0x000560         0x18 data_init
+.dinit            0x000562         0x1a
+ .dinit           0x000562         0x1a data_init
