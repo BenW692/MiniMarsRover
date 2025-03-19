@@ -25,8 +25,8 @@
 //this code has not incorporated seperate pwms for the left and right motor
 #define LR_PERIOD OC3RS
 #define LR_DUTY_CYCLE OC3R
-#define FB_PERIOD OC1RS
-#define FB_DUTY_CYCLE OC1R
+#define FB_PERIOD OC2RS
+#define FB_DUTY_CYCLE OC2R
 
 /* Define Pins */
 #define FRONT_DIR     _LATA0
@@ -45,6 +45,7 @@
 #define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
 #define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
 #define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
+#define SLIP_SPEED 4000
 
 static int target_speed_LR = 0;
 static int target_speed_FB = 0;
@@ -83,13 +84,17 @@ int main(void) {
     config_OC_interrupt();
     config_PWM();
     
-    target_speed_FB = 1000;
-    FB_PERIOD = 2000;
-    FB_DUTY_CYCLE = FB_PERIOD / 2;
-    target_speed_LR = 2500;
-    LR_PERIOD = 5000;
-    LR_DUTY_CYCLE = LR_PERIOD / 2;
-    while(1);
+//    target_speed_FB = 1500;
+//    FB_PERIOD = 3000;
+//    FB_DUTY_CYCLE = FB_PERIOD / 2;
+//    target_speed_LR = 2500;
+//    LR_PERIOD = 5000;
+//    LR_DUTY_CYCLE = LR_PERIOD / 2;
+//    while(1);
+
+//    setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // drive North test
+//    while(1);
+    
     
     while(1)
     {
@@ -201,7 +206,7 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (front != -1 || back != -1) 
     { // Control Front-Back Motors
         target_speed_FB = speed;
-        FB_PERIOD = speed * 2;
+        FB_PERIOD = SLIP_SPEED;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     } 
     else 
@@ -213,7 +218,7 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (left != -1 || right != -1) 
     { // Control Left-Right Motors
         target_speed_LR = speed;
-        LR_PERIOD = speed * 2;
+        LR_PERIOD = SLIP_SPEED;
         LR_DUTY_CYCLE = LR_PERIOD / 2;
     } 
     else 
@@ -270,6 +275,10 @@ void config_OC_interrupt()
     _OC3IP = 4; //sets priority
     _OC3IE = 1; //enables OC3 interrupt
     _OC3IF = 0; //clears interrupt flag
+    
+    _OC2IP = 3; //sets priority
+    _OC2IE = 1; //enables OC2 interrupt
+    _OC2IF = 0; //clears interrupt flag
 }
 
 void setSpeed1(int speed) {

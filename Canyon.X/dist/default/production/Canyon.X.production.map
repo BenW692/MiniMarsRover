@@ -64,11 +64,11 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x126           0x1b9  (441)
-.text                        0x326               0x298           0x3e4  (996)
-.dinit                       0x5be                0x12            0x1b  (27)
+.text                        0x200               0x12a           0x1bf  (447)
+.text                        0x32a               0x290           0x3d8  (984)
+.dinit                       0x5ba                0x12            0x1b  (27)
 
-                 Total "program" memory used (bytes):          0x5b8  (1464) 9%
+                 Total "program" memory used (bytes):          0x5b2  (1458) 9%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -107,35 +107,35 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002dc                  __OC3Interrupt
-                  0x0002fe                  __OC2Interrupt
-                  0x000320                  __DefaultInterrupt
-                  0x000326                  _main
-                  0x000352                  _fourBit_FSM
-                  0x000430                  _poll_bitWord
-                  0x00046a                  _setStrafeSpeed
-                  0x000534                  _setupPins
-                  0x00054e                  _config_PWM
-                  0x000598                  _config_OC_interrupt
-                  0x0005ac                  _setSpeed1
+                  0x0002e0                  __OC3Interrupt
+                  0x000302                  __OC2Interrupt
+                  0x000324                  __DefaultInterrupt
+                  0x00032a                  _main
+                  0x000342                  _fourBit_FSM
+                  0x000420                  _poll_bitWord
+                  0x00045a                  _setStrafeSpeed
+                  0x000520                  _setupPins
+                  0x00053a                  _config_PWM
+                  0x000584                  _config_OC_interrupt
+                  0x0005a8                  _setSpeed1
 
 External Symbols in Program Memory (by name):
 
-                  0x000320                  __DefaultInterrupt
-                  0x0002fe                  __OC2Interrupt
-                  0x0002dc                  __OC3Interrupt
+                  0x000324                  __DefaultInterrupt
+                  0x000302                  __OC2Interrupt
+                  0x0002e0                  __OC3Interrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000598                  _config_OC_interrupt
-                  0x00054e                  _config_PWM
-                  0x000352                  _fourBit_FSM
-                  0x000326                  _main
-                  0x000430                  _poll_bitWord
-                  0x0005ac                  _setSpeed1
-                  0x00046a                  _setStrafeSpeed
-                  0x000534                  _setupPins
+                  0x000584                  _config_OC_interrupt
+                  0x00053a                  _config_PWM
+                  0x000342                  _fourBit_FSM
+                  0x00032a                  _main
+                  0x000420                  _poll_bitWord
+                  0x0005a8                  _setSpeed1
+                  0x00045a                  _setStrafeSpeed
+                  0x000520                  _setupPins
 
 Memory Configuration
 
@@ -187,7 +187,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x126
+.text             0x000200        0x12a
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -199,19 +199,19 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002dc         0x44 build/default/production/MasterFSMV1.o
-                  0x0002dc                  __OC3Interrupt
-                  0x0002fe                  __OC2Interrupt
- .isr             0x000320          0x4 default_isr
-                  0x000320                  __DefaultInterrupt
+ .isr.text        0x0002e0         0x44 build/default/production/MasterFSMV1.o
+                  0x0002e0                  __OC3Interrupt
+                  0x000302                  __OC2Interrupt
+ .isr             0x000324          0x4 default_isr
+                  0x000324                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x000324          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x000324                  __crt_start_mode
-                  0x000324                  __crt_start_mode_normal
+                  0x000328          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x000328                  __crt_start_mode
+                  0x000328                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -243,26 +243,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x15b4
+.debug_info       0x000000       0x18a2
  *(.debug_info)
- .debug_info      0x000000       0x15b4 build/default/production/MasterFSMV1.o
+ .debug_info      0x000000       0x18a2 build/default/production/MasterFSMV1.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x1f4
  *(.debug_abbrev)
  .debug_abbrev    0x000000        0x1f4 build/default/production/MasterFSMV1.o
 
-.debug_line       0x000000        0x1ad
+.debug_line       0x000000        0x1ac
  *(.debug_line)
- .debug_line      0x000000        0x1ad build/default/production/MasterFSMV1.o
+ .debug_line      0x000000        0x1ac build/default/production/MasterFSMV1.o
 
 .debug_frame      0x000000        0x12c
  *(.debug_frame)
  .debug_frame     0x000000        0x12c build/default/production/MasterFSMV1.o
 
-.debug_str        0x000000        0x104
+.debug_str        0x000000        0x12f
  *(.debug_str)
- .debug_str       0x000000        0x104 build/default/production/MasterFSMV1.o
+ .debug_str       0x000000        0x12f build/default/production/MasterFSMV1.o
 
 .debug_loc
  *(.debug_loc)
@@ -903,18 +903,18 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000018        0x197
+                  0x000018        0x1d1
  .debug_pubtypes
-                  0x000018        0x197 build/default/production/MasterFSMV1.o
+                  0x000018        0x1d1 build/default/production/MasterFSMV1.o
 
 __c30_signature
-                  0x0001af         0x12
+                  0x0001e9         0x12
  __c30_signature
-                  0x0001af          0x6 build/default/production/MasterFSMV1.o
+                  0x0001e9          0x6 build/default/production/MasterFSMV1.o
  __c30_signature
-                  0x0001b5          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x0001ef          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x0001bb          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x0001f5          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
 .nbss               0x0800          0x4
  .nbss              0x0800          0x4 build/default/production/MasterFSMV1.o
@@ -933,16 +933,16 @@ __c30_signature
  .ivt._OC2Interrupt
                   0x000020          0x2 build/default/production/MasterFSMV1.o
 
-.text             0x000326        0x298
- .text            0x000326        0x298 build/default/production/MasterFSMV1.o
-                  0x000326                  _main
-                  0x000352                  _fourBit_FSM
-                  0x000430                  _poll_bitWord
-                  0x00046a                  _setStrafeSpeed
-                  0x000534                  _setupPins
-                  0x00054e                  _config_PWM
-                  0x000598                  _config_OC_interrupt
-                  0x0005ac                  _setSpeed1
+.text             0x00032a        0x290
+ .text            0x00032a        0x290 build/default/production/MasterFSMV1.o
+                  0x00032a                  _main
+                  0x000342                  _fourBit_FSM
+                  0x000420                  _poll_bitWord
+                  0x00045a                  _setStrafeSpeed
+                  0x000520                  _setupPins
+                  0x00053a                  _config_PWM
+                  0x000584                  _config_OC_interrupt
+                  0x0005a8                  _setSpeed1
 
-.dinit            0x0005be         0x12
- .dinit           0x0005be         0x12 data_init
+.dinit            0x0005ba         0x12
+ .dinit           0x0005ba         0x12 data_init
