@@ -43,15 +43,15 @@
 #define SONAR_W ADC1BUF14 // pin8
 
 #define SONAR_HIGH 300 // Sense Wall 
-#define SONAR_LOW 220 // Close enough to wall
+#define SONAR_LOW 200 // Close enough to wall
 
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
 #define WORDBIT3 _LATB8
 #define WORDBIT4 _LATB7
 
-int bitWord = DRIVE_NORTH;
-int lineState = -1;
+int bitWord = STRAIGHT;
+//int lineState = -1;
 int oldState = -1;
 
 int qrd1 = 0;
@@ -113,11 +113,29 @@ int main(void) {
 //            WORDBIT4 = 0;
 //        }
 //    }
-
-    while (TRUE) {
+    bitWord = DRIVE_NORTH;
+    while (TRUE) { //defaults to canyon mode test
+        
         locateTurn();
         fourBit_FSM();
     }
+    
+    //qrd test
+//    while (TRUE)
+//    {
+//        qrd1 = read_QRD(QRD1);
+//        qrd2 = read_QRD(QRD2);
+//        qrd3 = read_QRD(QRD3); 
+////        sendWord1(qrd1, qrd2, qrd3, 0);
+//        sendWord1(0, 0, qrd2, 0);
+//    }
+    
+//    while (TRUE) //defaults to line following test
+//    {
+//        bitWord = senseLine();
+//        fourBit_FSM();
+//    }
+    
 //    while(TRUE) {
 //        
 //        if (isCanyonSensed())
@@ -126,11 +144,11 @@ int main(void) {
 //        }
 //        else
 //        {
-//            bitWord = senseLine();
+//            locate_turn();
 //        }
 //        
 //        fourBit_FSM();
-//        
+//}
 }
 
 void senseWall() {
@@ -152,14 +170,15 @@ void locateTurn() {
         case DRIVE_NORTH:
             if (SONAR_N < SONAR_LOW)
             {
-                if (SONAR_W < SONAR_HIGH) 
-                {
-                    bitWord = DRIVE_EAST;
-                }
-                else if (SONAR_E < SONAR_HIGH)
+                if (SONAR_E < SONAR_HIGH)
                 {
                     bitWord = DRIVE_WEST;
                 }
+                else if (SONAR_W < SONAR_HIGH) 
+                {
+                    bitWord = DRIVE_EAST;
+                }
+                
             }
             break;
         case DRIVE_EAST:
@@ -224,7 +243,7 @@ BOOL read_Sonar(unsigned int sonarVal) {
 
 int senseLine()
 {
-    qrd1 = read_QRD(QRD1);
+    qrd1 = read_QRD(QRD1); //west qrd
     qrd2 = read_QRD(QRD2);
     qrd3 = read_QRD(QRD3);
     

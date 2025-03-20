@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000089a0.00 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000089a0.01 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000089a0.02 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000089a0.03 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000089a0.04 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp00007394.00 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp00007394.01 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp00007394.02 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp00007394.03 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp00007394.04 \
   -p24F16KA301 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
@@ -23,7 +23,7 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/MasterFSMV1.o \
+  build/default/debug/NavigationSuperFSM.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
@@ -72,11 +72,11 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x11e           0x1ad  (429)
-.text                        0x31e               0x24a           0x36f  (879)
-.dinit                       0x568                0x12            0x1b  (27)
+.text                        0x200                0xda           0x147  (327)
+.text                        0x2da               0x3a0           0x570  (1392)
+.dinit                       0x67a                0x12            0x1b  (27)
 
-                 Total "program" memory used (bytes):          0x537  (1335) 8%
+                 Total "program" memory used (bytes):          0x6d2  (1746) 10%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -88,10 +88,10 @@ reserve_data_0x820           0x820                 0x2             0x2  (2)
 reserve_data_0x822           0x822                 0x2             0x2  (2)
 reserve_data_0x824           0x824                 0x2             0x2  (2)
 reserve_data_0x826           0x826                0x2a            0x2a  (42)
-.nbss                        0x850                   0             0x4  (4)
-.ndata                       0x854                   0             0x4  (4)
+.nbss                        0x850                   0             0xc  (12)
+.ndata                       0x85c                   0             0x6  (6)
 
-                 Total "data" memory used (bytes):           0x58  (88) 4%
+                 Total "data" memory used (bytes):           0x62  (98) 4%
 
 
 Dynamic Memory Usage
@@ -99,20 +99,28 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x858                               0x7a8  (1960)
+stack                        0x862                               0x79e  (1950)
 
-                 Maximum dynamic memory (bytes):          0x7a8  (1960)
+                 Maximum dynamic memory (bytes):          0x79e  (1950)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0856                  _bitWord
+                    0x0850                  _qrd1
+                    0x0852                  _qrd3
+                    0x085c                  _bitWord
+                    0x085e                  _oldState
+                    0x0860                  _qrd2
 
 External Symbols in Data Memory (by name):
 
-                    0x0856                  _bitWord
+                    0x085c                  _bitWord
+                    0x085e                  _oldState
+                    0x0850                  _qrd1
+                    0x0860                  _qrd2
+                    0x0852                  _qrd3
 
 External Symbols in Program Memory (by address):
 
@@ -120,35 +128,37 @@ External Symbols in Program Memory (by address):
                   0x00023c                  __psv_init
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002d4                  __OC3Interrupt
-                  0x0002f6                  __OC2Interrupt
-                  0x000318                  __DefaultInterrupt
-                  0x00031e                  _main
-                  0x00032a                  _fourBit_FSM
-                  0x000408                  _poll_bitWord
-                  0x000442                  _setStrafeSpeed
-                  0x000504                  _setupPins
-                  0x00051e                  _config_PWM
-                  0x000542                  _config_OC_interrupt
-                  0x000556                  _setSpeed1
+                  0x0002d4                  __DefaultInterrupt
+                  0x0002da                  _main
+                  0x00030c                  _senseWall
+                  0x00032a                  _locateTurn
+                  0x0003f8                  _isCanyonSensed
+                  0x000428                  _read_Sonar
+                  0x00043e                  _senseLine
+                  0x000496                  _read_QRD
+                  0x0004b8                  _fourBit_FSM
+                  0x00059e                  _sendWord1
+                  0x0005fc                  _pinSetup
+                  0x00062a                  _config_ADC
 
 External Symbols in Program Memory (by name):
 
-                  0x000318                  __DefaultInterrupt
-                  0x0002f6                  __OC2Interrupt
-                  0x0002d4                  __OC3Interrupt
+                  0x0002d4                  __DefaultInterrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000542                  _config_OC_interrupt
-                  0x00051e                  _config_PWM
-                  0x00032a                  _fourBit_FSM
-                  0x00031e                  _main
-                  0x000408                  _poll_bitWord
-                  0x000556                  _setSpeed1
-                  0x000442                  _setStrafeSpeed
-                  0x000504                  _setupPins
+                  0x00062a                  _config_ADC
+                  0x0004b8                  _fourBit_FSM
+                  0x0003f8                  _isCanyonSensed
+                  0x00032a                  _locateTurn
+                  0x0002da                  _main
+                  0x0005fc                  _pinSetup
+                  0x000496                  _read_QRD
+                  0x000428                  _read_Sonar
+                  0x00059e                  _sendWord1
+                  0x00043e                  _senseLine
+                  0x00030c                  _senseWall
 
 Memory Configuration
 
@@ -197,7 +207,7 @@ reserve_data_0x826
                     0x0826         0x2a
                     0x0850                  . = 0x2a
  *fill*             0x0826         0x2a00
-LOAD build/default/debug/MasterFSMV1.o
+LOAD build/default/debug/NavigationSuperFSM.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
@@ -228,7 +238,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x11e
+.text             0x000200         0xda
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -240,19 +250,16 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002d4         0x44 build/default/debug/MasterFSMV1.o
-                  0x0002d4                  __OC3Interrupt
-                  0x0002f6                  __OC2Interrupt
- .isr             0x000318          0x4 default_isr
-                  0x000318                  __DefaultInterrupt
+ .isr             0x0002d4          0x4 default_isr
+                  0x0002d4                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x00031c          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x00031c                  __crt_start_mode
-                  0x00031c                  __crt_start_mode_normal
+                  0x0002d8          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x0002d8                  __crt_start_mode
+                  0x0002d8                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -284,26 +291,26 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x11e4
+.debug_info       0x000000       0x11cb
  *(.debug_info)
- .debug_info      0x000000       0x11e4 build/default/debug/MasterFSMV1.o
+ .debug_info      0x000000       0x11cb build/default/debug/NavigationSuperFSM.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x1a6
+.debug_abbrev     0x000000        0x231
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x1a6 build/default/debug/MasterFSMV1.o
+ .debug_abbrev    0x000000        0x231 build/default/debug/NavigationSuperFSM.o
 
-.debug_line       0x000000        0x19a
+.debug_line       0x000000        0x1c9
  *(.debug_line)
- .debug_line      0x000000        0x19a build/default/debug/MasterFSMV1.o
+ .debug_line      0x000000        0x1c9 build/default/debug/NavigationSuperFSM.o
 
-.debug_frame      0x000000        0x12c
+.debug_frame      0x000000        0x132
  *(.debug_frame)
- .debug_frame     0x000000        0x12c build/default/debug/MasterFSMV1.o
+ .debug_frame     0x000000        0x132 build/default/debug/NavigationSuperFSM.o
 
-.debug_str        0x000000         0x94
+.debug_str        0x000000         0xe3
  *(.debug_str)
- .debug_str       0x000000         0x94 build/default/debug/MasterFSMV1.o
+ .debug_str       0x000000         0xe3 build/default/debug/NavigationSuperFSM.o
 
 .debug_loc
  *(.debug_loc)
@@ -312,10 +319,10 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000         0xc2
+                  0x000000         0xe3
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0xc2 build/default/debug/MasterFSMV1.o
+                  0x000000         0xe3 build/default/debug/NavigationSuperFSM.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -323,7 +330,7 @@ __FDS
 .debug_aranges    0x000000         0x18
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/debug/MasterFSMV1.o
+                  0x000000         0x18 build/default/debug/NavigationSuperFSM.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -944,46 +951,49 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000018        0x151
+                  0x000018        0x15b
  .debug_pubtypes
-                  0x000018        0x151 build/default/debug/MasterFSMV1.o
+                  0x000018        0x15b build/default/debug/NavigationSuperFSM.o
 
 __c30_signature
-                  0x000169         0x12
+                  0x000173         0x12
  __c30_signature
-                  0x000169          0x6 build/default/debug/MasterFSMV1.o
+                  0x000173          0x6 build/default/debug/NavigationSuperFSM.o
  __c30_signature
-                  0x00016f          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x000179          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000175          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x00017f          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
-.nbss               0x0850          0x4
- .nbss              0x0850          0x4 build/default/debug/MasterFSMV1.o
+.nbss               0x0850          0xc
+ .nbss              0x0850          0xc build/default/debug/NavigationSuperFSM.o
+                    0x0850                  _qrd1
+                    0x0852                  _qrd3
 
-.ndata              0x0854          0x4
- .ndata             0x0854          0x4 build/default/debug/MasterFSMV1.o
-                    0x0856                  _bitWord
+.ndata              0x085c          0x6
+ .ndata             0x085c          0x6 build/default/debug/NavigationSuperFSM.o
+                    0x085c                  _bitWord
+                    0x085e                  _oldState
+                    0x0860                  _qrd2
 
-.ivt._OC3Interrupt
-                  0x000046          0x2
- .ivt._OC3Interrupt
-                  0x000046          0x2 build/default/debug/MasterFSMV1.o
+.config_FCKSM     0xf80008          0x2
+ .config_FCKSM    0xf80008          0x2 build/default/debug/NavigationSuperFSM.o
 
-.ivt._OC2Interrupt
-                  0x000020          0x2
- .ivt._OC2Interrupt
-                  0x000020          0x2 build/default/debug/MasterFSMV1.o
+.config_IESO      0xf80006          0x2
+ .config_IESO     0xf80006          0x2 build/default/debug/NavigationSuperFSM.o
 
-.text             0x00031e        0x24a
- .text            0x00031e        0x24a build/default/debug/MasterFSMV1.o
-                  0x00031e                  _main
-                  0x00032a                  _fourBit_FSM
-                  0x000408                  _poll_bitWord
-                  0x000442                  _setStrafeSpeed
-                  0x000504                  _setupPins
-                  0x00051e                  _config_PWM
-                  0x000542                  _config_OC_interrupt
-                  0x000556                  _setSpeed1
+.text             0x0002da        0x3a0
+ .text            0x0002da        0x3a0 build/default/debug/NavigationSuperFSM.o
+                  0x0002da                  _main
+                  0x00030c                  _senseWall
+                  0x00032a                  _locateTurn
+                  0x0003f8                  _isCanyonSensed
+                  0x000428                  _read_Sonar
+                  0x00043e                  _senseLine
+                  0x000496                  _read_QRD
+                  0x0004b8                  _fourBit_FSM
+                  0x00059e                  _sendWord1
+                  0x0005fc                  _pinSetup
+                  0x00062a                  _config_ADC
 
-.dinit            0x000568         0x12
- .dinit           0x000568         0x12 data_init
+.dinit            0x00067a         0x12
+ .dinit           0x00067a         0x12 data_init

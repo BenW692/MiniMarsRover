@@ -39,16 +39,17 @@
 #define WORDBIT3 PORTBbits.RB13 
 #define WORDBIT4 PORTBbits.RB12
 
-#define STRAFE_SPEED 2500
+#define STRAFE_SPEED 1250 //1000 is too fast b/c. the struggles to change directions before
+//hitting the wall
 
 #define STRAIGHT_SPEED 2500
 #define BIG_TURN_SPEED (STRAIGHT_SPEED * 2)
 #define MED_TURN_SPEED (STRAIGHT_SPEED * 3)
 #define SMALL_TURN_SPEED (STRAIGHT_SPEED * 4)
-#define SLIP_SPEED 4000
+#define SLIP_SPEED 2500
 
-static int target_speed_LR = 0;
-static int target_speed_FB = 0;
+static int target_speed_LR = 2500;
+static int target_speed_FB = 2500;
 
 static int oldWord = -1;
 int bitWord = -1;
@@ -61,7 +62,7 @@ void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
     
     if (LR_PERIOD > target_speed_LR) //if period is bigger it needs to get smaller to go faster
     {
-        LR_PERIOD--;
+        LR_PERIOD -= 5;
         LR_DUTY_CYCLE = LR_PERIOD / 2;
     }
 }
@@ -72,7 +73,7 @@ void __attribute__((interrupt, no_auto_psv))_OC2Interrupt(void)
     
     if (FB_PERIOD > target_speed_FB) //if period is bigger it needs to get smaller to go faster
     {
-        FB_PERIOD--;
+        FB_PERIOD -= 5;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
 }
