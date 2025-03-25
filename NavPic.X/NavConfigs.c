@@ -80,12 +80,13 @@ void config_Timer()
         // Configure a 16-bit timer using Timer1
     T1CONbits.TCKPS = 0b11; // 256 presclaler
     PR1 = 31250; // Period of 1 second
-    
+    T1CONbits.TON = 0; //bit is off
     
 	// Configure Timer1 interrupt
 	_T1IP = 4;	// Select interrupt priority
 	_T1IF = 0;	// Clear interrupt flag
 	_T1IE = 1;	// Enable interrupt
+    TMR1 = 0;
 }
 
 void config_PWM() {

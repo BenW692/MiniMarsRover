@@ -49,7 +49,7 @@ int main(void) {
         }
         else    
         {
-            senseLine();
+            senseLine(); //line following
         }
         
         fourBit_FSM();

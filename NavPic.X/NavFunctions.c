@@ -27,7 +27,7 @@ BOOL isCanyonSensed()
 
 BOOL isDropSensed()
 {
-    if (qrd2 && SONAR_W < SONAR_HIGH && SONAR_E < SONAR_HIGH)
+    if (QRD2 && SONAR_W < SONAR_HIGH && SONAR_E < SONAR_HIGH)
     {
         return TRUE;
     }
@@ -134,7 +134,7 @@ int senseLine()
 void dropBall()
 {
     
-//    get ball color
+//    get ball color !!MOVE THIS TO WHEN BALL IS STILL!!
     if (BALL_QRD < QRD_MED)
     {
         ball_color = 0; //ball is white
@@ -161,7 +161,7 @@ void dropBall()
     while (!drop_complete)
     {
         SERVO_PERIOD = 79999;
-        if (ball_color)
+        if (ball_color) //black
         {
             SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
         }
@@ -184,7 +184,7 @@ void dropBall()
         }
     }
     
-    T1CONbits.TON = 1; //timer turned off
+    T1CONbits.TON = 1; //timer turned off !!Change this for another event checker in main function
     PR1 = 15000; //subject to change based on how long it takes to drive away from the drop
 //    past_drop = FALSE;
     while (!past_drop)
