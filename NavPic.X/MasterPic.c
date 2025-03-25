@@ -194,6 +194,11 @@ void fourBit_FSM()
     case DRIVE_EAST:
         setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
         break;
+        
+    case STOP:
+        setStrafeSpeed(-1, -1, -1, -1, STRAFE_SPEED);
+        break;
+
     }
     oldWord = bitWord;
 }

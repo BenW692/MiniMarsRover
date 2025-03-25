@@ -247,7 +247,10 @@ void fourBit_FSM() {
             break;
         case DRIVE_WEST:
             sendWord(1, 0, 1, 1);
-            break;    
+            break;
+        case STOP:
+            sendWord(1, 1, 1, 1);
+            break;
     }
     
     oldState = bitWord;
