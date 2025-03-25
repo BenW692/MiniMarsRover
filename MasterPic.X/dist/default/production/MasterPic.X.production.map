@@ -269,13 +269,13 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x28be
+.debug_info       0x000000       0x2904
  *(.debug_info)
- .debug_info      0x000000        0x1b9 build/default/production/MasterPic.o
- .debug_info      0x0001b9        0x1b0 build/default/production/MasterGlobals.o
- .debug_info      0x000369        0x52d build/default/production/MasterInterrupts.o
- .debug_info      0x000896        0x9cc build/default/production/MasterFunctions.o
- .debug_info      0x001262       0x165c build/default/production/MasterConfigs.o
+ .debug_info      0x000000        0x1c7 build/default/production/MasterPic.o
+ .debug_info      0x0001c7        0x1be build/default/production/MasterGlobals.o
+ .debug_info      0x000385        0x53b build/default/production/MasterInterrupts.o
+ .debug_info      0x0008c0        0x9da build/default/production/MasterFunctions.o
+ .debug_info      0x00129a       0x166a build/default/production/MasterConfigs.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x32d

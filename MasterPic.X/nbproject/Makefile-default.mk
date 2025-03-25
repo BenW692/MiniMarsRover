@@ -89,62 +89,62 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/3498a3f7bf63efdcd81e3f1ecc35a659c0ce5f95 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/5da5916f7d9fa109eea2fde99d88aaa44a0e82cb .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterPic.o.d 
 	@${RM} ${OBJECTDIR}/MasterPic.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterPic.c  -o ${OBJECTDIR}/MasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterPic.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/4eeaa0b72413c5350a1d380e76b8a0f6414aeb90 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/8c4f6487ae2c9939ccca9e436cfed7c721b61793 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterGlobals.o.d 
 	@${RM} ${OBJECTDIR}/MasterGlobals.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterGlobals.c  -o ${OBJECTDIR}/MasterGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterGlobals.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/5d4bac7f348042c47fefc1205c30ce564ddfb1c7 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/8bbebaa7302271a6092ae2fc1b8eab7edaa09f0c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterInterrupts.o.d 
 	@${RM} ${OBJECTDIR}/MasterInterrupts.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterInterrupts.c  -o ${OBJECTDIR}/MasterInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterInterrupts.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/2c5bcca3dfc654326f69dd523758a6e537b83f69 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/ffe977fc8c2b64d335af622aee930dfbf62b7815 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterFunctions.o.d 
 	@${RM} ${OBJECTDIR}/MasterFunctions.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFunctions.c  -o ${OBJECTDIR}/MasterFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/732d1b380803fcbae7ebff163024f95693bdae64 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/98c117abfa4261a4713f9c423eede0a1e702fc0d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterConfigs.o.d 
 	@${RM} ${OBJECTDIR}/MasterConfigs.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterConfigs.c  -o ${OBJECTDIR}/MasterConfigs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterConfigs.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/6571266aad9070c67d60d99d65a91b75939f34f6 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/9d997c815e2cdec2a2ed89247b36e4ec0a50330 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterPic.o.d 
 	@${RM} ${OBJECTDIR}/MasterPic.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterPic.c  -o ${OBJECTDIR}/MasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/2ccfbf03d65448760062b49ee7c750fb6a16ea84 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/890f39259a524283a00b224b2219146af5529dcf .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterGlobals.o.d 
 	@${RM} ${OBJECTDIR}/MasterGlobals.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterGlobals.c  -o ${OBJECTDIR}/MasterGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterGlobals.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/c9c6e083373285c8bd86379a4ea898ae02720cec .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/606641802cc002f997697d7b84281376b235459c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterInterrupts.o.d 
 	@${RM} ${OBJECTDIR}/MasterInterrupts.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterInterrupts.c  -o ${OBJECTDIR}/MasterInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterInterrupts.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/7e524ae982ca49f34e0fe96f40c987d7515dc681 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/de734d6de1b275733ad98354c380c91adeccb421 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterFunctions.o.d 
 	@${RM} ${OBJECTDIR}/MasterFunctions.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFunctions.c  -o ${OBJECTDIR}/MasterFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/cb3e5a4cff978edfba7e3dc767cbf7728c21ada2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/d3133915a815c6017467d36a166b0e872867437b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
 	@${RM} ${OBJECTDIR}/MasterConfigs.o.d 
 	@${RM} ${OBJECTDIR}/MasterConfigs.o 

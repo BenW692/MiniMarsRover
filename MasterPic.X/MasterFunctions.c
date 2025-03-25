@@ -141,6 +141,9 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     {
         R_PERIOD = 0;
         R_DUTY_CYCLE = 0;
+        
+        L_PERIOD = 0;
+        L_DUTY_CYCLE = 0;
     }
 }
 
