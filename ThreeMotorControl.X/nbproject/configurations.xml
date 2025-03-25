@@ -20,6 +20,14 @@
                    projectFiles="true">
       <itemPath>MasterPic.c</itemPath>
       <itemPath>NavPic.c</itemPath>
+      <itemPath>NavGlobals.h</itemPath>
+      <itemPath>NavFunctions.c</itemPath>
+      <itemPath>NavConfigs.c</itemPath>
+      <itemPath>NavFunctions.h</itemPath>
+      <itemPath>NavConfigs.h</itemPath>
+      <itemPath>NavInterrupts.c</itemPath>
+      <itemPath>NavInterrupts.h</itemPath>
+      <itemPath>NavGlobals.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>
@@ -195,7 +203,33 @@
         <property key="relaxed-math" value="false"/>
         <property key="save-temps" value="false"/>
       </C30Global>
-      <item path="NavPic.c" ex="true" overriding="false">
+      <item path="MasterPic.c" ex="true" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
+      </item>
+      <item path="NavPic.c" ex="false" overriding="false">
+        <C30>
+        </C30>
+        <C30-AR>
+        </C30-AR>
+        <C30-AS>
+        </C30-AS>
+        <C30-CO>
+        </C30-CO>
+        <C30-LD>
+        </C30-LD>
+        <C30Global>
+        </C30Global>
       </item>
     </conf>
   </confs>
