@@ -27,6 +27,8 @@ int main(void) {
 //    setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // drive North test
 //    while(1);
     
+    bitWord = STRAIGHT;
+    disable_OC_interrupt();
     
     while(1)
     {

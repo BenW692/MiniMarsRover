@@ -4,15 +4,10 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000bd80.00 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000bd80.01 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000bd80.02 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000bd80.03 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000bd80.04 \
   -p24F16KA301 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
-  dist/default/debug/NavPic.X.debug.elf \
+  dist/default/production/NavPic.X.production.elf \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
   -LC:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16/bin/../support/PIC24F/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../lib \
@@ -23,16 +18,13 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/NavPic.o \
-  build/default/debug/NavFunctions.o \
-  build/default/debug/NavConfigs.o \
-  build/default/debug/NavInterrupts.o \
-  build/default/debug/NavGlobals.o \
+  build/default/production/NavPic.o \
+  build/default/production/NavFunctions.o \
+  build/default/production/NavConfigs.o \
+  build/default/production/NavInterrupts.o \
+  build/default/production/NavGlobals.o \
   --defsym=__MPLAB_BUILD=1 \
-  --defsym=__MPLAB_DEBUG=1 \
-  --defsym=__DEBUG=1 \
-  --defsym=__MPLAB_DEBUGGER_PK3=1 \
-  -Tp24F16KA301.gld.05 \
+  -Tp24F16KA301.gld.00 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -44,10 +36,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/debug/NavPic.X.debug.map \
+  -Map=dist/default/production/NavPic.X.production.map \
   --report-mem \
   --memorysummary \
-  dist/default/debug/memoryfile.xml \
+  dist/default/production/memoryfile.xml \
   -start-group \
   --library=c99-pic30-elf \
   --library=m-elf \
@@ -77,25 +69,20 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xea           0x15f  (351)
-.text                        0x2ea               0x52a           0x7bf  (1983)
-.dinit                       0x814                0x16            0x21  (33)
+.text                        0x2ea               0x514           0x79e  (1950)
+.dinit                       0x7fe                0x16            0x21  (33)
 
-                 Total "program" memory used (bytes):          0x93f  (2367) 14%
+                 Total "program" memory used (bytes):          0x91e  (2334) 14%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-reserve_data_0x800           0x800                0x20            0x20  (32)
-reserve_data_0x820           0x820                 0x2             0x2  (2)
-reserve_data_0x822           0x822                 0x2             0x2  (2)
-reserve_data_0x824           0x824                 0x2             0x2  (2)
-reserve_data_0x826           0x826                0x2a            0x2a  (42)
-.ndata                       0x850                   0             0xa  (10)
-.nbss                        0x85a                   0             0x6  (6)
+.ndata                       0x800                   0             0xa  (10)
+.nbss                        0x80a                   0             0x6  (6)
 
-                 Total "data" memory used (bytes):           0x60  (96) 4%
+                 Total "data" memory used (bytes):           0x10  (16) <1%
 
 
 Dynamic Memory Usage
@@ -103,34 +90,34 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x860                               0x7a0  (1952)
+stack                        0x810                               0x7f0  (2032)
 
-                 Maximum dynamic memory (bytes):          0x7a0  (1952)
+                 Maximum dynamic memory (bytes):          0x7f0  (2032)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0850                  _bitWord
-                    0x0852                  _oldState
-                    0x0854                  _qrd2
-                    0x0856                  _ball_color
-                    0x0858                  _past_drop
-                    0x085a                  _qrd1
-                    0x085c                  _qrd3
-                    0x085e                  _drop_complete
+                    0x0800                  _bitWord
+                    0x0802                  _oldState
+                    0x0804                  _qrd2
+                    0x0806                  _ball_color
+                    0x0808                  _past_drop
+                    0x080a                  _qrd1
+                    0x080c                  _qrd3
+                    0x080e                  _drop_complete
 
 External Symbols in Data Memory (by name):
 
-                    0x0856                  _ball_color
-                    0x0850                  _bitWord
-                    0x085e                  _drop_complete
-                    0x0852                  _oldState
-                    0x0858                  _past_drop
-                    0x085a                  _qrd1
-                    0x0854                  _qrd2
-                    0x085c                  _qrd3
+                    0x0806                  _ball_color
+                    0x0800                  _bitWord
+                    0x080e                  _drop_complete
+                    0x0802                  _oldState
+                    0x0808                  _past_drop
+                    0x080a                  _qrd1
+                    0x0804                  _qrd2
+                    0x080c                  _qrd3
 
 External Symbols in Program Memory (by address):
 
@@ -204,40 +191,12 @@ FDS              0xf80010           0x000002
 
 Linker script and memory map
 
-
-reserve_data_0x800
-                    0x0800         0x20
-                    0x0820                  . = 0x20
- *fill*             0x0800         0x2000
-
-reserve_data_0x820
-                    0x0820          0x2
-                    0x0822                  . = 0x2
- *fill*             0x0820          0x200
-
-reserve_data_0x822
-                    0x0822          0x2
-                    0x0824                  . = 0x2
- *fill*             0x0822          0x200
-
-reserve_data_0x824
-                    0x0824          0x2
-                    0x0826                  . = 0x2
- *fill*             0x0824          0x200
-
-reserve_data_0x826
-                    0x0826         0x2a
-                    0x0850                  . = 0x2a
- *fill*             0x0826         0x2a00
-LOAD build/default/debug/NavPic.o
-LOAD build/default/debug/NavFunctions.o
-LOAD build/default/debug/NavConfigs.o
-LOAD build/default/debug/NavInterrupts.o
-LOAD build/default/debug/NavGlobals.o
+LOAD build/default/production/NavPic.o
+LOAD build/default/production/NavFunctions.o
+LOAD build/default/production/NavConfigs.o
+LOAD build/default/production/NavInterrupts.o
+LOAD build/default/production/NavGlobals.o
                     0x0001                  __MPLAB_BUILD = 0x1
-                    0x0001                  __MPLAB_DEBUG = 0x1
-                    0x0001                  __DEBUG = 0x1
-                    0x0001                  __MPLAB_DEBUGGER_PK3 = 0x1
 LOAD pPIC24Fxxx
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
@@ -276,7 +235,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002cc         0x18 build/default/debug/NavInterrupts.o
+ .isr.text        0x0002cc         0x18 build/default/production/NavInterrupts.o
                   0x0002cc                  __T1Interrupt
  .isr             0x0002e4          0x4 default_isr
                   0x0002e4                  __DefaultInterrupt
@@ -319,44 +278,44 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x296b
+.debug_info       0x000000       0x2903
  *(.debug_info)
- .debug_info      0x000000        0x4a5 build/default/debug/NavPic.o
- .debug_info      0x0004a5        0x897 build/default/debug/NavFunctions.o
- .debug_info      0x000d3c       0x172c build/default/debug/NavConfigs.o
- .debug_info      0x002468        0x31c build/default/debug/NavInterrupts.o
- .debug_info      0x002784        0x1e7 build/default/debug/NavGlobals.o
+ .debug_info      0x000000        0x43d build/default/production/NavPic.o
+ .debug_info      0x00043d        0x897 build/default/production/NavFunctions.o
+ .debug_info      0x000cd4       0x172c build/default/production/NavConfigs.o
+ .debug_info      0x002400        0x31c build/default/production/NavInterrupts.o
+ .debug_info      0x00271c        0x1e7 build/default/production/NavGlobals.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x3e4
+.debug_abbrev     0x000000        0x406
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0xb6 build/default/debug/NavPic.o
- .debug_abbrev    0x0000b6        0x18f build/default/debug/NavFunctions.o
- .debug_abbrev    0x000245         0xc3 build/default/debug/NavConfigs.o
- .debug_abbrev    0x000308         0xac build/default/debug/NavInterrupts.o
- .debug_abbrev    0x0003b4         0x30 build/default/debug/NavGlobals.o
+ .debug_abbrev    0x000000         0xd8 build/default/production/NavPic.o
+ .debug_abbrev    0x0000d8        0x18f build/default/production/NavFunctions.o
+ .debug_abbrev    0x000267         0xc3 build/default/production/NavConfigs.o
+ .debug_abbrev    0x00032a         0xac build/default/production/NavInterrupts.o
+ .debug_abbrev    0x0003d6         0x30 build/default/production/NavGlobals.o
 
-.debug_line       0x000000        0x5a8
+.debug_line       0x000000        0x5ab
  *(.debug_line)
- .debug_line      0x000000        0x11b build/default/debug/NavPic.o
- .debug_line      0x00011b        0x1f9 build/default/debug/NavFunctions.o
- .debug_line      0x000314        0x148 build/default/debug/NavConfigs.o
- .debug_line      0x00045c        0x122 build/default/debug/NavInterrupts.o
- .debug_line      0x00057e         0x2a build/default/debug/NavGlobals.o
+ .debug_line      0x000000        0x11e build/default/production/NavPic.o
+ .debug_line      0x00011e        0x1f9 build/default/production/NavFunctions.o
+ .debug_line      0x000317        0x148 build/default/production/NavConfigs.o
+ .debug_line      0x00045f        0x122 build/default/production/NavInterrupts.o
+ .debug_line      0x000581         0x2a build/default/production/NavGlobals.o
 
 .debug_frame      0x000000        0x214
  *(.debug_frame)
- .debug_frame     0x000000         0x2e build/default/debug/NavPic.o
- .debug_frame     0x00002e        0x132 build/default/debug/NavFunctions.o
- .debug_frame     0x000160         0x7c build/default/debug/NavConfigs.o
- .debug_frame     0x0001dc         0x38 build/default/debug/NavInterrupts.o
+ .debug_frame     0x000000         0x2e build/default/production/NavPic.o
+ .debug_frame     0x00002e        0x132 build/default/production/NavFunctions.o
+ .debug_frame     0x000160         0x7c build/default/production/NavConfigs.o
+ .debug_frame     0x0001dc         0x38 build/default/production/NavInterrupts.o
 
-.debug_str        0x000000        0x173
+.debug_str        0x000000        0x175
  *(.debug_str)
- .debug_str       0x000000         0x26 build/default/debug/NavPic.o
- .debug_str       0x000026         0x9b build/default/debug/NavFunctions.o
- .debug_str       0x0000c1         0x91 build/default/debug/NavConfigs.o
- .debug_str       0x000152         0x21 build/default/debug/NavInterrupts.o
+ .debug_str       0x000000         0x28 build/default/production/NavPic.o
+ .debug_str       0x000028         0x9b build/default/production/NavFunctions.o
+ .debug_str       0x0000c3         0x91 build/default/production/NavConfigs.o
+ .debug_str       0x000154         0x21 build/default/production/NavInterrupts.o
 
 .debug_loc
  *(.debug_loc)
@@ -368,15 +327,15 @@ __FDS
                   0x000000        0x1bf
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x1b build/default/debug/NavPic.o
+                  0x000000         0x1b build/default/production/NavPic.o
  .debug_pubnames
-                  0x00001b         0xbe build/default/debug/NavFunctions.o
+                  0x00001b         0xbe build/default/production/NavFunctions.o
  .debug_pubnames
-                  0x0000d9         0x4e build/default/debug/NavConfigs.o
+                  0x0000d9         0x4e build/default/production/NavConfigs.o
  .debug_pubnames
-                  0x000127         0x23 build/default/debug/NavInterrupts.o
+                  0x000127         0x23 build/default/production/NavInterrupts.o
  .debug_pubnames
-                  0x00014a         0x75 build/default/debug/NavGlobals.o
+                  0x00014a         0x75 build/default/production/NavGlobals.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -384,13 +343,13 @@ __FDS
 .debug_aranges    0x000000         0x60
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/debug/NavPic.o
+                  0x000000         0x18 build/default/production/NavPic.o
  .debug_aranges
-                  0x000018         0x18 build/default/debug/NavFunctions.o
+                  0x000018         0x18 build/default/production/NavFunctions.o
  .debug_aranges
-                  0x000030         0x18 build/default/debug/NavConfigs.o
+                  0x000030         0x18 build/default/production/NavConfigs.o
  .debug_aranges
-                  0x000048         0x18 build/default/debug/NavInterrupts.o
+                  0x000048         0x18 build/default/production/NavInterrupts.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1005,68 +964,68 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a
 END GROUP
-OUTPUT(dist/default/debug/NavPic.X.debug.elf elf32-pic30)
+OUTPUT(dist/default/production/NavPic.X.production.elf elf32-pic30)
 LOAD jump_table
 LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000060        0x31b
+                  0x000060        0x2fe
  .debug_pubtypes
-                  0x000060         0x7a build/default/debug/NavPic.o
+                  0x000060         0x5d build/default/production/NavPic.o
  .debug_pubtypes
-                  0x0000da         0x78 build/default/debug/NavFunctions.o
+                  0x0000bd         0x78 build/default/production/NavFunctions.o
  .debug_pubtypes
-                  0x000152        0x1db build/default/debug/NavConfigs.o
+                  0x000135        0x1db build/default/production/NavConfigs.o
  .debug_pubtypes
-                  0x00032d         0x3c build/default/debug/NavInterrupts.o
+                  0x000310         0x3c build/default/production/NavInterrupts.o
  .debug_pubtypes
-                  0x000369         0x12 build/default/debug/NavGlobals.o
+                  0x00034c         0x12 build/default/production/NavGlobals.o
 
 __c30_signature
-                  0x00037b         0x2a
+                  0x00035e         0x2a
  __c30_signature
-                  0x00037b          0x6 build/default/debug/NavPic.o
+                  0x00035e          0x6 build/default/production/NavPic.o
  __c30_signature
-                  0x000381          0x6 build/default/debug/NavFunctions.o
+                  0x000364          0x6 build/default/production/NavFunctions.o
  __c30_signature
-                  0x000387          0x6 build/default/debug/NavConfigs.o
+                  0x00036a          0x6 build/default/production/NavConfigs.o
  __c30_signature
-                  0x00038d          0x6 build/default/debug/NavInterrupts.o
+                  0x000370          0x6 build/default/production/NavInterrupts.o
  __c30_signature
-                  0x000393          0x6 build/default/debug/NavGlobals.o
+                  0x000376          0x6 build/default/production/NavGlobals.o
  __c30_signature
-                  0x000399          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x00037c          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x00039f          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x000382          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
-.ndata              0x0850          0xa
- .ndata             0x0850          0xa build/default/debug/NavGlobals.o
-                    0x0850                  _bitWord
-                    0x0852                  _oldState
-                    0x0854                  _qrd2
-                    0x0856                  _ball_color
-                    0x0858                  _past_drop
+.ndata              0x0800          0xa
+ .ndata             0x0800          0xa build/default/production/NavGlobals.o
+                    0x0800                  _bitWord
+                    0x0802                  _oldState
+                    0x0804                  _qrd2
+                    0x0806                  _ball_color
+                    0x0808                  _past_drop
 
-.nbss               0x085a          0x6
- .nbss              0x085a          0x6 build/default/debug/NavGlobals.o
-                    0x085a                  _qrd1
-                    0x085c                  _qrd3
-                    0x085e                  _drop_complete
+.nbss               0x080a          0x6
+ .nbss              0x080a          0x6 build/default/production/NavGlobals.o
+                    0x080a                  _qrd1
+                    0x080c                  _qrd3
+                    0x080e                  _drop_complete
 
 .config_FCKSM     0xf80008          0x2
- .config_FCKSM    0xf80008          0x2 build/default/debug/NavPic.o
+ .config_FCKSM    0xf80008          0x2 build/default/production/NavPic.o
 
 .config_IESO      0xf80006          0x2
- .config_IESO     0xf80006          0x2 build/default/debug/NavPic.o
+ .config_IESO     0xf80006          0x2 build/default/production/NavPic.o
 
 .ivt._T1Interrupt
                   0x00001a          0x2
  .ivt._T1Interrupt
-                  0x00001a          0x2 build/default/debug/NavInterrupts.o
+                  0x00001a          0x2 build/default/production/NavInterrupts.o
 
-.text             0x0002ea        0x52a
- .text            0x0002ea        0x41c build/default/debug/NavFunctions.o
+.text             0x0002ea        0x514
+ .text            0x0002ea        0x41c build/default/production/NavFunctions.o
                   0x0002ea                  _isCanyonSensed
                   0x00032a                  _isDropSensed
                   0x000346                  _locateTurn
@@ -1078,13 +1037,13 @@ __c30_signature
                   0x000678                  _test_sonars
                   0x0006b4                  _test_canyon_detect
                   0x0006e6                  _qrd_test
- .text            0x000706         0xe0 build/default/debug/NavConfigs.o
+ .text            0x000706         0xe0 build/default/production/NavConfigs.o
                   0x000706                  _pinSetup
                   0x000734                  _config_ADC
                   0x000784                  _config_Timer
                   0x0007ba                  _config_PWM
- .text            0x0007e6         0x2e build/default/debug/NavPic.o
+ .text            0x0007e6         0x18 build/default/production/NavPic.o
                   0x0007e6                  _main
 
-.dinit            0x000814         0x16
- .dinit           0x000814         0x16 data_init
+.dinit            0x0007fe         0x16
+ .dinit           0x0007fe         0x16 data_init

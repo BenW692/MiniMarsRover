@@ -60,7 +60,7 @@ void config_ADC() {
     _NVCFG = 0;   // use VSS as negative reference
     _BUFREGEN = 1;// store results in buffer corresponding to channel number
     _CSCNA = 1;   // enable scanning mode
-    _SMPI = 6;    // begin new sampling sequence after 7 samples
+    _SMPI = 7;    // begin new sampling sequence after 8 samples
     _ALTS = 0;    // sample MUXA only
 
     // AD1CON3
@@ -69,7 +69,7 @@ void config_ADC() {
     _ADCS = 32; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
-    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN14 (pins 5, 6, 7, 8)
+    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN14 (pins 5, 6, 7, 8) and pin AN9 (18))
     AD1CSSL = 0b110001000011111; 
     
     _ADON = 1;    // enable module after configuration
@@ -87,6 +87,11 @@ void config_Timer()
 	_T1IF = 0;	// Clear interrupt flag
 	_T1IE = 1;	// Enable interrupt
     TMR1 = 0;
+    
+    T2CONbits.TON = 1;
+    T2CONbits.TCKPS = 0b01;
+    T2CONbits.TCS = 0;
+    PR2 = 9999;
 }
 
 void config_PWM() {
@@ -94,11 +99,11 @@ void config_PWM() {
     /* Servo Set Up */
     OC1CON1 = 0;
     OC1CON2 = 0;
-    OC1CON1bits.OCTSEL = 0b111; //output compare timer is system clock
+    OC1CON1bits.OCTSEL = 0b000; //output compare timer is system clock
     OC1CON1bits.OCM = 0b110; //edge aligned output
     OC1CON2bits.SYNCSEL = 0x1F;
     OC1CON2bits.OCTRIG = 0; //use this OC module
    
-    SERVO_PERIOD = 0;
-    SERVO_ANGLE = 0;
+    SERVO_PERIOD = 9999;
+    SERVO_ANGLE = 685; //sets it to the straight angle
 }

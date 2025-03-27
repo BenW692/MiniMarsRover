@@ -37,8 +37,9 @@
 #define SERVO_PERIOD OC1RS
 #define SERVO_ANGLE OC1R
 
-#define BLACK_ANGLE 2888 //???Not sure
-#define WHITE_ANGLE 2888
+#define BLACK_ANGLE 470 //???Not sure
+#define MIDDLE_ANGLE
+#define WHITE_ANGLE 765
 
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
@@ -48,6 +49,7 @@
 #define SONAR_S ADC1BUF13 // pin7
 #define SONAR_W ADC1BUF14 // pin8
 
+#define SONAR_STUPID 400
 #define SONAR_HIGH 300 // Sense Wall 
 #define SONAR_LOW 200 // Close enough to wall to change direction
 #define SONAR_DROP 100 // close enough to wall to drop the ball

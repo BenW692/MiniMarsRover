@@ -195,7 +195,7 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
 
 void mode_check()
 {
-    if (WORDBIT1) //checks if we are strafing  !!!!This might be wrong bit to check!!!
+    if (WORDBIT4) //checks if we are strafing  !!!!This might be wrong bit to check!!!
     {
         enable_OC_interrupt();
     }

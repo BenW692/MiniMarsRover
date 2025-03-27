@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000081ec.00 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000081ec.01 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000081ec.02 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000081ec.03 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000081ec.04 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c148.00 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c148.01 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c148.02 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c148.03 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c148.04 \
   -p24F16KA301 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
@@ -77,10 +77,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x134           0x1ce  (462)
-.text                        0x334               0x322           0x4b3  (1203)
-.dinit                       0x656                0x10            0x18  (24)
+.text                        0x334               0x326           0x4b9  (1209)
+.dinit                       0x65a                0x10            0x18  (24)
 
-                 Total "program" memory used (bytes):          0x699  (1689) 10%
+                 Total "program" memory used (bytes):          0x69f  (1695) 10%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -138,15 +138,15 @@ External Symbols in Program Memory (by address):
                   0x000334                  _fourBit_FSM
                   0x0003f6                  _poll_bitWord
                   0x000430                  _setStrafeSpeed
-                  0x000504                  _enable_OC_interrupt
-                  0x000510                  _disable_OC_interrupt
-                  0x00051c                  _set_Straight_Speed
-                  0x00053c                  _set_Turn_Speed
-                  0x00057c                  _mode_check
-                  0x000592                  _setupPins
-                  0x0005ac                  _config_PWM
-                  0x000618                  _config_OC_interrupt
-                  0x000646                  _main
+                  0x000508                  _enable_OC_interrupt
+                  0x000514                  _disable_OC_interrupt
+                  0x000520                  _set_Straight_Speed
+                  0x000540                  _set_Turn_Speed
+                  0x000580                  _mode_check
+                  0x000596                  _setupPins
+                  0x0005b0                  _config_PWM
+                  0x00061c                  _config_OC_interrupt
+                  0x00064a                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -158,18 +158,18 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000618                  _config_OC_interrupt
-                  0x0005ac                  _config_PWM
-                  0x000510                  _disable_OC_interrupt
-                  0x000504                  _enable_OC_interrupt
+                  0x00061c                  _config_OC_interrupt
+                  0x0005b0                  _config_PWM
+                  0x000514                  _disable_OC_interrupt
+                  0x000508                  _enable_OC_interrupt
                   0x000334                  _fourBit_FSM
-                  0x000646                  _main
-                  0x00057c                  _mode_check
+                  0x00064a                  _main
+                  0x000580                  _mode_check
                   0x0003f6                  _poll_bitWord
                   0x000430                  _setStrafeSpeed
-                  0x00051c                  _set_Straight_Speed
-                  0x00053c                  _set_Turn_Speed
-                  0x000592                  _setupPins
+                  0x000520                  _set_Straight_Speed
+                  0x000540                  _set_Turn_Speed
+                  0x000596                  _setupPins
 
 Memory Configuration
 
@@ -310,13 +310,13 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x28be
+.debug_info       0x000000       0x2904
  *(.debug_info)
- .debug_info      0x000000        0x1b9 build/default/debug/MasterPic.o
- .debug_info      0x0001b9        0x1b0 build/default/debug/MasterGlobals.o
- .debug_info      0x000369        0x52d build/default/debug/MasterInterrupts.o
- .debug_info      0x000896        0x9cc build/default/debug/MasterFunctions.o
- .debug_info      0x001262       0x165c build/default/debug/MasterConfigs.o
+ .debug_info      0x000000        0x1c7 build/default/debug/MasterPic.o
+ .debug_info      0x0001c7        0x1be build/default/debug/MasterGlobals.o
+ .debug_info      0x000385        0x53b build/default/debug/MasterInterrupts.o
+ .debug_info      0x0008c0        0x9da build/default/debug/MasterFunctions.o
+ .debug_info      0x00129a       0x166a build/default/debug/MasterConfigs.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x32d
@@ -327,13 +327,13 @@ __FDS
  .debug_abbrev    0x00014e        0x107 build/default/debug/MasterFunctions.o
  .debug_abbrev    0x000255         0xd8 build/default/debug/MasterConfigs.o
 
-.debug_line       0x000000        0x483
+.debug_line       0x000000        0x485
  *(.debug_line)
  .debug_line      0x000000         0x53 build/default/debug/MasterPic.o
  .debug_line      0x000053         0x2d build/default/debug/MasterGlobals.o
  .debug_line      0x000080        0x134 build/default/debug/MasterInterrupts.o
- .debug_line      0x0001b4        0x195 build/default/debug/MasterFunctions.o
- .debug_line      0x000349        0x13a build/default/debug/MasterConfigs.o
+ .debug_line      0x0001b4        0x197 build/default/debug/MasterFunctions.o
+ .debug_line      0x00034b        0x13a build/default/debug/MasterConfigs.o
 
 .debug_frame      0x000000        0x1f4
  *(.debug_frame)
@@ -1052,22 +1052,22 @@ __c30_signature
  .ivt._OC2Interrupt
                   0x000020          0x2 build/default/debug/MasterInterrupts.o
 
-.text             0x000334        0x322
- .text            0x000334        0x25e build/default/debug/MasterFunctions.o
+.text             0x000334        0x326
+ .text            0x000334        0x262 build/default/debug/MasterFunctions.o
                   0x000334                  _fourBit_FSM
                   0x0003f6                  _poll_bitWord
                   0x000430                  _setStrafeSpeed
-                  0x000504                  _enable_OC_interrupt
-                  0x000510                  _disable_OC_interrupt
-                  0x00051c                  _set_Straight_Speed
-                  0x00053c                  _set_Turn_Speed
-                  0x00057c                  _mode_check
- .text            0x000592         0xb4 build/default/debug/MasterConfigs.o
-                  0x000592                  _setupPins
-                  0x0005ac                  _config_PWM
-                  0x000618                  _config_OC_interrupt
- .text            0x000646         0x10 build/default/debug/MasterPic.o
-                  0x000646                  _main
+                  0x000508                  _enable_OC_interrupt
+                  0x000514                  _disable_OC_interrupt
+                  0x000520                  _set_Straight_Speed
+                  0x000540                  _set_Turn_Speed
+                  0x000580                  _mode_check
+ .text            0x000596         0xb4 build/default/debug/MasterConfigs.o
+                  0x000596                  _setupPins
+                  0x0005b0                  _config_PWM
+                  0x00061c                  _config_OC_interrupt
+ .text            0x00064a         0x10 build/default/debug/MasterPic.o
+                  0x00064a                  _main
 
-.dinit            0x000656         0x10
- .dinit           0x000656         0x10 data_init
+.dinit            0x00065a         0x10
+ .dinit           0x00065a         0x10 data_init

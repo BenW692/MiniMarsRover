@@ -22,37 +22,97 @@ int main(void) {
     pinSetup();
     config_ADC();
     config_Timer();
+    config_PWM();
     
-
+    WORDBIT3 = 0;
+    WORDBIT4 = 1;
+    while(1);
+    while (1) {
+        if (ADC1BUF9 < 500) {
+            WORDBIT3 = 1;
+        }
+    }
 //    bitWord = DRIVE_NORTH;
 //    while (TRUE) { //defaults to canyon mode test
 //        locateTurn();
 //        fourBit_FSM();
 //    }
     
+    
+
+////    
 //    while (TRUE) //defaults to line following test
 //    {
-//        bitWord = senseLine();
+////        senseLine();
+//        WORDBIT1 = 1;
+//        WORDBIT2 = 1;
+//        WORDBIT3 = 1;
+//        WORDBIT4 = 1;
+//        if (SONAR_N < SONAR_HIGH) //&& SONAR_W < SONAR_HIGH QRD2 < QRD_MED
+//        {
+//            WORDBIT1 = 0;
+//            WORDBIT2 = 0;
+//            WORDBIT3 = 0;
+//            WORDBIT4 = 0;
+////            dropBall();
+//        }
+////        if (SONAR_E < SONAR_HIGH) //&& SONAR_W < SONAR_HIGH QRD2 < QRD_MED
+////        {
+////            WORDBIT1 = 0;
+////            WORDBIT2 = 0;
+////            WORDBIT3 = 0;
+////            WORDBIT4 = 0;
+//////            dropBall();
+//        }
+////        fourBit_FSM();
+////    }
+    
+    
+//    
+//    while(TRUE) {
+//        
+//        if (isCanyonSensed())
+//        {
+//            locateTurn();
+//        }
+//        else if (isDropSensed())
+//        {
+//            dropBall();
+//        }
+//        else    
+//        {
+//            senseLine(); //line following
+//        }
+//        
 //        fourBit_FSM();
-//    }
+//}
     
+    WORDBIT3 = 0;
+    WORDBIT4 = 0;
     
-    while(TRUE) {
-        
-        if (isCanyonSensed())
+    while (TRUE)
+    {
+        if (BALL_QRD < QRD_HIGH)
         {
-            locateTurn();
+            ball_color = 0; //ball is white
+            WORDBIT3 = 1;
         }
-        else if (isDropSensed())
+        else
         {
-            dropBall();
-        }
-        else    
+            ball_color = 1; //ball is black
+            WORDBIT4 = 1;
+            
+        SERVO_PERIOD = 9999;
+        if (ball_color) //black
         {
-            senseLine(); //line following
+            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
         }
-        
-        fourBit_FSM();
+        else
+        {
+            SERVO_ANGLE = WHITE_ANGLE;
+        } 
+    }
+        while (1);
 }
 }
     

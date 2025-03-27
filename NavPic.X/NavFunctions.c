@@ -27,7 +27,7 @@ BOOL isCanyonSensed()
 
 BOOL isDropSensed()
 {
-    if (QRD2 && SONAR_W < SONAR_HIGH && SONAR_E < SONAR_HIGH)
+    if (QRD2 < QRD_MED && SONAR_W < SONAR_HIGH)
     {
         return TRUE;
     }
@@ -332,8 +332,8 @@ void qrd_test()
         qrd1 = read_QRD(QRD1);
         qrd2 = read_QRD(QRD2);
         qrd3 = read_QRD(QRD3); 
-//      endWord1(qrd1, qrd2, qrd3, 0);
-        sendWord(0, 0, qrd2, 0);
+        sendWord(qrd3, qrd2, qrd1, 0);
+//        sendWord(0, 0, qrd2, 0);
     }
 }
 

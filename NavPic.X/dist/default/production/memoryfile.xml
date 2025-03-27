@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project>
-  <executable name="dist/default/production/MasterPic.X.production.elf">
+  <executable name="dist/default/production/NavPic.X.production.elf">
     <memory name="data">
       <units>bytes</units>
       <length>2048</length>
-      <used>10</used>
-      <free>2038</free>
+      <used>16</used>
+      <free>2032</free>
     </memory>
     <memory name="program">
       <units>bytes</units>
       <length>16128</length>
-      <used>1704</used>
-      <free>14424</free>
+      <used>2334</used>
+      <free>13794</free>
     </memory>
   </executable>
 </project>
