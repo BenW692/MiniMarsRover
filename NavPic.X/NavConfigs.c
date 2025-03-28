@@ -29,10 +29,10 @@ void pinSetup() {
     _TRISA1 = 1;
     _TRISB0 = 1;
     
-    _TRISB1 = 1;
-    _TRISB2 = 1;
-    _TRISA2 = 1;
-    _TRISA3 = 1;
+    _TRISB1 = 1; //north sonar
+    _TRISB2 = 1; //west sensor
+    _TRISA2 = 1; //sonar south
+    _TRISB12 = 1; //sonar east
     
     /* Enable Analog */
     _ANSA0 = 1;
@@ -42,7 +42,7 @@ void pinSetup() {
     _ANSB1 = 1;
     _ANSB2 = 1;
     _ANSA2 = 1;
-    _ANSA3 = 1;
+    _ANSB12 = 1;
 }
 
 void config_ADC() {
@@ -69,8 +69,8 @@ void config_ADC() {
     _ADCS = 32; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
-    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN14 (pins 5, 6, 7, 8) and pin AN9 (18))
-    AD1CSSL = 0b110001000011111; 
+    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN12 (pins 5, 6, 7, 15) and pin AN9 (18))
+    AD1CSSL = 0b0011001000011111; 
     
     _ADON = 1;    // enable module after configuration
 }

@@ -40,13 +40,15 @@
 
 #define STRAFE_SPEED 1250 //1000 is too fast b/c. the struggles to change directions before
 //hitting the wall
-
-#define STRAIGHT_SPEED 2500
-#define NON_TURN_SPEED 4000
-#define BIG_TURN_SPEED 3000
-#define MED_TURN_SPEED 1500
-#define SMALL_TURN_SPEED 3750
 #define SLIP_SPEED 2500
+
+#define STRAIGHT_SPEED 1500 //2500 when driving straight
+#define NON_TURN_SPEED 3600 //6000 wheel that keeps going straight
+#define FB_TURN_SPEED 2400 //4000 front back speed
+//#define BIG_TURN_SPEED 3000
+#define MED_TURN_SPEED 900 //1500 wheel that speeds up to turn
+//#define SMALL_TURN_SPEED 3750
+
 
 //I made this not static and it might break stuff we will see
 extern int target_speed_R;

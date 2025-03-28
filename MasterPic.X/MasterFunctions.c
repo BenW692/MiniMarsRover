@@ -182,6 +182,10 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         L_DUTY_CYCLE = L_PERIOD / 2;
         R_PERIOD = straight_speed;
         R_DUTY_CYCLE = R_PERIOD / 2;
+        FRONT_DIR = 1;
+        BACK_DIR = 0;
+        FB_PERIOD = FB_TURN_SPEED;
+        FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
     else //turn left
     {
@@ -189,6 +193,10 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         R_DUTY_CYCLE = L_PERIOD / 2;
         L_PERIOD = straight_speed;
         L_DUTY_CYCLE = R_PERIOD / 2;
+        FRONT_DIR = 0;
+        BACK_DIR = 1;
+        FB_PERIOD = FB_TURN_SPEED;
+        FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
             
 }

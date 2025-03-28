@@ -24,14 +24,54 @@ int main(void) {
     config_Timer();
     config_PWM();
     
-    WORDBIT3 = 0;
-    WORDBIT4 = 1;
-    while(1);
-    while (1) {
-        if (ADC1BUF9 < 500) {
-            WORDBIT3 = 1;
-        }
+    bitWord = STRAIGHT;
+    
+    while (TRUE)
+    {
+        senseLine();
+        fourBit_FSM();
     }
+    
+//    WORDBIT1 = 1;
+//    WORDBIT2 = 1;
+//    WORDBIT3 = 1;
+//    WORDBIT4 = 1;
+//    
+//    while (1) {
+//        if (SONAR_N < N_BALL_DROP_DETECT) 
+//        {
+//            WORDBIT1 = 0;
+//        }
+//        else
+//        {
+//            WORDBIT1 = 1;
+//        }
+//        if (SONAR_E < E_BALL_DROP_DETECT) 
+//        {
+//            WORDBIT2 = 0;
+//        }
+//        else
+//        {
+//            WORDBIT2 = 1;
+//        }
+//        if (SONAR_S < S_BALL_DROP_DETECT) 
+//        {
+//            WORDBIT3 = 0;
+//        }
+//        else
+//        {
+//            WORDBIT3 = 1;
+//        }
+//        if (SONAR_W < W_BALL_DROP_DETECT) 
+//        {
+//            WORDBIT4 = 0;
+//        }
+//        else
+//        {
+//            WORDBIT4 = 1;
+//        }
+//        
+//    }
 //    bitWord = DRIVE_NORTH;
 //    while (TRUE) { //defaults to canyon mode test
 //        locateTurn();

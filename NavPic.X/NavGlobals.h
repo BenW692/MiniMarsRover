@@ -26,7 +26,7 @@
 #define DRIVE_WEST 0b1011
 
 //other tasks
-#define STOP 0b1111
+#define STOP 0b1111  
 
 #define QRD1 ADC1BUF0 //west
 #define QRD2 ADC1BUF1 //middle
@@ -45,14 +45,28 @@
 #define QRD_MED 341  // 1/3 of 1023
 
 #define SONAR_N ADC1BUF3 // pin5
-#define SONAR_E ADC1BUF4 // pin6
+#define SONAR_W ADC1BUF4 // pin6
 #define SONAR_S ADC1BUF13 // pin7
-#define SONAR_W ADC1BUF14 // pin8
+#define SONAR_E ADC1BUF12 // pin15
 
 #define SONAR_STUPID 400
 #define SONAR_HIGH 300 // Sense Wall 
 #define SONAR_LOW 200 // Close enough to wall to change direction
 #define SONAR_DROP 100 // close enough to wall to drop the ball
+
+#define N_WALL_DETECT 1400
+#define N_BALL_DROP_DETECT 600
+
+#define E_WALL_DETECT 1500
+#define E_BALL_DROP_DETECT 775
+
+#define S_WALL_DETECT 1050
+#define S_BALL_DROP_DETECT 500
+
+#define W_WALL_DETECT 1700
+#define W_BALL_DROP_DETECT 700
+
+
 
 #define WORDBIT1 _LATB4
 #define WORDBIT2 _LATA4 
