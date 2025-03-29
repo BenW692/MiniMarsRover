@@ -25,9 +25,12 @@ void pinSetup() {
     LATB = 0;
     
     /* Enable Inputs */
+    //line following qrds
     _TRISA0 = 1;
     _TRISA1 = 1;
     _TRISB0 = 1;
+    
+    _TRISB15 = 1; //ball qrd
     
     _TRISB1 = 1; //north sonar
     _TRISB2 = 1; //west sensor
@@ -38,6 +41,8 @@ void pinSetup() {
     _ANSA0 = 1;
     _ANSA1 = 1;    
     _ANSB0 = 1;   
+    
+    _ANSB15 = 1; //ball qrd
     
     _ANSB1 = 1;
     _ANSB2 = 1;
@@ -105,5 +110,5 @@ void config_PWM() {
     OC1CON2bits.OCTRIG = 0; //use this OC module
    
     SERVO_PERIOD = 9999;
-    SERVO_ANGLE = 685; //sets it to the straight angle
+    SERVO_ANGLE = MIDDLE_ANGLE; //sets it to the straight angle
 }

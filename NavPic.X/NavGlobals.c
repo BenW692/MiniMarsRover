@@ -17,6 +17,7 @@ int qrd2 = 2;
 int qrd3 = 0;
 
 int ball_color = -1;
+int ball_qrd = 0;
 
 
 BOOL drop_complete = FALSE;

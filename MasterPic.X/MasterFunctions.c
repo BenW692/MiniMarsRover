@@ -87,7 +87,7 @@ void fourBit_FSM()
         break;
         
     case STOP:
-        setStrafeSpeed(-1, -1, -1, -1, STRAFE_SPEED);
+        setStrafeSpeed(-1, -1, -1, -1, 0);
         break;
 
     }

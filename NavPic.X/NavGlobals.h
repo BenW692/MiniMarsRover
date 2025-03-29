@@ -38,8 +38,8 @@
 #define SERVO_ANGLE OC1R
 
 #define BLACK_ANGLE 470 //???Not sure
-#define MIDDLE_ANGLE
-#define WHITE_ANGLE 765
+#define MIDDLE_ANGLE 685
+#define WHITE_ANGLE 800
 
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
@@ -64,7 +64,7 @@
 #define S_BALL_DROP_DETECT 500
 
 #define W_WALL_DETECT 1700
-#define W_BALL_DROP_DETECT 700
+#define W_BALL_DROP_DETECT 200
 
 
 
@@ -77,12 +77,12 @@ extern int bitWord;
 extern int oldState;
 
 extern int qrd1;
-
 extern int qrd2;
 extern int qrd3;
 
 extern int ball_color;
 extern BOOL drop_complete;
 extern BOOL past_drop;
+extern int ball_qrd;
 
 #endif

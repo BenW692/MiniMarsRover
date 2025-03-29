@@ -14,7 +14,7 @@ BOOL isCanyonSensed()
 {
     if (!QRD1 && !QRD2 && !QRD3)
     {
-        if (SONAR_W < SONAR_HIGH || SONAR_E < SONAR_HIGH || SONAR_N < SONAR_HIGH || SONAR_S < SONAR_HIGH) //for entering the canyon
+        if (SONAR_W < W_WALL_DETECT || SONAR_E < E_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
             return TRUE;
         }
@@ -27,7 +27,8 @@ BOOL isCanyonSensed()
 
 BOOL isDropSensed()
 {
-    if (QRD2 < QRD_MED && SONAR_W < SONAR_HIGH)
+    qrd2 = read_QRD(QRD2);
+    if ( (QRD1 < QRD_MED || QRD2 < QRD_MED || QRD3 < QRD_MED) && SONAR_W < W_BALL_DROP_DETECT)
     {
         return TRUE;
     }

@@ -26,19 +26,63 @@ int main(void) {
     
     bitWord = STRAIGHT;
     
+    for (double i = 0; i < 80000; i++) ; //we need this delay so the ADC can configure
+    //at boot up it returns a random value for the sonar sensors that will trigger ball
+    //drop if we don't have this delay
+   
     while (TRUE)
     {
         senseLine();
+        if (isDropSensed())
+        {
+            bitWord = STOP;
+            fourBit_FSM();
+            if (BALL_QRD < 100)
+            {
+                SERVO_ANGLE = WHITE_ANGLE;
+    //            WORDBIT3 = 1;
+    //            WORDBIT4 = 0;
+                for (double i = 0; i<100000; i++);
+            }
+            else 
+            {
+                SERVO_ANGLE = BLACK_ANGLE;
+    //            WORDBIT4 = 1;
+    //            WORDBIT3 = 0;
+                for (double i = 0; i<100000; i++);
+            }
+            SERVO_ANGLE = MIDDLE_ANGLE;
+        }
         fourBit_FSM();
     }
-    
+//    while (1)
+//    {
+//        if (BALL_QRD < 100)
+//        {
+//            SERVO_ANGLE = WHITE_ANGLE;
+////            WORDBIT3 = 1;
+////            WORDBIT4 = 0;
+//            for (double i = 0; i<100000; i++);
+//        }
+//        else 
+//        {
+//            SERVO_ANGLE = BLACK_ANGLE;
+////            WORDBIT4 = 1;
+////            WORDBIT3 = 0;
+//            for (double i = 0; i<100000; i++);
+//        }
+//        SERVO_ANGLE = MIDDLE_ANGLE;
+//        for (double i = 0; i<100000; i++);
+//        for (double i = 0; i<100000; i++);
+//        for (double i = 0; i<100000; i++);
+//    }
 //    WORDBIT1 = 1;
 //    WORDBIT2 = 1;
 //    WORDBIT3 = 1;
 //    WORDBIT4 = 1;
 //    
 //    while (1) {
-//        if (SONAR_N < N_BALL_DROP_DETECT) 
+//        if (SONAR_N < N_BALL_DROP_DETECT && SONAR_N > 0) 
 //        {
 //            WORDBIT1 = 0;
 //        }
@@ -46,7 +90,7 @@ int main(void) {
 //        {
 //            WORDBIT1 = 1;
 //        }
-//        if (SONAR_E < E_BALL_DROP_DETECT) 
+//        if (SONAR_E < E_BALL_DROP_DETECT && SONAR_E > 0) 
 //        {
 //            WORDBIT2 = 0;
 //        }
@@ -54,7 +98,7 @@ int main(void) {
 //        {
 //            WORDBIT2 = 1;
 //        }
-//        if (SONAR_S < S_BALL_DROP_DETECT) 
+//        if (SONAR_S < S_BALL_DROP_DETECT && SONAR_S > 0) 
 //        {
 //            WORDBIT3 = 0;
 //        }
@@ -62,7 +106,7 @@ int main(void) {
 //        {
 //            WORDBIT3 = 1;
 //        }
-//        if (SONAR_W < W_BALL_DROP_DETECT) 
+//        if (SONAR_W < W_BALL_DROP_DETECT && SONAR_W > 0) 
 //        {
 //            WORDBIT4 = 0;
 //        }
@@ -70,6 +114,7 @@ int main(void) {
 //        {
 //            WORDBIT4 = 1;
 //        }
+//    }
 //        
 //    }
 //    bitWord = DRIVE_NORTH;
