@@ -57,7 +57,7 @@ void pollDrop() {
         while(QRD2 > QRD_HIGH);
         bitWord = STRAIGHT;
         fourBit_FSM();
-        delay(750);
+        delay(650);
     }
 }
 
