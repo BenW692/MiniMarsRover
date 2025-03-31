@@ -12,7 +12,7 @@
 
 BOOL isCanyonSensed() 
 {
-    if (!QRD1 && !QRD2 && !QRD3)
+    if (!QRD1 && !QRD2 && !QRD3) // should we be calling read_QRD()???
     {
         if (SONAR_W < W_WALL_DETECT || SONAR_E < E_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
@@ -25,8 +25,22 @@ BOOL isCanyonSensed()
     }
 }
 
+BOOL isLanderSensed() {
+    return (read_QRD(LANDER_QRD)) ? TRUE : FALSE;
+}
+
+void pollLander() {
+    if (isLanderSensed()) {
+        // turn (which is better, rotate or strafe?)
+        // line follow into lander
+        // stop
+        //point and shoot laser (CREATE ARRAY or BISECTION)
+    }
+}
+
 void pollDrop() {
     if (isDropSensed()) {
+        delay(500);
         bitWord = STOP;
         fourBit_FSM();
         if (BALL_QRD < 100)
@@ -143,20 +157,20 @@ int senseLine()
         case STRAIGHT:
             if (qrd1 == 2)
             {
-                bitWord = MED_LEFT;
+                bitWord = TURN_LEFT;
             }
             else if (qrd3 == 2)
             {
-                bitWord = MED_RIGHT;
+                bitWord = TURN_RIGHT;
             }
             break;
-        case MED_RIGHT:
+        case TURN_RIGHT:
             if (qrd2 == 2)
             {
                 bitWord = STRAIGHT;
             }
             break;
-        case MED_LEFT:
+        case TURN_LEFT:
             if (qrd2 == 2)
             {
                 bitWord = STRAIGHT;
@@ -166,7 +180,6 @@ int senseLine()
     }
     
 }
-
 
 void delay(int ms) {
     T1CONbits.TON = 1;
@@ -201,35 +214,29 @@ void fourBit_FSM() {
         case STRAIGHT:
             sendWord(0, 0, 0, 1);
             break;
-        case SMALL_RIGHT:
+        case TURN_RIGHT:
             sendWord(0, 0, 1, 0);
             break;
-        case MED_RIGHT:
+        case TURN_LEFT:
             sendWord(0, 0, 1, 1);
             break;
-        case BIG_RIGHT:
+        case DRIVE_NORTH:
             sendWord(0, 1, 0, 0);
             break;
-        case SMALL_LEFT:
-            sendWord(0, 1, 0, 1);
-            break;
-        case MED_LEFT:
-            sendWord(0, 1, 1, 0);
-            break;
-        case BIG_LEFT:
-            sendWord(0, 1, 1, 1);
-            break;
-        case DRIVE_NORTH:
-            sendWord(1, 0, 0, 0);
-            break;
         case DRIVE_EAST:
-            sendWord(1, 0, 0, 1);
+            sendWord(0, 1, 0, 1);
             break; 
         case DRIVE_SOUTH:
-            sendWord(1, 0, 1, 0);
+            sendWord(0, 1, 1, 0);
             break;
         case DRIVE_WEST:
-            sendWord(1, 0, 1, 1);
+            sendWord(1, 1, 1, 1);
+            break;
+        case ROTATE_CW:
+            sendWord(1, 0, 0, 0);
+            break;
+        case ROTATE_CCW:
+            sendWord(1, 0, 0, 1);
             break;
         case STOP:
             sendWord(1, 1, 1, 1);

@@ -31,6 +31,8 @@ void pinSetup() {
     _TRISB0 = 1;
     
     _TRISB15 = 1; //ball qrd
+    _TRISB14 = 1; //lander qrd
+    _TRISA3 = 1; //satellite diode
     
     _TRISB1 = 1; //north sonar
     _TRISB2 = 1; //west sensor
@@ -38,11 +40,14 @@ void pinSetup() {
     _TRISB12 = 1; //sonar east
     
     /* Enable Analog */
+    //line following qrds
     _ANSA0 = 1;
     _ANSA1 = 1;    
     _ANSB0 = 1;   
     
     _ANSB15 = 1; //ball qrd
+    _ANSB14 = 1; //lander qrd
+    _ANSA3 = 1; //satellite diode
     
     _ANSB1 = 1;
     _ANSB2 = 1;
@@ -65,7 +70,7 @@ void config_ADC() {
     _NVCFG = 0;   // use VSS as negative reference
     _BUFREGEN = 1;// store results in buffer corresponding to channel number
     _CSCNA = 1;   // enable scanning mode
-    _SMPI = 7;    // begin new sampling sequence after 8 samples
+    _SMPI = 9;    // begin new sampling sequence after 10 samples
     _ALTS = 0;    // sample MUXA only
 
     // AD1CON3
@@ -74,8 +79,8 @@ void config_ADC() {
     _ADCS = 32; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
-    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN12 (pins 5, 6, 7, 15) and pin AN9 (18))
-    AD1CSSL = 0b0011001000011111; 
+    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN12 (pins 5, 6, 7, 15) and pin AN9 AN10 AN14 (18 17 8))
+    AD1CSSL = 0b0111011000011111; 
     
     _ADON = 1;    // enable module after configuration
 }

@@ -3,22 +3,24 @@
 
 #include "xc.h"
 
-#define NO_LINE 0b0000 //potentially put into header file with global var
+// turning
+#define NO_LINE 0b0000
 #define STRAIGHT 0b0001 
-#define SMALL_RIGHT 0b0010
-#define MED_RIGHT 0b0011
-#define BIG_RIGHT 0b0100
-#define SMALL_LEFT 0b0101
-#define MED_LEFT 0b0110
-#define BIG_LEFT 0b0111
+#define TURN_RIGHT 0b0010
+#define TURN_LEFT 0b0011
 
-#define DRIVE_NORTH 0b1000
-#define DRIVE_EAST 0b1001
-#define DRIVE_SOUTH 0b1010
-#define DRIVE_WEST 0b1011
+// strafing 
+#define DRIVE_NORTH 0b0100
+#define DRIVE_EAST 0b0101
+#define DRIVE_SOUTH 0b0110
+#define DRIVE_WEST 0b0111
 
+// rotating
+#define ROTATE_CW 0b1000
+#define ROTATE_CCW 0b1001
+
+// other
 #define STOP 0b1111
-
 
 #define L_PERIOD OC2RS
 #define L_DUTY_CYCLE OC2R

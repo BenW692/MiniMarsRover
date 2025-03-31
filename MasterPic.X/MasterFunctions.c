@@ -34,41 +34,17 @@ void fourBit_FSM()
         LEFT_DIR = 1;
         break;
 
-//    case SMALL_RIGHT:
-//        set_Turn_Speed(1, NON_TURN_SPEED, SMALL_TURN_SPEED);
-//        RIGHT_DIR = 1;
-//        LEFT_DIR = 1;
-//        break;
-
-    case MED_RIGHT:
+    case TURN_RIGHT:
         set_Turn_Speed(1, NON_TURN_SPEED, MED_TURN_SPEED);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
 
-//    case BIG_RIGHT:
-//        set_Turn_Speed(1, NON_TURN_SPEED, BIG_TURN_SPEED);
-//        RIGHT_DIR = 1;
-//        LEFT_DIR = 1;
-//        break;
-
-//    case SMALL_LEFT:
-//        set_Turn_Speed(0, NON_TURN_SPEED, SMALL_TURN_SPEED);
-//        RIGHT_DIR = 1;
-//        LEFT_DIR = 1;
-//        break;
-
-    case MED_LEFT:
+    case TURN_LEFT:
         set_Turn_Speed(0, NON_TURN_SPEED, MED_TURN_SPEED);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
-
-//    case BIG_LEFT:
-//        set_Turn_Speed(0, NON_TURN_SPEED, BIG_TURN_SPEED);
-//        RIGHT_DIR = 1;
-//        LEFT_DIR = 1;
-//        break;    
         
     case DRIVE_NORTH:
         setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // Left & Right motors forward
@@ -84,6 +60,14 @@ void fourBit_FSM()
         
     case DRIVE_EAST:
         setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
+        break;
+        
+    case ROTATE_CW:
+        //implement
+        break;
+        
+    case ROTATE_CCW:
+        //implement
         break;
         
     case STOP:

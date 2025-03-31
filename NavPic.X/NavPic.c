@@ -38,7 +38,9 @@ int main(void) {
     {
         senseLine();
         fourBit_FSM();
-        pollDrop();
+        pollDrop(); // we should have state machine that controls which checkpoints we poll
+        pollLander();
+        
     }
 //    while (1)
 //    {

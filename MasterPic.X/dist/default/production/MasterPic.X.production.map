@@ -67,10 +67,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x12e           0x1c5  (453)
-.text                        0x32e               0x374           0x52e  (1326)
-.dinit                       0x6a2                0x10            0x18  (24)
+.text                        0x32e               0x370           0x528  (1320)
+.dinit                       0x69e                0x10            0x18  (24)
 
-                 Total "program" memory used (bytes):          0x70b  (1803) 11%
+                 Total "program" memory used (bytes):          0x705  (1797) 11%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -121,17 +121,17 @@ External Symbols in Program Memory (by address):
                   0x000308                  __OC2Interrupt
                   0x000328                  __DefaultInterrupt
                   0x00032e                  _fourBit_FSM
-                  0x0003f0                  _poll_bitWord
-                  0x00042a                  _setStrafeSpeed
-                  0x000522                  _enable_OC_interrupt
-                  0x00052e                  _disable_OC_interrupt
-                  0x00053a                  _set_Straight_Speed
-                  0x00055a                  _set_Turn_Speed
-                  0x0005c2                  _mode_check
-                  0x0005d8                  _setupPins
-                  0x0005f2                  _config_PWM
-                  0x00065e                  _config_OC_interrupt
-                  0x00068c                  _main
+                  0x0003ec                  _poll_bitWord
+                  0x000426                  _setStrafeSpeed
+                  0x00051e                  _enable_OC_interrupt
+                  0x00052a                  _disable_OC_interrupt
+                  0x000536                  _set_Straight_Speed
+                  0x000556                  _set_Turn_Speed
+                  0x0005be                  _mode_check
+                  0x0005d4                  _setupPins
+                  0x0005ee                  _config_PWM
+                  0x00065a                  _config_OC_interrupt
+                  0x000688                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -143,18 +143,18 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00065e                  _config_OC_interrupt
-                  0x0005f2                  _config_PWM
-                  0x00052e                  _disable_OC_interrupt
-                  0x000522                  _enable_OC_interrupt
+                  0x00065a                  _config_OC_interrupt
+                  0x0005ee                  _config_PWM
+                  0x00052a                  _disable_OC_interrupt
+                  0x00051e                  _enable_OC_interrupt
                   0x00032e                  _fourBit_FSM
-                  0x00068c                  _main
-                  0x0005c2                  _mode_check
-                  0x0003f0                  _poll_bitWord
-                  0x00042a                  _setStrafeSpeed
-                  0x00053a                  _set_Straight_Speed
-                  0x00055a                  _set_Turn_Speed
-                  0x0005d8                  _setupPins
+                  0x000688                  _main
+                  0x0005be                  _mode_check
+                  0x0003ec                  _poll_bitWord
+                  0x000426                  _setStrafeSpeed
+                  0x000536                  _set_Straight_Speed
+                  0x000556                  _set_Turn_Speed
+                  0x0005d4                  _setupPins
 
 Memory Configuration
 
@@ -282,13 +282,13 @@ __FDS
  .debug_abbrev    0x00014e        0x107 build/default/production/MasterFunctions.o
  .debug_abbrev    0x000255         0xd8 build/default/production/MasterConfigs.o
 
-.debug_line       0x000000        0x40a
+.debug_line       0x000000        0x404
  *(.debug_line)
  .debug_line      0x000000         0x53 build/default/production/MasterPic.o
  .debug_line      0x000053         0x2d build/default/production/MasterGlobals.o
  .debug_line      0x000080        0x108 build/default/production/MasterInterrupts.o
- .debug_line      0x000188        0x174 build/default/production/MasterFunctions.o
- .debug_line      0x0002fc        0x10e build/default/production/MasterConfigs.o
+ .debug_line      0x000188        0x16e build/default/production/MasterFunctions.o
+ .debug_line      0x0002f6        0x10e build/default/production/MasterConfigs.o
 
 .debug_frame      0x000000        0x1f4
  *(.debug_frame)
@@ -1007,22 +1007,22 @@ __c30_signature
  .ivt._OC2Interrupt
                   0x000020          0x2 build/default/production/MasterInterrupts.o
 
-.text             0x00032e        0x374
- .text            0x00032e        0x2aa build/default/production/MasterFunctions.o
+.text             0x00032e        0x370
+ .text            0x00032e        0x2a6 build/default/production/MasterFunctions.o
                   0x00032e                  _fourBit_FSM
-                  0x0003f0                  _poll_bitWord
-                  0x00042a                  _setStrafeSpeed
-                  0x000522                  _enable_OC_interrupt
-                  0x00052e                  _disable_OC_interrupt
-                  0x00053a                  _set_Straight_Speed
-                  0x00055a                  _set_Turn_Speed
-                  0x0005c2                  _mode_check
- .text            0x0005d8         0xb4 build/default/production/MasterConfigs.o
-                  0x0005d8                  _setupPins
-                  0x0005f2                  _config_PWM
-                  0x00065e                  _config_OC_interrupt
- .text            0x00068c         0x16 build/default/production/MasterPic.o
-                  0x00068c                  _main
+                  0x0003ec                  _poll_bitWord
+                  0x000426                  _setStrafeSpeed
+                  0x00051e                  _enable_OC_interrupt
+                  0x00052a                  _disable_OC_interrupt
+                  0x000536                  _set_Straight_Speed
+                  0x000556                  _set_Turn_Speed
+                  0x0005be                  _mode_check
+ .text            0x0005d4         0xb4 build/default/production/MasterConfigs.o
+                  0x0005d4                  _setupPins
+                  0x0005ee                  _config_PWM
+                  0x00065a                  _config_OC_interrupt
+ .text            0x000688         0x16 build/default/production/MasterPic.o
+                  0x000688                  _main
 
-.dinit            0x0006a2         0x10
- .dinit           0x0006a2         0x10 data_init
+.dinit            0x00069e         0x10
+ .dinit           0x00069e         0x10 data_init
