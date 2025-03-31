@@ -16,17 +16,6 @@ int main(void) {
     config_OC_interrupt();
     config_PWM();
     
-//    target_speed_FB = 1500;
-//    FB_PERIOD = 3000;
-//    FB_DUTY_CYCLE = FB_PERIOD / 2;
-//    target_speed_LR = 2500;
-//    LR_PERIOD = 5000;
-//    LR_DUTY_CYCLE = LR_PERIOD / 2;
-//    while(1);
-
-//    setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // drive North test
-//    while(1);
-    
     bitWord = STRAIGHT;
     disable_OC_interrupt();
     

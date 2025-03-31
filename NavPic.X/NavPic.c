@@ -24,36 +24,21 @@ int main(void) {
     config_Timer();
     config_PWM();
     
-    bitWord = STRAIGHT;
+    bitWord = STOP;
+    fourBit_FSM();
     
-    for (double i = 0; i < 80000; i++) ; //we need this delay so the ADC can configure
+    delay(1000); //we need this delay so the ADC can configure
     //at boot up it returns a random value for the sonar sensors that will trigger ball
     //drop if we don't have this delay
    
+    bitWord = STRAIGHT;
+    fourBit_FSM();
+    
     while (TRUE)
     {
         senseLine();
-        if (isDropSensed())
-        {
-            bitWord = STOP;
-            fourBit_FSM();
-            if (BALL_QRD < 100)
-            {
-                SERVO_ANGLE = WHITE_ANGLE;
-    //            WORDBIT3 = 1;
-    //            WORDBIT4 = 0;
-                for (double i = 0; i<100000; i++);
-            }
-            else 
-            {
-                SERVO_ANGLE = BLACK_ANGLE;
-    //            WORDBIT4 = 1;
-    //            WORDBIT3 = 0;
-                for (double i = 0; i<100000; i++);
-            }
-            SERVO_ANGLE = MIDDLE_ANGLE;
-        }
         fourBit_FSM();
+        pollDrop();
     }
 //    while (1)
 //    {
@@ -172,32 +157,32 @@ int main(void) {
 //        fourBit_FSM();
 //}
     
-    WORDBIT3 = 0;
-    WORDBIT4 = 0;
-    
-    while (TRUE)
-    {
-        if (BALL_QRD < QRD_HIGH)
-        {
-            ball_color = 0; //ball is white
-            WORDBIT3 = 1;
-        }
-        else
-        {
-            ball_color = 1; //ball is black
-            WORDBIT4 = 1;
-            
-        SERVO_PERIOD = 9999;
-        if (ball_color) //black
-        {
-            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
-        }
-        else
-        {
-            SERVO_ANGLE = WHITE_ANGLE;
-        } 
-    }
-        while (1);
-}
+//    WORDBIT3 = 0;
+//    WORDBIT4 = 0;
+//    
+//    while (TRUE)
+//    {
+//        if (BALL_QRD < QRD_HIGH)
+//        {
+//            ball_color = 0; //ball is white
+//            WORDBIT3 = 1;
+//        }
+//        else
+//        {
+//            ball_color = 1; //ball is black
+//            WORDBIT4 = 1;
+//            
+//        SERVO_PERIOD = 9999;
+//        if (ball_color) //black
+//        {
+//            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
+//        }
+//        else
+//        {
+//            SERVO_ANGLE = WHITE_ANGLE;
+//        } 
+//    }
+//        while (1);
+//}
 }
     

@@ -25,9 +25,44 @@ BOOL isCanyonSensed()
     }
 }
 
+void pollDrop() {
+    if (isDropSensed()) {
+        bitWord = STOP;
+        fourBit_FSM();
+        if (BALL_QRD < 100)
+        {
+            bitWord = DRIVE_WEST;
+            fourBit_FSM();
+            delay(375);
+            bitWord = STOP;
+            fourBit_FSM();
+            SERVO_ANGLE = WHITE_ANGLE;
+            delay(2000);
+            bitWord = DRIVE_EAST;
+            fourBit_FSM();
+        }
+        else 
+        {
+            bitWord = DRIVE_EAST;
+            fourBit_FSM();
+            delay(375);
+            bitWord = STOP;
+            fourBit_FSM();
+            SERVO_ANGLE = BLACK_ANGLE;
+            delay(2000);
+            bitWord = DRIVE_WEST;
+            fourBit_FSM();
+        }
+        SERVO_ANGLE = MIDDLE_ANGLE;
+        while(QRD2 > QRD_HIGH);
+        bitWord = STRAIGHT;
+        fourBit_FSM();
+        delay(750);
+    }
+}
+
 BOOL isDropSensed()
 {
-    qrd2 = read_QRD(QRD2);
     if ( (QRD1 < QRD_MED || QRD2 < QRD_MED || QRD3 < QRD_MED) && SONAR_W < W_BALL_DROP_DETECT)
     {
         return TRUE;
@@ -132,67 +167,14 @@ int senseLine()
     
 }
 
-void dropBall()
-{
-    
-//    get ball color !!MOVE THIS TO WHEN BALL IS STILL!!
-    if (BALL_QRD < QRD_MED)
-    {
-        ball_color = 0; //ball is white
-    }
-    else
-    {
-        ball_color = 1; //ball is black
-    }
-//    strafe to the correct bin
-    while (SONAR_W > SONAR_DROP && SONAR_E > SONAR_DROP)
-    {
-        if (ball_color)
-        {
-            bitWord = DRIVE_EAST;
-        }
-        else
-        {
-            bitWord = DRIVE_WEST;
-        }
-    }
-    bitWord = STOP;
-//    drop the ball (use a timer of 2 seconds)
-    T1CONbits.TON = 1; //start timer
-    while (!drop_complete)
-    {
-        SERVO_PERIOD = 79999;
-        if (ball_color) //black
-        {
-            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
-        }
-        else
-        {
-            SERVO_ANGLE = WHITE_ANGLE;
-        } 
-    }
-    T1CONbits.TON = 0; //timer turned off
-//    go back to line
-    while (QRD2 > QRD_MED)
-    {
-        if (ball_color)
-        {
-            bitWord = DRIVE_WEST;
-        }
-        else
-        {
-            bitWord = DRIVE_EAST;
-        }
-    }
-    
-    T1CONbits.TON = 1; //timer turned off !!Change this for another event checker in main function
-    PR1 = 15000; //subject to change based on how long it takes to drive away from the drop
-//    past_drop = FALSE;
-    while (!past_drop)
-    {
-        bitWord = STRAIGHT;
-    }
-    
+
+void delay(int ms) {
+    T1CONbits.TON = 1;
+    TMR1 = 0;
+    PR1 = 0b1111111111111111; // max 16 bit
+    while (TMR1 < ms * 15); // ms * 15625 / 1000 is better not sure if it works
+    // NOTE: blocking delay
+    T1CONbits.TON = 0;
 }
 
 int read_QRD(unsigned int QRD_val) {
@@ -334,7 +316,68 @@ void qrd_test()
         qrd2 = read_QRD(QRD2);
         qrd3 = read_QRD(QRD3); 
         sendWord(qrd3, qrd2, qrd1, 0);
-//        sendWord(0, 0, qrd2, 0);
-    }
+     }
 }
 
+//void dropBall()
+//{
+//    
+////    get ball color !!MOVE THIS TO WHEN BALL IS STILL!!
+//    if (BALL_QRD < QRD_MED)
+//    {
+//        ball_color = 0; //ball is white
+//    }
+//    else
+//    {
+//        ball_color = 1; //ball is black
+//    }
+////    strafe to the correct bin
+//    while (SONAR_W > SONAR_DROP && SONAR_E > SONAR_DROP)
+//    {
+//        if (ball_color)
+//        {
+//            bitWord = DRIVE_EAST;
+//        }
+//        else
+//        {
+//            bitWord = DRIVE_WEST;
+//        }
+//    }
+//    bitWord = STOP;
+////    drop the ball (use a timer of 2 seconds)
+//    T1CONbits.TON = 1; //start timer
+//    while (!drop_complete)
+//    {
+//        SERVO_PERIOD = 79999;
+//        if (ball_color) //black
+//        {
+//            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
+//        }
+//        else
+//        {
+//            SERVO_ANGLE = WHITE_ANGLE;
+//        } 
+//    }
+//    T1CONbits.TON = 0; //timer turned off
+////    go back to line
+//    while (QRD2 > QRD_MED)
+//    {
+//        if (ball_color)
+//        {
+//            bitWord = DRIVE_WEST;
+//        }
+//        else
+//        {
+//            bitWord = DRIVE_EAST;
+//        }
+//    }
+//    
+//    T1CONbits.TON = 1; //timer turned off !!Change this for another event checker in main function
+//    PR1 = 15000; //subject to change based on how long it takes to drive away from the drop
+////    past_drop = FALSE;
+//    while (!past_drop)
+//    {
+//        bitWord = STRAIGHT;
+//    }
+//    
+//}

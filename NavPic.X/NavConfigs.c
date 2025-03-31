@@ -83,6 +83,7 @@ void config_ADC() {
 void config_Timer()
 {
         // Configure a 16-bit timer using Timer1
+    T1CONbits.TCS = 0;
     T1CONbits.TCKPS = 0b11; // 256 presclaler
     PR1 = 31250; // Period of 1 second
     T1CONbits.TON = 0; //bit is off
@@ -104,7 +105,7 @@ void config_PWM() {
     /* Servo Set Up */
     OC1CON1 = 0;
     OC1CON2 = 0;
-    OC1CON1bits.OCTSEL = 0b000; //output compare timer is system clock
+    OC1CON1bits.OCTSEL = 0b000; //output compare timer is Timer 2
     OC1CON1bits.OCM = 0b110; //edge aligned output
     OC1CON2bits.SYNCSEL = 0x1F;
     OC1CON2bits.OCTRIG = 0; //use this OC module
