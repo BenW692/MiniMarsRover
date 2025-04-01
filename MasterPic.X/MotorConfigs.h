@@ -2,6 +2,6 @@
 #define MASTERCONFIGS_H
 
 #include <xc.h>
-#include "MasterGlobals.h"
+#include "MotorGlobals.h"
 
 #endif

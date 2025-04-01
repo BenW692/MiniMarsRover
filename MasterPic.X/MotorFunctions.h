@@ -2,7 +2,7 @@
 #define MASTERFUNCTIONS_H
 
 #include <xc.h>
-#include "MasterGlobals.h"
+#include "MotorGlobals.h"
 
 void fourBit_FSM();
 

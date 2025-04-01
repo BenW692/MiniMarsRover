@@ -18,15 +18,15 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
-      <itemPath>MasterPic.c</itemPath>
-      <itemPath>MasterGlobals.h</itemPath>
-      <itemPath>MasterGlobals.c</itemPath>
-      <itemPath>MasterInterrupts.c</itemPath>
-      <itemPath>MasterInterrupts.h</itemPath>
-      <itemPath>MasterFunctions.c</itemPath>
-      <itemPath>MasterFunctions.h</itemPath>
-      <itemPath>MasterConfigs.c</itemPath>
-      <itemPath>MasterConfigs.h</itemPath>
+      <itemPath>MotorConfigs.c</itemPath>
+      <itemPath>MotorConfigs.h</itemPath>
+      <itemPath>MotorFunctions.c</itemPath>
+      <itemPath>MotorFunctions.h</itemPath>
+      <itemPath>MotorGlobals.c</itemPath>
+      <itemPath>MotorGlobals.h</itemPath>
+      <itemPath>MotorInterrupts.c</itemPath>
+      <itemPath>MotorInterrupts.h</itemPath>
+      <itemPath>MotorPic.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <projectmakefile>Makefile</projectmakefile>

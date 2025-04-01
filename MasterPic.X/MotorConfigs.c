@@ -7,7 +7,7 @@
 
 
 #include "xc.h"
-#include "MasterConfigs.h"
+#include "MotorConfigs.h"
 
 void setupPins() {
     /* Clear registers */

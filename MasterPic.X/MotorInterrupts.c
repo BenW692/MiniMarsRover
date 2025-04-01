@@ -8,7 +8,7 @@
 
 #include "xc.h"
 
-#include "MasterInterrupts.h"
+#include "MotorInterrupts.h"
 
 void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
 {

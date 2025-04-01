@@ -4,11 +4,11 @@ Tool Name:
   c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000026b0.00 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000026b0.01 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000026b0.02 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000026b0.03 \
-  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp000026b0.04 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c008.00 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c008.01 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c008.02 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c008.03 \
+  -TC:\\Users\\benwo\\AppData\\Local\\Temp\\tmp0000c008.04 \
   -p24F16KA301 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
@@ -23,11 +23,11 @@ Command:
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
-  build/default/debug/MasterPic.o \
-  build/default/debug/MasterGlobals.o \
-  build/default/debug/MasterInterrupts.o \
-  build/default/debug/MasterFunctions.o \
-  build/default/debug/MasterConfigs.o \
+  build/default/debug/MotorConfigs.o \
+  build/default/debug/MotorFunctions.o \
+  build/default/debug/MotorGlobals.o \
+  build/default/debug/MotorInterrupts.o \
+  build/default/debug/MotorPic.o \
   --defsym=__MPLAB_BUILD=1 \
   --defsym=__MPLAB_DEBUG=1 \
   --defsym=__DEBUG=1 \
@@ -77,10 +77,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x134           0x1ce  (462)
-.text                        0x334               0x348           0x4ec  (1260)
-.dinit                       0x67c                0x10            0x18  (24)
+.text                        0x334               0x38a           0x54f  (1359)
+.dinit                       0x6be                0x10            0x18  (24)
 
-                 Total "program" memory used (bytes):          0x6d2  (1746) 10%
+                 Total "program" memory used (bytes):          0x735  (1845) 11%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -136,17 +136,17 @@ External Symbols in Program Memory (by address):
                   0x00030c                  __OC2Interrupt
                   0x00032e                  __DefaultInterrupt
                   0x000334                  _fourBit_FSM
-                  0x0003f6                  _poll_bitWord
-                  0x000430                  _setStrafeSpeed
-                  0x000508                  _enable_OC_interrupt
-                  0x000514                  _disable_OC_interrupt
-                  0x000520                  _set_Straight_Speed
-                  0x000540                  _set_Turn_Speed
-                  0x00059c                  _mode_check
-                  0x0005b2                  _setupPins
-                  0x0005cc                  _config_PWM
-                  0x000638                  _config_OC_interrupt
-                  0x000666                  _main
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x000524                  _enable_OC_interrupt
+                  0x000530                  _disable_OC_interrupt
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005de                  _mode_check
+                  0x0005f4                  _setupPins
+                  0x00060e                  _config_PWM
+                  0x00067a                  _config_OC_interrupt
+                  0x0006a8                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -158,18 +158,18 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000638                  _config_OC_interrupt
-                  0x0005cc                  _config_PWM
-                  0x000514                  _disable_OC_interrupt
-                  0x000508                  _enable_OC_interrupt
+                  0x00067a                  _config_OC_interrupt
+                  0x00060e                  _config_PWM
+                  0x000530                  _disable_OC_interrupt
+                  0x000524                  _enable_OC_interrupt
                   0x000334                  _fourBit_FSM
-                  0x000666                  _main
-                  0x00059c                  _mode_check
-                  0x0003f6                  _poll_bitWord
-                  0x000430                  _setStrafeSpeed
-                  0x000520                  _set_Straight_Speed
-                  0x000540                  _set_Turn_Speed
-                  0x0005b2                  _setupPins
+                  0x0006a8                  _main
+                  0x0005de                  _mode_check
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005f4                  _setupPins
 
 Memory Configuration
 
@@ -218,11 +218,11 @@ reserve_data_0x826
                     0x0826         0x2a
                     0x0850                  . = 0x2a
  *fill*             0x0826         0x2a00
-LOAD build/default/debug/MasterPic.o
-LOAD build/default/debug/MasterGlobals.o
-LOAD build/default/debug/MasterInterrupts.o
-LOAD build/default/debug/MasterFunctions.o
-LOAD build/default/debug/MasterConfigs.o
+LOAD build/default/debug/MotorConfigs.o
+LOAD build/default/debug/MotorFunctions.o
+LOAD build/default/debug/MotorGlobals.o
+LOAD build/default/debug/MotorInterrupts.o
+LOAD build/default/debug/MotorPic.o
                     0x0001                  __MPLAB_BUILD = 0x1
                     0x0001                  __MPLAB_DEBUG = 0x1
                     0x0001                  __DEBUG = 0x1
@@ -265,7 +265,7 @@ LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x66 build/default/debug/MasterInterrupts.o
+ .isr.text        0x0002c8         0x66 build/default/debug/MotorInterrupts.o
                   0x0002c8                  __OC3Interrupt
                   0x0002ea                  __OC1Interrupt
                   0x00030c                  __OC2Interrupt
@@ -310,43 +310,43 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2904
+.debug_info       0x000000       0x28ff
  *(.debug_info)
- .debug_info      0x000000        0x1c7 build/default/debug/MasterPic.o
- .debug_info      0x0001c7        0x1be build/default/debug/MasterGlobals.o
- .debug_info      0x000385        0x53b build/default/debug/MasterInterrupts.o
- .debug_info      0x0008c0        0x9da build/default/debug/MasterFunctions.o
- .debug_info      0x00129a       0x166a build/default/debug/MasterConfigs.o
+ .debug_info      0x000000       0x1669 build/default/debug/MotorConfigs.o
+ .debug_info      0x001669        0x9d9 build/default/debug/MotorFunctions.o
+ .debug_info      0x002042        0x1bd build/default/debug/MotorGlobals.o
+ .debug_info      0x0021ff        0x53a build/default/debug/MotorInterrupts.o
+ .debug_info      0x002739        0x1c6 build/default/debug/MotorPic.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x32d
  *(.debug_abbrev)
- .debug_abbrev    0x000000         0x72 build/default/debug/MasterPic.o
- .debug_abbrev    0x000072         0x30 build/default/debug/MasterGlobals.o
- .debug_abbrev    0x0000a2         0xac build/default/debug/MasterInterrupts.o
- .debug_abbrev    0x00014e        0x107 build/default/debug/MasterFunctions.o
- .debug_abbrev    0x000255         0xd8 build/default/debug/MasterConfigs.o
+ .debug_abbrev    0x000000         0xd8 build/default/debug/MotorConfigs.o
+ .debug_abbrev    0x0000d8        0x107 build/default/debug/MotorFunctions.o
+ .debug_abbrev    0x0001df         0x30 build/default/debug/MotorGlobals.o
+ .debug_abbrev    0x00020f         0xac build/default/debug/MotorInterrupts.o
+ .debug_abbrev    0x0002bb         0x72 build/default/debug/MotorPic.o
 
-.debug_line       0x000000        0x48f
+.debug_line       0x000000        0x490
  *(.debug_line)
- .debug_line      0x000000         0x55 build/default/debug/MasterPic.o
- .debug_line      0x000055         0x2d build/default/debug/MasterGlobals.o
- .debug_line      0x000082        0x134 build/default/debug/MasterInterrupts.o
- .debug_line      0x0001b6        0x19f build/default/debug/MasterFunctions.o
- .debug_line      0x000355        0x13a build/default/debug/MasterConfigs.o
+ .debug_line      0x000000        0x139 build/default/debug/MotorConfigs.o
+ .debug_line      0x000139        0x1a8 build/default/debug/MotorFunctions.o
+ .debug_line      0x0002e1         0x2c build/default/debug/MotorGlobals.o
+ .debug_line      0x00030d        0x132 build/default/debug/MotorInterrupts.o
+ .debug_line      0x00043f         0x51 build/default/debug/MotorPic.o
 
 .debug_frame      0x000000        0x1f4
  *(.debug_frame)
- .debug_frame     0x000000         0x2e build/default/debug/MasterPic.o
- .debug_frame     0x00002e         0x80 build/default/debug/MasterInterrupts.o
- .debug_frame     0x0000ae         0xe4 build/default/debug/MasterFunctions.o
- .debug_frame     0x000192         0x62 build/default/debug/MasterConfigs.o
+ .debug_frame     0x000000         0x62 build/default/debug/MotorConfigs.o
+ .debug_frame     0x000062         0xe4 build/default/debug/MotorFunctions.o
+ .debug_frame     0x000146         0x80 build/default/debug/MotorInterrupts.o
+ .debug_frame     0x0001c6         0x2e build/default/debug/MotorPic.o
 
 .debug_str        0x000000        0x1d8
  *(.debug_str)
- .debug_str       0x000000         0x40 build/default/debug/MasterInterrupts.o
- .debug_str       0x000040         0x5c build/default/debug/MasterFunctions.o
- .debug_str       0x00009c        0x13c build/default/debug/MasterConfigs.o
+ .debug_str       0x000000        0x13c build/default/debug/MotorConfigs.o
+ .debug_str       0x00013c         0x5c build/default/debug/MotorFunctions.o
+ .debug_str       0x000198         0x40 build/default/debug/MotorInterrupts.o
 
 .debug_loc
  *(.debug_loc)
@@ -358,15 +358,15 @@ __FDS
                   0x000000        0x1be
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x1b build/default/debug/MasterPic.o
+                  0x000000         0x47 build/default/debug/MotorConfigs.o
  .debug_pubnames
-                  0x00001b         0x64 build/default/debug/MasterGlobals.o
+                  0x000047         0xb0 build/default/debug/MotorFunctions.o
  .debug_pubnames
-                  0x00007f         0x48 build/default/debug/MasterInterrupts.o
+                  0x0000f7         0x64 build/default/debug/MotorGlobals.o
  .debug_pubnames
-                  0x0000c7         0xb0 build/default/debug/MasterFunctions.o
+                  0x00015b         0x48 build/default/debug/MotorInterrupts.o
  .debug_pubnames
-                  0x000177         0x47 build/default/debug/MasterConfigs.o
+                  0x0001a3         0x1b build/default/debug/MotorPic.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -374,13 +374,13 @@ __FDS
 .debug_aranges    0x000000         0x60
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/debug/MasterPic.o
+                  0x000000         0x18 build/default/debug/MotorConfigs.o
  .debug_aranges
-                  0x000018         0x18 build/default/debug/MasterInterrupts.o
+                  0x000018         0x18 build/default/debug/MotorFunctions.o
  .debug_aranges
-                  0x000030         0x18 build/default/debug/MasterFunctions.o
+                  0x000030         0x18 build/default/debug/MotorInterrupts.o
  .debug_aranges
-                  0x000048         0x18 build/default/debug/MasterConfigs.o
+                  0x000048         0x18 build/default/debug/MotorPic.o
                     0x0000                  WREG0 = 0x0
                     0x0000                  _WREG0 = 0x0
                     0x0002                  WREG1 = 0x2
@@ -1002,35 +1002,35 @@ LOAD data_init
 .debug_pubtypes
                   0x000060        0x2d0
  .debug_pubtypes
-                  0x000060         0x12 build/default/debug/MasterPic.o
+                  0x000060        0x1a1 build/default/debug/MotorConfigs.o
  .debug_pubtypes
-                  0x000072         0x12 build/default/debug/MasterGlobals.o
+                  0x000201         0xb2 build/default/debug/MotorFunctions.o
  .debug_pubtypes
-                  0x000084         0x59 build/default/debug/MasterInterrupts.o
+                  0x0002b3         0x12 build/default/debug/MotorGlobals.o
  .debug_pubtypes
-                  0x0000dd         0xb2 build/default/debug/MasterFunctions.o
+                  0x0002c5         0x59 build/default/debug/MotorInterrupts.o
  .debug_pubtypes
-                  0x00018f        0x1a1 build/default/debug/MasterConfigs.o
+                  0x00031e         0x12 build/default/debug/MotorPic.o
 
 __c30_signature
                   0x000330         0x2a
  __c30_signature
-                  0x000330          0x6 build/default/debug/MasterPic.o
+                  0x000330          0x6 build/default/debug/MotorConfigs.o
  __c30_signature
-                  0x000336          0x6 build/default/debug/MasterGlobals.o
+                  0x000336          0x6 build/default/debug/MotorFunctions.o
  __c30_signature
-                  0x00033c          0x6 build/default/debug/MasterInterrupts.o
+                  0x00033c          0x6 build/default/debug/MotorGlobals.o
  __c30_signature
-                  0x000342          0x6 build/default/debug/MasterFunctions.o
+                  0x000342          0x6 build/default/debug/MotorInterrupts.o
  __c30_signature
-                  0x000348          0x6 build/default/debug/MasterConfigs.o
+                  0x000348          0x6 build/default/debug/MotorPic.o
  __c30_signature
                   0x00034e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
                   0x000354          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
 .ndata              0x0850          0xa
- .ndata             0x0850          0xa build/default/debug/MasterGlobals.o
+ .ndata             0x0850          0xa build/default/debug/MotorGlobals.o
                     0x0850                  _target_speed_R
                     0x0852                  _target_speed_L
                     0x0854                  _target_speed_FB
@@ -1040,34 +1040,34 @@ __c30_signature
 .ivt._OC3Interrupt
                   0x000046          0x2
  .ivt._OC3Interrupt
-                  0x000046          0x2 build/default/debug/MasterInterrupts.o
+                  0x000046          0x2 build/default/debug/MotorInterrupts.o
 
 .ivt._OC1Interrupt
                   0x000018          0x2
  .ivt._OC1Interrupt
-                  0x000018          0x2 build/default/debug/MasterInterrupts.o
+                  0x000018          0x2 build/default/debug/MotorInterrupts.o
 
 .ivt._OC2Interrupt
                   0x000020          0x2
  .ivt._OC2Interrupt
-                  0x000020          0x2 build/default/debug/MasterInterrupts.o
+                  0x000020          0x2 build/default/debug/MotorInterrupts.o
 
-.text             0x000334        0x348
- .text            0x000334        0x27e build/default/debug/MasterFunctions.o
+.text             0x000334        0x38a
+ .text            0x000334        0x2c0 build/default/debug/MotorFunctions.o
                   0x000334                  _fourBit_FSM
-                  0x0003f6                  _poll_bitWord
-                  0x000430                  _setStrafeSpeed
-                  0x000508                  _enable_OC_interrupt
-                  0x000514                  _disable_OC_interrupt
-                  0x000520                  _set_Straight_Speed
-                  0x000540                  _set_Turn_Speed
-                  0x00059c                  _mode_check
- .text            0x0005b2         0xb4 build/default/debug/MasterConfigs.o
-                  0x0005b2                  _setupPins
-                  0x0005cc                  _config_PWM
-                  0x000638                  _config_OC_interrupt
- .text            0x000666         0x16 build/default/debug/MasterPic.o
-                  0x000666                  _main
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x000524                  _enable_OC_interrupt
+                  0x000530                  _disable_OC_interrupt
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005de                  _mode_check
+ .text            0x0005f4         0xb4 build/default/debug/MotorConfigs.o
+                  0x0005f4                  _setupPins
+                  0x00060e                  _config_PWM
+                  0x00067a                  _config_OC_interrupt
+ .text            0x0006a8         0x16 build/default/debug/MotorPic.o
+                  0x0006a8                  _main
 
-.dinit            0x00067c         0x10
- .dinit           0x00067c         0x10 data_init
+.dinit            0x0006be         0x10
+ .dinit           0x0006be         0x10 data_init

@@ -2,6 +2,6 @@
 #define MASTERINTERRUPTS_H
 
 #include <xc.h>
-#include "MasterGlobals.h"
+#include "MotorGlobals.h"
 
 #endif

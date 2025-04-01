@@ -8,7 +8,7 @@
 
 #include "xc.h"
 
-#include "MasterFunctions.h"
+#include "MotorFunctions.h"
 
 void fourBit_FSM()
 {

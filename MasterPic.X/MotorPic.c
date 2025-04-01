@@ -7,9 +7,9 @@
 
 
 #include "xc.h"
-#include "MasterInterrupts.h"
-#include "MasterFunctions.h"
-#include "MasterConfigs.h"
+#include "MotorInterrupts.h"
+#include "MotorFunctions.h"
+#include "MotorConfigs.h"
 
 int main(void) {
     setupPins();

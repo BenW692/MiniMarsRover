@@ -8,7 +8,7 @@
 
 #include "xc.h"
 
-#include "MasterGlobals.h"
+#include "MotorGlobals.h"
 
 int target_speed_R = 2500;
 int target_speed_L = 2500;

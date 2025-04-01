@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=MasterPic.c MasterGlobals.c MasterInterrupts.c MasterFunctions.c MasterConfigs.c
+SOURCEFILES_QUOTED_IF_SPACED=MotorConfigs.c MotorFunctions.c MotorGlobals.c MotorInterrupts.c MotorPic.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MasterPic.o ${OBJECTDIR}/MasterGlobals.o ${OBJECTDIR}/MasterInterrupts.o ${OBJECTDIR}/MasterFunctions.o ${OBJECTDIR}/MasterConfigs.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/MasterPic.o.d ${OBJECTDIR}/MasterGlobals.o.d ${OBJECTDIR}/MasterInterrupts.o.d ${OBJECTDIR}/MasterFunctions.o.d ${OBJECTDIR}/MasterConfigs.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/MotorConfigs.o ${OBJECTDIR}/MotorFunctions.o ${OBJECTDIR}/MotorGlobals.o ${OBJECTDIR}/MotorInterrupts.o ${OBJECTDIR}/MotorPic.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/MotorConfigs.o.d ${OBJECTDIR}/MotorFunctions.o.d ${OBJECTDIR}/MotorGlobals.o.d ${OBJECTDIR}/MotorInterrupts.o.d ${OBJECTDIR}/MotorPic.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/MasterPic.o ${OBJECTDIR}/MasterGlobals.o ${OBJECTDIR}/MasterInterrupts.o ${OBJECTDIR}/MasterFunctions.o ${OBJECTDIR}/MasterConfigs.o
+OBJECTFILES=${OBJECTDIR}/MotorConfigs.o ${OBJECTDIR}/MotorFunctions.o ${OBJECTDIR}/MotorGlobals.o ${OBJECTDIR}/MotorInterrupts.o ${OBJECTDIR}/MotorPic.o
 
 # Source Files
-SOURCEFILES=MasterPic.c MasterGlobals.c MasterInterrupts.c MasterFunctions.c MasterConfigs.c
+SOURCEFILES=MotorConfigs.c MotorFunctions.c MotorGlobals.c MotorInterrupts.c MotorPic.c
 
 
 
@@ -89,66 +89,66 @@ MP_LINKER_FILE_OPTION=,--script=p24F16KA301.gld
 # ------------------------------------------------------------------------------------
 # Rules for buildStep: compile
 ifeq ($(TYPE_IMAGE), DEBUG_RUN)
-${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/5da5916f7d9fa109eea2fde99d88aaa44a0e82cb .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorConfigs.o: MotorConfigs.c  .generated_files/flags/default/35c1c2d9bb106de07fc5815258d70495b1024969 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterPic.o.d 
-	@${RM} ${OBJECTDIR}/MasterPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterPic.c  -o ${OBJECTDIR}/MasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterPic.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorConfigs.o.d 
+	@${RM} ${OBJECTDIR}/MotorConfigs.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorConfigs.c  -o ${OBJECTDIR}/MotorConfigs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorConfigs.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/8c4f6487ae2c9939ccca9e436cfed7c721b61793 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorFunctions.o: MotorFunctions.c  .generated_files/flags/default/825a3eba21569ba9b34c304a353002ef74ad715b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterGlobals.o.d 
-	@${RM} ${OBJECTDIR}/MasterGlobals.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterGlobals.c  -o ${OBJECTDIR}/MasterGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterGlobals.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorFunctions.o.d 
+	@${RM} ${OBJECTDIR}/MotorFunctions.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorFunctions.c  -o ${OBJECTDIR}/MotorFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorFunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/8bbebaa7302271a6092ae2fc1b8eab7edaa09f0c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorGlobals.o: MotorGlobals.c  .generated_files/flags/default/49ce08d23789d45caf85e65b14950720ce29d5fc .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterInterrupts.o.d 
-	@${RM} ${OBJECTDIR}/MasterInterrupts.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterInterrupts.c  -o ${OBJECTDIR}/MasterInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterInterrupts.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorGlobals.o.d 
+	@${RM} ${OBJECTDIR}/MotorGlobals.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorGlobals.c  -o ${OBJECTDIR}/MotorGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorGlobals.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/ffe977fc8c2b64d335af622aee930dfbf62b7815 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorInterrupts.o: MotorInterrupts.c  .generated_files/flags/default/964010ecb640dbb6cbc56bf33869e6adb1fbd7c5 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterFunctions.o.d 
-	@${RM} ${OBJECTDIR}/MasterFunctions.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFunctions.c  -o ${OBJECTDIR}/MasterFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFunctions.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorInterrupts.o.d 
+	@${RM} ${OBJECTDIR}/MotorInterrupts.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorInterrupts.c  -o ${OBJECTDIR}/MotorInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorInterrupts.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/98c117abfa4261a4713f9c423eede0a1e702fc0d .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorPic.o: MotorPic.c  .generated_files/flags/default/aead2976fcf5a902fcd719b7e22bbe11b5383a16 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterConfigs.o.d 
-	@${RM} ${OBJECTDIR}/MasterConfigs.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterConfigs.c  -o ${OBJECTDIR}/MasterConfigs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterConfigs.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorPic.o.d 
+	@${RM} ${OBJECTDIR}/MotorPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorPic.c  -o ${OBJECTDIR}/MotorPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorPic.o.d"      -g -D__DEBUG -D__MPLAB_DEBUGGER_PK3=1    -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 else
-${OBJECTDIR}/MasterPic.o: MasterPic.c  .generated_files/flags/default/9d997c815e2cdec2a2ed89247b36e4ec0a50330 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorConfigs.o: MotorConfigs.c  .generated_files/flags/default/7010432975e31a19c2328495cc95fbd21f0339e2 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterPic.o.d 
-	@${RM} ${OBJECTDIR}/MasterPic.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterPic.c  -o ${OBJECTDIR}/MasterPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorConfigs.o.d 
+	@${RM} ${OBJECTDIR}/MotorConfigs.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorConfigs.c  -o ${OBJECTDIR}/MotorConfigs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorConfigs.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterGlobals.o: MasterGlobals.c  .generated_files/flags/default/890f39259a524283a00b224b2219146af5529dcf .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorFunctions.o: MotorFunctions.c  .generated_files/flags/default/2a15b22f98574a81c653010a2fc4ffbc86699145 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterGlobals.o.d 
-	@${RM} ${OBJECTDIR}/MasterGlobals.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterGlobals.c  -o ${OBJECTDIR}/MasterGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterGlobals.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorFunctions.o.d 
+	@${RM} ${OBJECTDIR}/MotorFunctions.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorFunctions.c  -o ${OBJECTDIR}/MotorFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorFunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterInterrupts.o: MasterInterrupts.c  .generated_files/flags/default/606641802cc002f997697d7b84281376b235459c .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorGlobals.o: MotorGlobals.c  .generated_files/flags/default/99606afb0f82b38eef956850a342fde246f67c76 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterInterrupts.o.d 
-	@${RM} ${OBJECTDIR}/MasterInterrupts.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterInterrupts.c  -o ${OBJECTDIR}/MasterInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterInterrupts.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorGlobals.o.d 
+	@${RM} ${OBJECTDIR}/MotorGlobals.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorGlobals.c  -o ${OBJECTDIR}/MotorGlobals.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorGlobals.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterFunctions.o: MasterFunctions.c  .generated_files/flags/default/de734d6de1b275733ad98354c380c91adeccb421 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorInterrupts.o: MotorInterrupts.c  .generated_files/flags/default/51ce6ac679021e02620eaf8ad1b82e146c2c0301 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterFunctions.o.d 
-	@${RM} ${OBJECTDIR}/MasterFunctions.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterFunctions.c  -o ${OBJECTDIR}/MasterFunctions.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterFunctions.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorInterrupts.o.d 
+	@${RM} ${OBJECTDIR}/MotorInterrupts.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorInterrupts.c  -o ${OBJECTDIR}/MotorInterrupts.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorInterrupts.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
-${OBJECTDIR}/MasterConfigs.o: MasterConfigs.c  .generated_files/flags/default/d3133915a815c6017467d36a166b0e872867437b .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+${OBJECTDIR}/MotorPic.o: MotorPic.c  .generated_files/flags/default/21ba3647d910f88114b6b5363efe9490b5154b16 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
-	@${RM} ${OBJECTDIR}/MasterConfigs.o.d 
-	@${RM} ${OBJECTDIR}/MasterConfigs.o 
-	${MP_CC} $(MP_EXTRA_CC_PRE)  MasterConfigs.c  -o ${OBJECTDIR}/MasterConfigs.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MasterConfigs.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
+	@${RM} ${OBJECTDIR}/MotorPic.o.d 
+	@${RM} ${OBJECTDIR}/MotorPic.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE)  MotorPic.c  -o ${OBJECTDIR}/MotorPic.o  -c -mcpu=$(MP_PROCESSOR_OPTION)  -MP -MMD -MF "${OBJECTDIR}/MotorPic.o.d"        -g -omf=elf -DXPRJ_default=$(CND_CONF)    $(COMPARISON_BUILD)  -O0 -msmart-io=1 -Wall -msfr-warn=off    -mdfp="${DFP_DIR}/xc16"
 	
 endif
 

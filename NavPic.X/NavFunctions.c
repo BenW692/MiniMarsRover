@@ -29,6 +29,19 @@ BOOL isLanderSensed() {
     return (read_QRD(LANDER_QRD)) ? TRUE : FALSE;
 }
 
+BOOL isDropSensed()
+{
+    if ( (QRD1 < QRD_MED || QRD2 < QRD_MED || QRD3 < QRD_MED) && SONAR_W < W_BALL_DROP_DETECT)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
+
 void pollLander() {
     if (isLanderSensed()) 
     {
@@ -110,17 +123,6 @@ void pollDrop() {
     }
 }
 
-BOOL isDropSensed()
-{
-    if ( (QRD1 < QRD_MED || QRD2 < QRD_MED || QRD3 < QRD_MED) && SONAR_W < W_BALL_DROP_DETECT)
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    }
-}
 
 void locateTurn() {
     switch(bitWord) {
