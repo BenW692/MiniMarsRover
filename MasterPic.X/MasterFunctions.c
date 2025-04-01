@@ -62,12 +62,23 @@ void fourBit_FSM()
         setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
         break;
         
-    case ROTATE_CW:
-        //implement
+    case ROTATE_CCW:
+//        FRONT_DIR = 0;
+//        BACK_DIR = 1;
+//        RIGHT_DIR = 1;
+//        LEFT_DIR = 0;
+//        set_Turn_Speed(2, 0, FB_TURN_SPEED); //just sets speed of rotation
+        set_Turn_Speed(0, NON_TURN_SPEED, NON_TURN_SPEED);
+        RIGHT_DIR = 1;
+        LEFT_DIR = 0;
         break;
         
-    case ROTATE_CCW:
-        //implement
+    case ROTATE_CW:
+        FRONT_DIR = 1;
+        BACK_DIR = 0;
+        RIGHT_DIR = 0;
+        LEFT_DIR = 1;
+        set_Turn_Speed(2, 0, FB_TURN_SPEED); //just sets speed of rotation
         break;
         
     case STOP:
@@ -171,7 +182,16 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         FB_PERIOD = FB_TURN_SPEED;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
-    else //turn left
+    else if (turn_dir == 2) //this only sets the speed of all the wheels for rotating
+    {
+        L_PERIOD = turn_speed;
+        L_DUTY_CYCLE = L_PERIOD / 2;
+        R_PERIOD = turn_speed;
+        R_DUTY_CYCLE = R_PERIOD / 2;
+        FB_PERIOD = turn_speed;
+        FB_DUTY_CYCLE = FB_PERIOD / 2;
+    }
+    else//turn left
     {
         R_PERIOD = turn_speed;
         R_DUTY_CYCLE = L_PERIOD / 2;

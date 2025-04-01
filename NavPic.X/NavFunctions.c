@@ -12,7 +12,7 @@
 
 BOOL isCanyonSensed() 
 {
-    if (!QRD1 && !QRD2 && !QRD3) // should we be calling read_QRD()???
+    if (QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
         if (SONAR_W < W_WALL_DETECT || SONAR_E < E_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
@@ -30,13 +30,48 @@ BOOL isLanderSensed() {
 }
 
 void pollLander() {
-    if (isLanderSensed()) {
+    if (isLanderSensed()) 
+    {
+        bitWord = ROTATE_CCW;
+        fourBit_FSM();
+        delay(600);
         // turn (which is better, rotate or strafe?)
+        while (QRD2 > QRD_MED)
+        {
+            
+        }
+        bitWord = STRAIGHT;
+        while (SONAR_N > N_LANDER_WALL)
+        {
+            senseLine();
+           fourBit_FSM();
+        }
+        bitWord = STOP;
+        fourBit_FSM();
+        while(1){
+        while(SERVO_ANGLE < WHITE_ANGLE) // 1250 Timer1 counts at a 1:8 prescaler are equivalent to 2.5 ms.
+        {
+            //OC1R++;
+            OC1R++;
+            
+            for(int i = 0; i<1000; i++);
+        }
+        while(SERVO_ANGLE > MIDDLE_ANGLE)  // 250 Timer1 counts at a 1:8 prescaler are equivalent to 0.5 ms.
+        {
+            //OC1R--;
+            OC1R--;
+            
+            for(int i = 0; i<1000; i++);
+        }
+    }        
+
+       }
+            
         // line follow into lander
         // stop
-        //point and shoot laser (CREATE ARRAY or BISECTION)
-    }
+        //point and shoot laser (CREATE ARRAY or BISECTION)   
 }
+
 
 void pollDrop() {
     if (isDropSensed()) {

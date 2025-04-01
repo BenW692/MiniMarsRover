@@ -40,6 +40,10 @@ int main(void) {
         fourBit_FSM();
         pollDrop(); // we should have state machine that controls which checkpoints we poll
         pollLander();
+//        while (isCanyonSensed)
+//        {
+//            locateTurn();
+//        }
         
     }
 //    while (1)

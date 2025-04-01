@@ -1,21 +1,23 @@
-Microchip Technology Inc, v2.00 (A)
+Microchip Technology Inc, v2.10 (B)
 
 Tool Name:
-  c:\program files\microchip\xc16\v2.00\bin\bin\..\bin/elf-ld.exe
+  c:\program files\microchip\xc16\v2.10\bin\bin\..\bin/elf-ld.exe
 
 Command:
   -p24F16KA301 \
+  --mdfp=C:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16 \
   -o \
   dist/default/production/MasterPic.X.production.elf \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/.. \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../lib \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24E/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24F/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/PIC24H/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC30F/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33C/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33E/gld \
-  -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/.. \
+  -LC:/Program Files/Microchip/MPLABX/v6.20/packs/Microchip/PIC24F-KA-KL-KM_DFP/1.5.253/xc16/bin/../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../lib \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/PIC24H/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC30F/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33C/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33E/gld \
+  -Lc:/program files/microchip/xc16/v2.10/bin/bin/../../support/dsPIC33F/gld \
   build/default/production/MasterPic.o \
   build/default/production/MasterGlobals.o \
   build/default/production/MasterInterrupts.o \
@@ -48,15 +50,15 @@ Command:
 Optional library libpPIC24Fxxx.a not found
 Archive member included because of file (symbol)
 
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                               (__resetPRI)
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
-                              c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o) (__data_init_standard)
-c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                              c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o) (__data_init_standard)
+c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
                               (__crt_start_mode_normal)
 
 
-xc16-ld 2.00 (A)
+xc16-ld 2.10 (B)
 
 Default Code Model: Small
 Default Data Model: Small
@@ -66,11 +68,11 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x12e           0x1c5  (453)
-.text                        0x32e               0x370           0x528  (1320)
-.dinit                       0x69e                0x10            0x18  (24)
+.text                        0x200               0x134           0x1ce  (462)
+.text                        0x334               0x38a           0x54f  (1359)
+.dinit                       0x6be                0x10            0x18  (24)
 
-                 Total "program" memory used (bytes):          0x705  (1797) 11%
+                 Total "program" memory used (bytes):          0x735  (1845) 11%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -117,44 +119,44 @@ External Symbols in Program Memory (by address):
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x0002c8                  __OC3Interrupt
-                  0x0002e8                  __OC1Interrupt
-                  0x000308                  __OC2Interrupt
-                  0x000328                  __DefaultInterrupt
-                  0x00032e                  _fourBit_FSM
-                  0x0003ec                  _poll_bitWord
-                  0x000426                  _setStrafeSpeed
-                  0x00051e                  _enable_OC_interrupt
-                  0x00052a                  _disable_OC_interrupt
-                  0x000536                  _set_Straight_Speed
-                  0x000556                  _set_Turn_Speed
-                  0x0005be                  _mode_check
-                  0x0005d4                  _setupPins
-                  0x0005ee                  _config_PWM
-                  0x00065a                  _config_OC_interrupt
-                  0x000688                  _main
+                  0x0002ea                  __OC1Interrupt
+                  0x00030c                  __OC2Interrupt
+                  0x00032e                  __DefaultInterrupt
+                  0x000334                  _fourBit_FSM
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x000524                  _enable_OC_interrupt
+                  0x000530                  _disable_OC_interrupt
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005de                  _mode_check
+                  0x0005f4                  _setupPins
+                  0x00060e                  _config_PWM
+                  0x00067a                  _config_OC_interrupt
+                  0x0006a8                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x000328                  __DefaultInterrupt
-                  0x0002e8                  __OC1Interrupt
-                  0x000308                  __OC2Interrupt
+                  0x00032e                  __DefaultInterrupt
+                  0x0002ea                  __OC1Interrupt
+                  0x00030c                  __OC2Interrupt
                   0x0002c8                  __OC3Interrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x00065a                  _config_OC_interrupt
-                  0x0005ee                  _config_PWM
-                  0x00052a                  _disable_OC_interrupt
-                  0x00051e                  _enable_OC_interrupt
-                  0x00032e                  _fourBit_FSM
-                  0x000688                  _main
-                  0x0005be                  _mode_check
-                  0x0003ec                  _poll_bitWord
-                  0x000426                  _setStrafeSpeed
-                  0x000536                  _set_Straight_Speed
-                  0x000556                  _set_Turn_Speed
-                  0x0005d4                  _setupPins
+                  0x00067a                  _config_OC_interrupt
+                  0x00060e                  _config_PWM
+                  0x000530                  _disable_OC_interrupt
+                  0x000524                  _enable_OC_interrupt
+                  0x000334                  _fourBit_FSM
+                  0x0006a8                  _main
+                  0x0005de                  _mode_check
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005f4                  _setupPins
 
 Memory Configuration
 
@@ -185,7 +187,7 @@ LOAD build/default/production/MasterFunctions.o
 LOAD build/default/production/MasterConfigs.o
                     0x0001                  __MPLAB_BUILD = 0x1
 LOAD pPIC24Fxxx
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libfx-elf.a
                     0xf80000                  __FBS = 0xf80000
                     0xf80004                  __FGS = 0xf80004
                     0xf80006                  __FOSCSEL = 0xf80006
@@ -201,6 +203,8 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                     0x0104                  __AIVT_BASE = 0x104
                     0x0800                  __DATA_BASE = 0x800
                     0x0800                  __DATA_LENGTH = 0x800
+                    0x7ffe00                  __EEDATA_BASE = 0x7ffe00
+                    0x0200                  __EEDATA_LENGTH = 0x200
 
 .reset            0x000000          0x4
                   0x000000          0x2 SHORT 0x200 ABSOLUTE (__reset)
@@ -208,32 +212,32 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x12e
+.text             0x000200        0x134
  *(.init)
- .init            0x000200         0x4c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+ .init            0x000200         0x4c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
                   0x000200                  __reset
                   0x00023c                  __psv_init
- .init            0x00024c         0x7c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+ .init            0x00024c         0x7c c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
                   0x000252                  __data_init_standard
                   0x000252                  __data_init
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002c8         0x60 build/default/production/MasterInterrupts.o
+ .isr.text        0x0002c8         0x66 build/default/production/MasterInterrupts.o
                   0x0002c8                  __OC3Interrupt
-                  0x0002e8                  __OC1Interrupt
-                  0x000308                  __OC2Interrupt
- .isr             0x000328          0x4 default_isr
-                  0x000328                  __DefaultInterrupt
+                  0x0002ea                  __OC1Interrupt
+                  0x00030c                  __OC2Interrupt
+ .isr             0x00032e          0x4 default_isr
+                  0x00032e                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x00032c          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x00032c                  __crt_start_mode
-                  0x00032c                  __crt_start_mode_normal
+                  0x000332          0x2 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x000332                  __crt_start_mode
+                  0x000332                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -265,13 +269,13 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x287d
+.debug_info       0x000000       0x2904
  *(.debug_info)
- .debug_info      0x000000        0x1ac build/default/production/MasterPic.o
- .debug_info      0x0001ac        0x1a3 build/default/production/MasterGlobals.o
- .debug_info      0x00034f        0x520 build/default/production/MasterInterrupts.o
- .debug_info      0x00086f        0x9bf build/default/production/MasterFunctions.o
- .debug_info      0x00122e       0x164f build/default/production/MasterConfigs.o
+ .debug_info      0x000000        0x1c7 build/default/production/MasterPic.o
+ .debug_info      0x0001c7        0x1be build/default/production/MasterGlobals.o
+ .debug_info      0x000385        0x53b build/default/production/MasterInterrupts.o
+ .debug_info      0x0008c0        0x9da build/default/production/MasterFunctions.o
+ .debug_info      0x00129a       0x166a build/default/production/MasterConfigs.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x32d
@@ -282,13 +286,13 @@ __FDS
  .debug_abbrev    0x00014e        0x107 build/default/production/MasterFunctions.o
  .debug_abbrev    0x000255         0xd8 build/default/production/MasterConfigs.o
 
-.debug_line       0x000000        0x404
+.debug_line       0x000000        0x498
  *(.debug_line)
  .debug_line      0x000000         0x53 build/default/production/MasterPic.o
  .debug_line      0x000053         0x2d build/default/production/MasterGlobals.o
- .debug_line      0x000080        0x108 build/default/production/MasterInterrupts.o
- .debug_line      0x000188        0x16e build/default/production/MasterFunctions.o
- .debug_line      0x0002f6        0x10e build/default/production/MasterConfigs.o
+ .debug_line      0x000080        0x134 build/default/production/MasterInterrupts.o
+ .debug_line      0x0001b4        0x1aa build/default/production/MasterFunctions.o
+ .debug_line      0x00035e        0x13a build/default/production/MasterConfigs.o
 
 .debug_frame      0x000000        0x1f4
  *(.debug_frame)
@@ -946,9 +950,9 @@ __FDS
                     0x0230                  UART2 = 0x230
                     0x0230                  _UART2 = 0x230
 START GROUP
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a
-LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libm-elf.a
+LOAD c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-elf.a
 END GROUP
 OUTPUT(dist/default/production/MasterPic.X.production.elf elf32-pic30)
 LOAD default_isr
@@ -980,9 +984,9 @@ __c30_signature
  __c30_signature
                   0x000348          0x6 build/default/production/MasterConfigs.o
  __c30_signature
-                  0x00034e          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x00034e          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000354          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x000354          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
 .ndata              0x0800          0xa
  .ndata             0x0800          0xa build/default/production/MasterGlobals.o
@@ -1007,22 +1011,22 @@ __c30_signature
  .ivt._OC2Interrupt
                   0x000020          0x2 build/default/production/MasterInterrupts.o
 
-.text             0x00032e        0x370
- .text            0x00032e        0x2a6 build/default/production/MasterFunctions.o
-                  0x00032e                  _fourBit_FSM
-                  0x0003ec                  _poll_bitWord
-                  0x000426                  _setStrafeSpeed
-                  0x00051e                  _enable_OC_interrupt
-                  0x00052a                  _disable_OC_interrupt
-                  0x000536                  _set_Straight_Speed
-                  0x000556                  _set_Turn_Speed
-                  0x0005be                  _mode_check
- .text            0x0005d4         0xb4 build/default/production/MasterConfigs.o
-                  0x0005d4                  _setupPins
-                  0x0005ee                  _config_PWM
-                  0x00065a                  _config_OC_interrupt
- .text            0x000688         0x16 build/default/production/MasterPic.o
-                  0x000688                  _main
+.text             0x000334        0x38a
+ .text            0x000334        0x2c0 build/default/production/MasterFunctions.o
+                  0x000334                  _fourBit_FSM
+                  0x000412                  _poll_bitWord
+                  0x00044c                  _setStrafeSpeed
+                  0x000524                  _enable_OC_interrupt
+                  0x000530                  _disable_OC_interrupt
+                  0x00053c                  _set_Straight_Speed
+                  0x00055c                  _set_Turn_Speed
+                  0x0005de                  _mode_check
+ .text            0x0005f4         0xb4 build/default/production/MasterConfigs.o
+                  0x0005f4                  _setupPins
+                  0x00060e                  _config_PWM
+                  0x00067a                  _config_OC_interrupt
+ .text            0x0006a8         0x16 build/default/production/MasterPic.o
+                  0x0006a8                  _main
 
-.dinit            0x00069e         0x10
- .dinit           0x00069e         0x10 data_init
+.dinit            0x0006be         0x10
+ .dinit           0x0006be         0x10 data_init
