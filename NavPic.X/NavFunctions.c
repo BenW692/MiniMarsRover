@@ -45,46 +45,76 @@ BOOL isDropSensed()
 void pollLander() {
     if (isLanderSensed()) 
     {
+        /* line follow into lander */
         bitWord = ROTATE_CCW;
         fourBit_FSM();
-        delay(600);
-        // turn (which is better, rotate or strafe?)
-        while (QRD2 > QRD_MED)
-        {
-            
-        }
+        delay(600); // do we need this??
+        while (QRD2 > QRD_MED);
         bitWord = STRAIGHT;
         while (SONAR_N > N_LANDER_WALL)
         {
             senseLine();
-           fourBit_FSM();
+            fourBit_FSM();
         }
+        
+        /* stop */
         bitWord = STOP;
         fourBit_FSM();
-        while(1){
-        while(SERVO_ANGLE < WHITE_ANGLE) // 1250 Timer1 counts at a 1:8 prescaler are equivalent to 2.5 ms.
-        {
-            //OC1R++;
-            OC1R++;
-            
-            for(int i = 0; i<1000; i++);
-        }
-        while(SERVO_ANGLE > MIDDLE_ANGLE)  // 250 Timer1 counts at a 1:8 prescaler are equivalent to 0.5 ms.
-        {
-            //OC1R--;
-            OC1R--;
-            
-            for(int i = 0; i<1000; i++);
-        }
-    }        
-
-       }
-            
-        // line follow into lander
-        // stop
-        //point and shoot laser (CREATE ARRAY or BISECTION)   
+        
+        /* point and shoot laser (CREATE ARRAY or BISECTION) */        
+        aimShootLaser(); 
+    }
 }
 
+void aimShootLaser() {
+    int tol = 6;
+    int commsArray[2][5] = {
+        {0, 0, 0, 0, 0}, // OC1R - Duty Cycle
+        {0, 0 ,0, 0, 0}  // Associated Value
+    };
+    
+    int lowerBound = (MIDDLE_ANGLE + BLACK_ANGLE) / 2;
+    int upperBound = WHITE_ANGLE;
+    int valCompare = 0;
+    int maxIndex = 0;
+    
+    /* AIM */
+    for (int j; j < tol; j++) {
+        // reset to lower bound
+        SERVO_ANGLE = lowerBound;
+        delay(500); // shorten this eventually
+        int step = (upperBound - lowerBound) / 4; 
+        
+        // read in sensor array
+        for (int i = 0; i , 5; i++) {
+            commsArray[0][i] = SERVO_ANGLE;
+            commsArray[1][i] = SATELLITE_DIODE;
+            if (i != 5) {
+                SERVO_ANGLE += step;
+                delay(200);
+            }
+        }
+        
+        // get index for max array value
+        for (int i = 0; i < 5; i++) {
+            if (commsArray[1][i] > valCompare) {
+                valCompare = commsArray[1][i];
+                maxIndex = i;
+            } 
+        }
+        if (maxIndex == 1) maxIndex = 2;
+        if (maxIndex == 5) maxIndex = 4;    
+        
+        // adjusting bounds
+        lowerBound = commsArray[0][maxIndex - 1];
+        upperBound = commsArray[0][maxIndex + 1];
+    }
+    
+    /* shooting laser */
+    
+    /* END PROGRAM */
+    while(TRUE); // congradulations
+}
 
 void pollDrop() {
     if (isDropSensed()) {
