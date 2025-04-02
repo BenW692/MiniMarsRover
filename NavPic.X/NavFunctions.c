@@ -82,16 +82,16 @@ void aimShootLaser() {
     for (int j; j < tol; j++) {
         // reset to lower bound
         SERVO_ANGLE = lowerBound;
-        delay(500); // shorten this eventually
+        delay(600); // shorten this eventually
         int step = (upperBound - lowerBound) / 4; 
         
         // read in sensor array
-        for (int i = 0; i , 5; i++) {
+        for (int i = 0; i < 5; i++) {
             commsArray[0][i] = SERVO_ANGLE;
             commsArray[1][i] = SATELLITE_DIODE;
             if (i != 5) {
                 SERVO_ANGLE += step;
-                delay(200);
+                delay(300);
             }
         }
         
@@ -102,18 +102,22 @@ void aimShootLaser() {
                 maxIndex = i;
             } 
         }
-        if (maxIndex == 1) maxIndex = 2;
-        if (maxIndex == 5) maxIndex = 4;    
+        if (maxIndex == 0) maxIndex = 1;
+        if (maxIndex == 4) maxIndex = 3;    
         
         // adjusting bounds
         lowerBound = commsArray[0][maxIndex - 1];
         upperBound = commsArray[0][maxIndex + 1];
     }
+    SERVO_ANGLE = commsArray[0][maxIndex];
     
     /* shooting laser */
     
     /* END PROGRAM */
-    while(TRUE); // congradulations
+    while(TRUE)
+    {   
+        LASER_OUT = 1;
+    }
 }
 
 void pollDrop() {

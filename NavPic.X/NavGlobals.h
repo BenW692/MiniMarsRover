@@ -58,7 +58,7 @@
 //for all of these thresholds I added 30 to the conversion number
 #define N_WALL_DETECT 300 //was 1400
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
-#define N_LANDER_WALL 300
+#define N_LANDER_WALL 425
 
 #define E_WALL_DETECT 280 //was 1500
 #define E_BALL_DROP_DETECT 170 //was 775
@@ -71,6 +71,8 @@
 
 #define SATELLITE_DIODE ADC1BUF14
 #define SATELLITE_DETECT 25 //50mv
+
+#define LASER_OUT _LATB9
 
 
 #define WORDBIT1 _LATB4
