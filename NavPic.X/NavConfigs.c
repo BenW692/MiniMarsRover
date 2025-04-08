@@ -118,11 +118,3 @@ void config_PWM() {
     SERVO_PERIOD = 9999;
     SERVO_ANGLE = MIDDLE_ANGLE; //sets it to the straight angle
 }
-
-void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
-    _T3IF = 0; // Clear flag
-    T3CONbits.TON = 0; //bit is off
-    _T3IE = 0; // Disable Interupt
-    TMR3 = 0; // Clear Timer
-    stateTimer3 = FALSE;
-}
