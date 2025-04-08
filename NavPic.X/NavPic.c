@@ -24,12 +24,14 @@ int main(void) {
     config_Timers();
     config_PWM();
     
-    bitWord = STOP;
-    fourBit_FSM();
-    
     delay(1000); //we need this delay so the ADC can configure
     //at boot up it returns a random value for the sonar sensors that will trigger ball
     //drop if we don't have this delay
+    
+    
+    bitWord = STRAIGHT;
+    fourBit_FSM();
+    
     
     while (TRUE)
     {
@@ -37,9 +39,14 @@ int main(void) {
         fourBit_FSM();
         pollDrop(); // we should have state machine that controls which checkpoints we poll
         pollLander();
-//        while (isCanyonSensed)
+//        if(isCanyonSensed)
 //        {
-//            locateTurn();
+//            bitWord = DRIVE_NORTH;
+//            while (TRUE)
+//            {
+//                locateTurn();
+//                fourBit_FSM();
+//            }
 //        }
         
     }
