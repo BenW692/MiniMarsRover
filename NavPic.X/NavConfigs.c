@@ -85,7 +85,7 @@ void config_ADC() {
     _ADON = 1;    // enable module after configuration
 }
 
-void config_Timer()
+void config_Timers()
 {
         // Configure a 16-bit timer using Timer1
     T1CONbits.TCS = 0;
@@ -117,4 +117,12 @@ void config_PWM() {
    
     SERVO_PERIOD = 9999;
     SERVO_ANGLE = MIDDLE_ANGLE; //sets it to the straight angle
+}
+
+void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
+    _T3IF = 0; // Clear flag
+    T3CONbits.TON = 0; //bit is off
+    _T3IE = 0; // Disable Interupt
+    TMR3 = 0; // Clear Timer
+    stateTimer3 = FALSE;
 }

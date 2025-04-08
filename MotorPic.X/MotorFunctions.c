@@ -18,7 +18,7 @@ void fourBit_FSM()
         return;
     }
     
-    mode_check(); //turns OC interrupt on an off based on line mode or strafe mode
+    disable_OC_interrupt(); // should only be on for strafing
     
     switch (bitWord)
     {
@@ -63,22 +63,11 @@ void fourBit_FSM()
         break;
         
     case ROTATE_CCW:
-//        FRONT_DIR = 0;
-//        BACK_DIR = 1;
-//        RIGHT_DIR = 1;
-//        LEFT_DIR = 0;
-//        set_Turn_Speed(2, 0, FB_TURN_SPEED); //just sets speed of rotation
-        set_Turn_Speed(0, NON_TURN_SPEED, NON_TURN_SPEED);
-        RIGHT_DIR = 1;
-        LEFT_DIR = 0;
+        setRotateSpeed(0, STRAIGHT_SPEED);
         break;
         
     case ROTATE_CW:
-        FRONT_DIR = 1;
-        BACK_DIR = 0;
-        RIGHT_DIR = 0;
-        LEFT_DIR = 1;
-        set_Turn_Speed(2, 0, FB_TURN_SPEED); //just sets speed of rotation
+        setRotateSpeed(1, STRAIGHT_SPEED);
         break;
         
     case STOP:
@@ -102,9 +91,32 @@ int poll_bitWord()
     return word;
 }
 
+void setRotateSpeed(int dir, int speed) {
+    if (dir) { // CW
+        FRONT_DIR = 1;
+        BACK_DIR = 0;
+        RIGHT_DIR = 0;
+        LEFT_DIR = 1;
+    } else { // CCW
+        FRONT_DIR = 0;
+        BACK_DIR = 1;
+        RIGHT_DIR = 1;
+        LEFT_DIR = 0;
+    }
+    
+    L_PERIOD = speed;
+    R_PERIOD = speed;
+    FB_PERIOD = speed;
+
+    L_DUTY_CYCLE = speed / 2;
+    R_DUTY_CYCLE = speed / 2;
+    FB_DUTY_CYCLE = speed / 2;    
+}
+
 void setStrafeSpeed(int left, int right, int front, int back, int speed)
 // 1 is forward, 0 is backward, -1 turns off PWM to those motors and lock those wheels
 {
+    enable_OC_interrupt();
     LEFT_DIR = (left == -1) ? 0 : left;
     RIGHT_DIR = (right == -1) ? 0 : right;
     FRONT_DIR = (front == -1) ? 0 : front;
@@ -146,14 +158,14 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
 void enable_OC_interrupt()
 {
     _OC3IE = 1;
-    _OC3IE = 1;
+    _OC2IE = 1;
     _OC1IE = 1;
 }
 
 void disable_OC_interrupt()
 {
     _OC3IE = 0;
-    _OC3IE = 0;
+    _OC2IE = 0;
     _OC1IE = 0;
 }
 
@@ -182,15 +194,6 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         FB_PERIOD = FB_TURN_SPEED;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
-    else if (turn_dir == 2) //this only sets the speed of all the wheels for rotating
-    {
-        L_PERIOD = turn_speed;
-        L_DUTY_CYCLE = L_PERIOD / 2;
-        R_PERIOD = turn_speed;
-        R_DUTY_CYCLE = R_PERIOD / 2;
-        FB_PERIOD = turn_speed;
-        FB_DUTY_CYCLE = FB_PERIOD / 2;
-    }
     else//turn left
     {
         R_PERIOD = turn_speed;
@@ -204,16 +207,3 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
     }
             
 }
-
-void mode_check()
-{
-    if (WORDBIT4) //checks if we are strafing  !!!!This might be wrong bit to check!!!
-    {
-        enable_OC_interrupt();
-    }
-    else
-    {
-        disable_OC_interrupt();
-    }
-}
-

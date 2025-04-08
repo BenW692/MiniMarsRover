@@ -21,7 +21,7 @@ int main(void) {
     _RCDIV = 0;
     pinSetup();
     config_ADC();
-    config_Timer();
+    config_Timers();
     config_PWM();
     
     bitWord = STOP;
@@ -30,9 +30,6 @@ int main(void) {
     delay(1000); //we need this delay so the ADC can configure
     //at boot up it returns a random value for the sonar sensors that will trigger ball
     //drop if we don't have this delay
-   
-    bitWord = STRAIGHT;
-    fourBit_FSM();
     
     while (TRUE)
     {

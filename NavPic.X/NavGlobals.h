@@ -90,6 +90,7 @@ extern int qrd3;
 extern int ball_color;
 extern BOOL drop_complete;
 extern BOOL past_drop;
+extern BOOL stateTimer3;
 extern int ball_qrd;
 
 #endif

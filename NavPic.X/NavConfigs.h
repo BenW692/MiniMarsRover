@@ -9,7 +9,7 @@ void pinSetup();
 
 void config_ADC(); 
 
-void config_Timer();
+void config_Timers();
 
 void config_PWM();
 

@@ -216,7 +216,7 @@ void locateTurn() {
     }
 }
 
-int senseLine()
+void senseLine()
 {
     //we can get rid of read QRD. It get auto updated from the ADC  
     qrd1 = read_QRD(QRD1); //west qrd
@@ -254,8 +254,8 @@ int senseLine()
 
 void delay(int ms) {
     T1CONbits.TON = 1;
+    PR1 = 0b1111111111111110; // max 16 bit
     TMR1 = 0;
-    PR1 = 0b1111111111111111; // max 16 bit
     while (TMR1 < ms * 15); // ms * 15625 / 1000 is better not sure if it works
     // NOTE: blocking delay
     T1CONbits.TON = 0;
@@ -315,13 +315,6 @@ void fourBit_FSM() {
     }
     
     oldState = bitWord;
-
-//    corse correction try later OR WITH A TIMER
-//    static int lastLineState = STOP;
-//
-//    if (lineState != lastLineState) {
-//        lastLineState = lineState;
-//    }
 }
 
 void sendWord(int s1, int s2, int s3, int s4) {

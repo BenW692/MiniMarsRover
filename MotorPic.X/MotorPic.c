@@ -16,14 +16,13 @@ int main(void) {
     config_OC_interrupt();
     config_PWM();
     
-    bitWord = ROTATE_CCW;
-    disable_OC_interrupt();
+    bitWord = STOP;
+    fourBit_FSM();
     
     while(1)
     {
         bitWord = poll_bitWord();
         fourBit_FSM();
-//        bitWord = TURN;
     }
     
     return 0;

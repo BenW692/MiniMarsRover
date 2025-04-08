@@ -17,7 +17,7 @@ void pollDrop();
 
 void locateTurn(); 
 
-int senseLine();
+void senseLine();
 
 void delay(int ms);
 
