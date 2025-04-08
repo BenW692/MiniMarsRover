@@ -12,22 +12,32 @@
 
 BOOL isCanyonSensed() 
 {
-    if (QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
+    if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
 //        WORDBIT3 = 1;
 //        WORDBIT4 = 1;
-        if (SONAR_W < W_WALL_DETECT) //for entering the canyon
-//        if (SONAR_W < W_WALL_DETECT || SONAR_E < E_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
+//        if (SONAR_W < W_WALL_DETECT) //for entering the canyon
+        if (SONAR_W < W_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
 //            WORDBIT1 = 1;
 //            WORDBIT2 = 1;
-            return TRUE;
+            bitWord = DRIVE_NORTH;
+            while (QRD2 > QRD_HIGH)
+            {
+                locateTurn();
+                fourBit_FSM();
+            }
+            bitWord = STRAIGHT;
         }
     } 
-    else 
-    {
-        return FALSE;
-    }
+//    if ( QRD2 > QRD_HIGH && SONAR_W < W_WALL_DETECT)
+//    {
+//        return TRUE;
+//    }
+//    else 
+//    {
+//        return FALSE;
+//    }
 }
 
 BOOL isLanderSensed() {

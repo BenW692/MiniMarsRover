@@ -69,10 +69,10 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200                0xea           0x15f  (351)
-.text                        0x2ea               0x652           0x97b  (2427)
-.dinit                       0x93c                0x16            0x21  (33)
+.text                        0x2ea               0x66e           0x9a5  (2469)
+.dinit                       0x958                0x16            0x21  (33)
 
-                 Total "program" memory used (bytes):          0xafb  (2811) 17%
+                 Total "program" memory used (bytes):          0xb25  (2853) 17%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -132,25 +132,25 @@ External Symbols in Program Memory (by address):
                   0x0002cc                  __T1Interrupt
                   0x0002e4                  __DefaultInterrupt
                   0x0002ea                  _isCanyonSensed
-                  0x000318                  _isLanderSensed
-                  0x00032a                  _isDropSensed
-                  0x000356                  _pollLander
-                  0x000392                  _aimShootLaser
-                  0x000482                  _pollDrop
-                  0x0004f6                  _locateTurn
-                  0x0005c4                  _senseLine
-                  0x000624                  _delay
-                  0x000646                  _read_QRD
-                  0x000668                  _fourBit_FSM
-                  0x000732                  _sendWord
-                  0x000790                  _test_sonars
-                  0x0007cc                  _test_canyon_detect
-                  0x0007fe                  _qrd_test
-                  0x00081e                  _pinSetup
-                  0x000858                  _config_ADC
-                  0x0008aa                  _config_Timers
-                  0x0008e2                  _config_PWM
-                  0x00090e                  _main
+                  0x000336                  _isLanderSensed
+                  0x000348                  _isDropSensed
+                  0x000374                  _pollLander
+                  0x0003b0                  _aimShootLaser
+                  0x0004a0                  _pollDrop
+                  0x000514                  _locateTurn
+                  0x0005e2                  _senseLine
+                  0x000642                  _delay
+                  0x000664                  _read_QRD
+                  0x000686                  _fourBit_FSM
+                  0x000750                  _sendWord
+                  0x0007ae                  _test_sonars
+                  0x0007ea                  _test_canyon_detect
+                  0x00081c                  _qrd_test
+                  0x00083c                  _pinSetup
+                  0x000876                  _config_ADC
+                  0x0008c8                  _config_Timers
+                  0x000900                  _config_PWM
+                  0x00092c                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -160,26 +160,26 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000392                  _aimShootLaser
-                  0x000858                  _config_ADC
-                  0x0008e2                  _config_PWM
-                  0x0008aa                  _config_Timers
-                  0x000624                  _delay
-                  0x000668                  _fourBit_FSM
+                  0x0003b0                  _aimShootLaser
+                  0x000876                  _config_ADC
+                  0x000900                  _config_PWM
+                  0x0008c8                  _config_Timers
+                  0x000642                  _delay
+                  0x000686                  _fourBit_FSM
                   0x0002ea                  _isCanyonSensed
-                  0x00032a                  _isDropSensed
-                  0x000318                  _isLanderSensed
-                  0x0004f6                  _locateTurn
-                  0x00090e                  _main
-                  0x00081e                  _pinSetup
-                  0x000482                  _pollDrop
-                  0x000356                  _pollLander
-                  0x0007fe                  _qrd_test
-                  0x000646                  _read_QRD
-                  0x000732                  _sendWord
-                  0x0005c4                  _senseLine
-                  0x0007cc                  _test_canyon_detect
-                  0x000790                  _test_sonars
+                  0x000348                  _isDropSensed
+                  0x000336                  _isLanderSensed
+                  0x000514                  _locateTurn
+                  0x00092c                  _main
+                  0x00083c                  _pinSetup
+                  0x0004a0                  _pollDrop
+                  0x000374                  _pollLander
+                  0x00081c                  _qrd_test
+                  0x000664                  _read_QRD
+                  0x000750                  _sendWord
+                  0x0005e2                  _senseLine
+                  0x0007ea                  _test_canyon_detect
+                  0x0007ae                  _test_sonars
 
 Memory Configuration
 
@@ -307,13 +307,13 @@ __FDS
  .debug_abbrev    0x00034b         0xac build/default/production/NavInterrupts.o
  .debug_abbrev    0x0003f7         0x30 build/default/production/NavGlobals.o
 
-.debug_line       0x000000        0x5e8
+.debug_line       0x000000        0x5f0
  *(.debug_line)
- .debug_line      0x000000        0x126 build/default/production/NavPic.o
- .debug_line      0x000126        0x227 build/default/production/NavFunctions.o
- .debug_line      0x00034d        0x14f build/default/production/NavConfigs.o
- .debug_line      0x00049c        0x122 build/default/production/NavInterrupts.o
- .debug_line      0x0005be         0x2a build/default/production/NavGlobals.o
+ .debug_line      0x000000        0x127 build/default/production/NavPic.o
+ .debug_line      0x000127        0x22e build/default/production/NavFunctions.o
+ .debug_line      0x000355        0x14f build/default/production/NavConfigs.o
+ .debug_line      0x0004a4        0x122 build/default/production/NavInterrupts.o
+ .debug_line      0x0005c6         0x2a build/default/production/NavGlobals.o
 
 .debug_frame      0x000000        0x27c
  *(.debug_frame)
@@ -1038,30 +1038,30 @@ __c30_signature
  .ivt._T1Interrupt
                   0x00001a          0x2 build/default/production/NavInterrupts.o
 
-.text             0x0002ea        0x652
- .text            0x0002ea        0x534 build/default/production/NavFunctions.o
+.text             0x0002ea        0x66e
+ .text            0x0002ea        0x552 build/default/production/NavFunctions.o
                   0x0002ea                  _isCanyonSensed
-                  0x000318                  _isLanderSensed
-                  0x00032a                  _isDropSensed
-                  0x000356                  _pollLander
-                  0x000392                  _aimShootLaser
-                  0x000482                  _pollDrop
-                  0x0004f6                  _locateTurn
-                  0x0005c4                  _senseLine
-                  0x000624                  _delay
-                  0x000646                  _read_QRD
-                  0x000668                  _fourBit_FSM
-                  0x000732                  _sendWord
-                  0x000790                  _test_sonars
-                  0x0007cc                  _test_canyon_detect
-                  0x0007fe                  _qrd_test
- .text            0x00081e         0xf0 build/default/production/NavConfigs.o
-                  0x00081e                  _pinSetup
-                  0x000858                  _config_ADC
-                  0x0008aa                  _config_Timers
-                  0x0008e2                  _config_PWM
- .text            0x00090e         0x2e build/default/production/NavPic.o
-                  0x00090e                  _main
+                  0x000336                  _isLanderSensed
+                  0x000348                  _isDropSensed
+                  0x000374                  _pollLander
+                  0x0003b0                  _aimShootLaser
+                  0x0004a0                  _pollDrop
+                  0x000514                  _locateTurn
+                  0x0005e2                  _senseLine
+                  0x000642                  _delay
+                  0x000664                  _read_QRD
+                  0x000686                  _fourBit_FSM
+                  0x000750                  _sendWord
+                  0x0007ae                  _test_sonars
+                  0x0007ea                  _test_canyon_detect
+                  0x00081c                  _qrd_test
+ .text            0x00083c         0xf0 build/default/production/NavConfigs.o
+                  0x00083c                  _pinSetup
+                  0x000876                  _config_ADC
+                  0x0008c8                  _config_Timers
+                  0x000900                  _config_PWM
+ .text            0x00092c         0x2c build/default/production/NavPic.o
+                  0x00092c                  _main
 
-.dinit            0x00093c         0x16
- .dinit           0x00093c         0x16 data_init
+.dinit            0x000958         0x16
+ .dinit           0x000958         0x16 data_init

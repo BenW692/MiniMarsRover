@@ -28,10 +28,16 @@ int main(void) {
     //at boot up it returns a random value for the sonar sensors that will trigger ball
     //drop if we don't have this delay
     
-    
+     
     bitWord = STRAIGHT;
     fourBit_FSM();
     
+    delay(1000);
+    
+//    while (TRUE)
+//    {
+//        isCanyonSensed();
+//    }
     
     while (TRUE)
     {
@@ -39,15 +45,7 @@ int main(void) {
         fourBit_FSM();
         pollDrop(); // we should have state machine that controls which checkpoints we poll
         pollLander();
-//        if(isCanyonSensed)
-//        {
-//            bitWord = DRIVE_NORTH;
-//            while (TRUE)
-//            {
-//                locateTurn();
-//                fourBit_FSM();
-//            }
-//        }
+        isCanyonSensed();
         
     }
 //    while (1)
