@@ -117,7 +117,7 @@ void pollLander2() {
         /* line follow into lander */
         bitWord = ROTATE_CCW;
         fourBit_FSM();
-//        delay(600); // do we need this?? also check other lander function
+        delay(500); // to avoid triggering cross white line
         while (QRD2 > QRD_MED);
         bitWord = STOP;
         while (SONAR_N > N_LANDER_WALL)
@@ -186,6 +186,7 @@ void aimShootLaser() {
     while(TRUE)
     {   
         LASER_OUT = 1;
+        // "gg Dumpy"
     }
 }
 
@@ -216,7 +217,6 @@ void pollTower() {
 
 void pollDrop() {
     if (isDropSensed()) {
-        delay(250); // continue a little
         bitWord = STOP;
         fourBit_FSM();
         
@@ -224,7 +224,7 @@ void pollDrop() {
         {
             bitWord = DRIVE_WEST; // white decision
             fourBit_FSM();
-            delay(375);
+            delay(600);
             bitWord = STOP;
             fourBit_FSM();
             SERVO_ANGLE = WHITE_ANGLE;
@@ -236,7 +236,7 @@ void pollDrop() {
         {
             bitWord = DRIVE_EAST; // black decision
             fourBit_FSM();
-            delay(375);
+            delay(600);
             bitWord = STOP;
             fourBit_FSM();
             SERVO_ANGLE = BLACK_ANGLE;

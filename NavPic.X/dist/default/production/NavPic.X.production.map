@@ -184,9 +184,9 @@ External Symbols in Program Memory (by address):
                   0x0008f6                  _isDropSensed
                   0x000922                  _isTowerSensed
                   0x00093a                  _pollLander2
-                  0x000972                  _aimShootLaser
-                  0x000aac                  _pollTower
-                  0x000af6                  _pollDrop
+                  0x000976                  _aimShootLaser
+                  0x000ab0                  _pollTower
+                  0x000afa                  _pollDrop
                   0x000b7a                  _locateTurn
                   0x000c48                  _senseLine
                   0x000cc6                  _delay
@@ -231,7 +231,7 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x00070e                  __typef
                   0x0006b0                  __unpackdnrmf
-                  0x000972                  _aimShootLaser
+                  0x000976                  _aimShootLaser
                   0x000f50                  _alphaFilter
                   0x00100c                  _config_ADC
                   0x0010b8                  _config_PWM
@@ -246,10 +246,10 @@ External Symbols in Program Memory (by name):
                   0x000b7a                  _locateTurn
                   0x00110a                  _main
                   0x000fd2                  _pinSetup
-                  0x000af6                  _pollDrop
+                  0x000afa                  _pollDrop
                   0x000850                  _pollLander1
                   0x00093a                  _pollLander2
-                  0x000aac                  _pollTower
+                  0x000ab0                  _pollTower
                   0x00087e                  _poll_GPS
                   0x000eb6                  _qrd_test
                   0x000ed6                  _read_ADC1BUF
@@ -1242,9 +1242,9 @@ __c30_signature
                   0x0008f6                  _isDropSensed
                   0x000922                  _isTowerSensed
                   0x00093a                  _pollLander2
-                  0x000972                  _aimShootLaser
-                  0x000aac                  _pollTower
-                  0x000af6                  _pollDrop
+                  0x000976                  _aimShootLaser
+                  0x000ab0                  _pollTower
+                  0x000afa                  _pollDrop
                   0x000b7a                  _locateTurn
                   0x000c48                  _senseLine
                   0x000cc6                  _delay
