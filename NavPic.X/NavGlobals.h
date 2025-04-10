@@ -92,9 +92,20 @@ extern int qrd2;
 extern int qrd3;
 
 extern int ball_color;
+extern int ball_qrd;
+
 extern BOOL drop_complete;
 extern BOOL past_drop;
 extern BOOL stateTimer3;
-extern int ball_qrd;
+
+typedef enum {
+    state1,
+    state2,
+    state3,
+    state4
+} State;
+
+extern State roverState;
+
 
 #endif

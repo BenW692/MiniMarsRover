@@ -11,13 +11,14 @@
 
 
 void DUMPYs_Favorite_Game() {
-    static enum {state1, state2, state3, state4} state = state1;
     
+    /* Navigation */
     senseLine();
     fourBit_FSM();
-//    poll_GPS();
-            
-    switch (state) {
+//    poll_GPS(); // also shifty... more issues
+
+    /* Task Check-List */
+    switch (roverState) {
         case state1: // In Lander
             pollLander1();
             break;
@@ -37,17 +38,23 @@ void DUMPYs_Favorite_Game() {
 }
 
 void pollLander1() {
-    if (isLanderSensed()) {
-        /* line follow out of lander */
-        bitWord = ROTATE_CCW;
-        fourBit_FSM();
-//        delay(600); // do we need this?? also check other lander function
-        while (QRD2 > QRD_MED);
-        
-        /* continue line following */
-        bitWord = STOP;
-        fourBit_FSM();
-    }
+    
+    /* leave Lander */
+    bitWord = STRAIGHT;
+    fourBit_FSM();
+    while (!isLanderSensed());
+    
+    /* turn out of lander */
+    bitWord = ROTATE_CCW;
+    fourBit_FSM();
+    while (QRD2 > QRD_MED);
+
+    /* continue line following */
+    bitWord = STOP;
+    fourBit_FSM();
+
+    /* change roverState */
+    roverState = state2;
 }
 
 void poll_GPS() {
@@ -201,6 +208,9 @@ void pollTower() {
             senseLine();
             fourBit_FSM();
         }
+        
+        /* change roverState */
+        roverState = state3;
     }
 }
 
@@ -245,6 +255,8 @@ void pollDrop() {
             senseLine();
             fourBit_FSM();
         }
+        
+        roverState = state4; // change roverState
     }
 }
 

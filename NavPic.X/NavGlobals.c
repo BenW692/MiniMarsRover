@@ -23,3 +23,7 @@ int ball_qrd = 0;
 BOOL drop_complete = FALSE;
 BOOL past_drop = TRUE;
 BOOL stateTimer3 = TRUE;
+
+State roverState = state1;
+
+
