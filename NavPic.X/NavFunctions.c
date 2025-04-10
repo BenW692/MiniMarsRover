@@ -15,7 +15,7 @@ void DUMPYs_Favorite_Game() {
     /* Navigation */
     senseLine();
     fourBit_FSM();
-//    poll_GPS(); // also shifty... more issues
+    isCanyonSensed(); // also shifty... more issues
 
     /* Task Check-List */
     switch (roverState) {
@@ -66,17 +66,35 @@ void poll_GPS() {
 
 BOOL isCanyonSensed() 
 {
-    if (QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
+    if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
-        if (SONAR_W < W_WALL_DETECT || SONAR_E < E_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
+//        WORDBIT3 = 1;
+//        WORDBIT4 = 1;
+//        if (SONAR_W < W_WALL_DETECT) //for entering the canyon
+        if (SONAR_W < W_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
-            return TRUE;
+//            WORDBIT1 = 1;
+//            WORDBIT2 = 1;
+            bitWord = DRIVE_NORTH;
+            while (QRD2 > QRD_HIGH)
+            {
+                locateTurn();
+                fourBit_FSM();
+            }
+            while(TRUE)
+            {
+                bitWord = STOP;
+                fourBit_FSM();  
+            }
+//            if (SONAR_N < N_WALL_DETECT)
+//            {
+//                bitWord = ROTATE_CW;
+//                fourBit_FSM();
+//                while (QRD2 > QRD_MED);
+//            }
+            bitWord = STOP;
         }
     } 
-    else 
-    {
-        return FALSE;
-    }
 }
 
 BOOL isLanderSensed() {
@@ -262,15 +280,15 @@ void pollDrop() {
 
 
 void locateTurn() {
-    switch(bitWord) {
+     switch(bitWord) {
         case DRIVE_NORTH:
-            if (SONAR_N < SONAR_LOW)
+            if (SONAR_N < N_WALL_DETECT)
             {
-                if (SONAR_E < SONAR_HIGH)
+                if (SONAR_E < E_WALL_DETECT)
                 {
                     bitWord = DRIVE_WEST;
                 }
-                else if (SONAR_W < SONAR_HIGH) 
+                else if (SONAR_W < W_WALL_DETECT) 
                 {
                     bitWord = DRIVE_EAST;
                 }
@@ -278,39 +296,39 @@ void locateTurn() {
             }
             break;
         case DRIVE_EAST:
-            if (SONAR_E < SONAR_LOW)
+            if (SONAR_E < E_WALL_DETECT)
             {
-                if (SONAR_N < SONAR_HIGH) 
+                if (SONAR_N < N_WALL_DETECT) 
                 {
                     bitWord = DRIVE_SOUTH;
                 }
-                else if (SONAR_S < SONAR_HIGH)
+                else if (SONAR_S < S_WALL_DETECT)
                 {
                     bitWord = DRIVE_NORTH;
                 }
             }
             break;
         case DRIVE_SOUTH:
-            if (SONAR_S < SONAR_LOW)
+            if (SONAR_S < S_WALL_DETECT)
             {
-                if (SONAR_W < SONAR_HIGH) 
+                if (SONAR_W < W_WALL_DETECT) 
                 {
                     bitWord = DRIVE_EAST;
                 }
-                else if (SONAR_E < SONAR_HIGH)
+                else if (SONAR_E < E_WALL_DETECT)
                 {
                     bitWord = DRIVE_WEST;
                 }
             }
             break;
         case DRIVE_WEST:
-            if (SONAR_W < SONAR_LOW)
+            if (SONAR_W < W_WALL_DETECT)
             {
-                if (SONAR_N < SONAR_HIGH) 
+                if (SONAR_N < N_WALL_DETECT) 
                 {
                     bitWord = DRIVE_SOUTH;
                 }
-                else if (SONAR_S < SONAR_HIGH)
+                else if (SONAR_S < S_WALL_DETECT)
                 {
                     bitWord = DRIVE_NORTH;
                 }

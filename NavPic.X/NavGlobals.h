@@ -60,17 +60,17 @@
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
 //for all of these thresholds I added 30 to the conversion number
-#define N_WALL_DETECT 300 //was 1400
+#define N_WALL_DETECT 320 //was 300
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
 #define N_LANDER_WALL 425
 
-#define E_WALL_DETECT 280 //was 1500
+#define E_WALL_DETECT 320 //was 280
 #define E_BALL_DROP_DETECT 170 //was 775
 
-#define S_WALL_DETECT 260 //was 1050
+#define S_WALL_DETECT 310 //was 260
 //#define S_BALL_DROP_DETECT 500 //WE DONT USE THIS
 
-#define W_WALL_DETECT 370
+#define W_WALL_DETECT 420 //was 370
 #define W_BALL_DROP_DETECT 200
 
 #define SATELLITE_DIODE ADC1BUF14
