@@ -34,10 +34,7 @@ int main(void) {
     
     delay(1000);
     
-//    while (TRUE)
-//    {
-//        isCanyonSensed();
-//    }
+// 
     
     while (TRUE)
     {
