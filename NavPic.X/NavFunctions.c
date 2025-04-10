@@ -10,6 +10,53 @@
 #include "NavFunctions.h"
 
 
+void DUMPYs_Favorite_Game() {
+    static enum {state1, state2, state3, state4} state = state1;
+    
+    senseLine();
+    fourBit_FSM();
+//    poll_GPS();
+            
+    switch (state) {
+        case state1: // In Lander
+            pollLander1();
+            break;
+            
+        case state2: // pre-tower
+            pollTower();
+            break;
+            
+        case state3: // pre-drop
+            pollDrop();
+            break;
+            
+        case state4: // pre-lander and laser transmission
+            pollLander2(); // shifty... has issues
+            break;
+    }
+}
+
+void pollLander1() {
+    if (isLanderSensed()) {
+        /* line follow out of lander */
+        bitWord = ROTATE_CCW;
+        fourBit_FSM();
+//        delay(600); // do we need this?? also check other lander function
+        while (QRD2 > QRD_MED);
+        
+        /* continue line following */
+        bitWord = STOP;
+        fourBit_FSM();
+    }
+}
+
+void poll_GPS() {
+        while (isCanyonSensed) // this should maybe not be a while loop
+        {
+            locateTurn(); // change to pollCanyon() ??
+        }
+}
+
 BOOL isCanyonSensed() 
 {
     if (QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
@@ -29,6 +76,14 @@ BOOL isLanderSensed() {
     return (read_QRD(LANDER_QRD)) ? TRUE : FALSE;
 }
 
+int setTimer3(int ms) {
+    stateTimer3 = TRUE;
+    TMR3 = 0;
+    _T3IE = 1;
+    PR3 = ms * 15;
+    T3CONbits.TON = 1; // turn timer on
+}
+
 BOOL isDropSensed()
 {
     if ( (QRD1 < QRD_MED || QRD2 < QRD_MED || QRD3 < QRD_MED) && SONAR_W < W_BALL_DROP_DETECT)
@@ -41,16 +96,23 @@ BOOL isDropSensed()
     }
 }
 
+BOOL isTowerSensed() {
+    if (filterSignal(11, 100) > TOWER_DETECT) { // BALL_TOWER is ADC1BUF11 !!! also filterSignal will slow polling down
+        return TRUE;
+    } else {
+        return FALSE;       
+    }
+}
 
-void pollLander() {
+void pollLander2() {
     if (isLanderSensed()) 
     {
         /* line follow into lander */
         bitWord = ROTATE_CCW;
         fourBit_FSM();
-        delay(600); // do we need this??
+//        delay(600); // do we need this?? also check other lander function
         while (QRD2 > QRD_MED);
-        bitWord = STRAIGHT;
+        bitWord = STOP;
         while (SONAR_N > N_LANDER_WALL)
         {
             senseLine();
@@ -120,14 +182,37 @@ void aimShootLaser() {
     }
 }
 
-void pollDrop() {
-    if (isDropSensed()) {
-        delay(500);
+void pollTower() {
+    if (isTowerSensed()) {
+        bitWord = DRIVE_EAST;
+        fourBit_FSM();
+        delay(1500);
         bitWord = STOP;
         fourBit_FSM();
+        delay(750);
+        bitWord = DRIVE_WEST;
+        fourBit_FSM();
+        while (QRD2 > QRD_MED);
+        bitWord = STOP;
+        fourBit_FSM();
+        
+        setTimer3(3000);
+        while (stateTimer3) {
+            senseLine();
+            fourBit_FSM();
+        }
+    }
+}
+
+void pollDrop() {
+    if (isDropSensed()) {
+        delay(250); // continue a little
+        bitWord = STOP;
+        fourBit_FSM();
+        
         if (BALL_QRD < 100)
         {
-            bitWord = DRIVE_WEST;
+            bitWord = DRIVE_WEST; // white decision
             fourBit_FSM();
             delay(375);
             bitWord = STOP;
@@ -139,7 +224,7 @@ void pollDrop() {
         }
         else 
         {
-            bitWord = DRIVE_EAST;
+            bitWord = DRIVE_EAST; // black decision
             fourBit_FSM();
             delay(375);
             bitWord = STOP;
@@ -149,11 +234,17 @@ void pollDrop() {
             bitWord = DRIVE_WEST;
             fourBit_FSM();
         }
-        SERVO_ANGLE = MIDDLE_ANGLE;
+        
+        SERVO_ANGLE = MIDDLE_ANGLE; // find the line
         while(QRD2 > QRD_HIGH);
-        bitWord = STRAIGHT;
+        bitWord = STOP;
         fourBit_FSM();
-        delay(650);
+        
+        setTimer3(3000); // leave drop zone
+        while (stateTimer3) {
+            senseLine();
+            fourBit_FSM();
+        }
     }
 }
 
@@ -219,12 +310,19 @@ void locateTurn() {
 void senseLine()
 {
     //we can get rid of read QRD. It get auto updated from the ADC  
-    qrd1 = read_QRD(QRD1); //west qrd
-    qrd2 = read_QRD(QRD2);
-    qrd3 = read_QRD(QRD3);
+    qrd1 = read_QRD(QRD1); // west qrd
+    qrd2 = read_QRD(QRD2); // middle qrd
+    qrd3 = read_QRD(QRD3); // east qrd
     
     switch(bitWord)
     {
+        case STOP: // after some sequences the STOP word is sent. This case accelerates to straight motion once senseLine() is finally called
+            bitWord = ACCEL_STRAIGHT;
+            break;
+        case ACCEL_STRAIGHT:
+            delay(125); // this delays the signal to ensure that the motor pic receives it
+            bitWord = STRAIGHT;
+            break;
         case STRAIGHT:
             if (qrd1 == 2)
             {
@@ -246,10 +344,8 @@ void senseLine()
             {
                 bitWord = STRAIGHT;
             }
-            break;        
-                
+            break;     
     }
-    
 }
 
 void delay(int ms) {
@@ -282,6 +378,9 @@ void fourBit_FSM() {
         case NO_LINE:
             sendWord(0, 0, 0, 0);
             break;
+        case ACCEL_STRAIGHT:
+            sendWord(1, 0, 1, 0);
+            break;
         case STRAIGHT:
             sendWord(0, 0, 0, 1);
             break;
@@ -301,7 +400,7 @@ void fourBit_FSM() {
             sendWord(0, 1, 1, 0);
             break;
         case DRIVE_WEST:
-            sendWord(1, 1, 1, 1);
+            sendWord(0, 1, 1, 1);
             break;
         case ROTATE_CW:
             sendWord(1, 0, 0, 0);
@@ -388,6 +487,83 @@ void qrd_test()
         qrd3 = read_QRD(QRD3); 
         sendWord(qrd3, qrd2, qrd1, 0);
      }
+}
+
+int read_ADC1BUF(int num) {
+    switch (num) {
+        case 0:
+            return ADC1BUF0;
+            break; 
+        case 1:
+            return ADC1BUF1;
+            break; 
+        case 2:
+            return ADC1BUF2;
+            break; 
+        case 3:
+            return ADC1BUF3;
+            break; 
+        case 4:
+            return ADC1BUF4;
+            break; 
+        case 5:
+            return ADC1BUF5;
+            break; 
+        case 6:
+            return ADC1BUF6;
+            break; 
+        case 7:
+            return ADC1BUF7;
+            break; 
+        case 8:
+            return ADC1BUF8;
+            break; 
+        case 9:
+            return ADC1BUF9;
+            break; 
+        case 10:
+            return ADC1BUF10;
+            break; 
+        case 11:
+            return ADC1BUF11;
+            break; 
+        case 12:
+            return ADC1BUF12;
+            break; 
+        case 13:
+            return ADC1BUF13;
+            break; 
+        case 14:
+            return ADC1BUF14;
+            break; 
+        case 15:
+            return ADC1BUF15;
+            break;
+        default:
+            return -1; // Invalid case
+    }
+}
+
+int alphaFilter(int input) {
+    // !!! this function might need to be changed if needed in more than one place. Or it may not
+    static float alpha = 0.1f; // the f treats it as a 4 bit float instead of a double - C language quirk
+    static float previousOutput = 0.0f;
+    
+    previousOutput = alpha * input + (1 - alpha) * previousOutput;
+
+    return (int)previousOutput;
+}
+
+int filterSignal(int ADC_num, int numCounts) {
+    // this function seems to be behaving as expected but with out serial com its hard to evaluate its effectiveness
+    // slight delays at numCounts = 1000, and long perceivable delay around numCounts = 10000
+    int value;
+    
+    for (int i = 0; i < numCounts; i++) {
+        value = alphaFilter(read_ADC1BUF(ADC_num));
+    }
+    
+    return value;
 }
 
 //void dropBall()

@@ -24,168 +24,25 @@ int main(void) {
     config_Timers();
     config_PWM();
     
-    bitWord = STOP;
+    bitWord = STOP; // should be stop to enable acceleration
     fourBit_FSM();
-    
+
     delay(1000); //we need this delay so the ADC can configure
     //at boot up it returns a random value for the sonar sensors that will trigger ball
     //drop if we don't have this delay
     
-    while (TRUE)
+    while (TRUE) // Final FSM
     {
+        DUMPYs_Favorite_Game();
+    }
+    
+    while (TRUE) { // task spot checker
         senseLine();
         fourBit_FSM();
-        pollDrop(); // we should have state machine that controls which checkpoints we poll
-        pollLander();
-//        while (isCanyonSensed)
-//        {
-//            locateTurn();
-//        }
-        
+        pollTower();
+        pollDrop();
+//        pollLander(); // shifty... has issues
+//        poll_GPS();
     }
-//    while (1)
-//    {
-//        if (BALL_QRD < 100)
-//        {
-//            SERVO_ANGLE = WHITE_ANGLE;
-////            WORDBIT3 = 1;
-////            WORDBIT4 = 0;
-//            for (double i = 0; i<100000; i++);
-//        }
-//        else 
-//        {
-//            SERVO_ANGLE = BLACK_ANGLE;
-////            WORDBIT4 = 1;
-////            WORDBIT3 = 0;
-//            for (double i = 0; i<100000; i++);
-//        }
-//        SERVO_ANGLE = MIDDLE_ANGLE;
-//        for (double i = 0; i<100000; i++);
-//        for (double i = 0; i<100000; i++);
-//        for (double i = 0; i<100000; i++);
-//    }
-//    WORDBIT1 = 1;
-//    WORDBIT2 = 1;
-//    WORDBIT3 = 1;
-//    WORDBIT4 = 1;
-//    
-//    while (1) {
-//        if (SONAR_N < N_BALL_DROP_DETECT && SONAR_N > 0) 
-//        {
-//            WORDBIT1 = 0;
-//        }
-//        else
-//        {
-//            WORDBIT1 = 1;
-//        }
-//        if (SONAR_E < E_BALL_DROP_DETECT && SONAR_E > 0) 
-//        {
-//            WORDBIT2 = 0;
-//        }
-//        else
-//        {
-//            WORDBIT2 = 1;
-//        }
-//        if (SONAR_S < S_BALL_DROP_DETECT && SONAR_S > 0) 
-//        {
-//            WORDBIT3 = 0;
-//        }
-//        else
-//        {
-//            WORDBIT3 = 1;
-//        }
-//        if (SONAR_W < W_BALL_DROP_DETECT && SONAR_W > 0) 
-//        {
-//            WORDBIT4 = 0;
-//        }
-//        else
-//        {
-//            WORDBIT4 = 1;
-//        }
-//    }
-//        
-//    }
-//    bitWord = DRIVE_NORTH;
-//    while (TRUE) { //defaults to canyon mode test
-//        locateTurn();
-//        fourBit_FSM();
-//    }
-    
-    
-
-////    
-//    while (TRUE) //defaults to line following test
-//    {
-////        senseLine();
-//        WORDBIT1 = 1;
-//        WORDBIT2 = 1;
-//        WORDBIT3 = 1;
-//        WORDBIT4 = 1;
-//        if (SONAR_N < SONAR_HIGH) //&& SONAR_W < SONAR_HIGH QRD2 < QRD_MED
-//        {
-//            WORDBIT1 = 0;
-//            WORDBIT2 = 0;
-//            WORDBIT3 = 0;
-//            WORDBIT4 = 0;
-////            dropBall();
-//        }
-////        if (SONAR_E < SONAR_HIGH) //&& SONAR_W < SONAR_HIGH QRD2 < QRD_MED
-////        {
-////            WORDBIT1 = 0;
-////            WORDBIT2 = 0;
-////            WORDBIT3 = 0;
-////            WORDBIT4 = 0;
-//////            dropBall();
-//        }
-////        fourBit_FSM();
-////    }
-    
-    
-//    
-//    while(TRUE) {
-//        
-//        if (isCanyonSensed())
-//        {
-//            locateTurn();
-//        }
-//        else if (isDropSensed())
-//        {
-//            dropBall();
-//        }
-//        else    
-//        {
-//            senseLine(); //line following
-//        }
-//        
-//        fourBit_FSM();
-//}
-    
-//    WORDBIT3 = 0;
-//    WORDBIT4 = 0;
-//    
-//    while (TRUE)
-//    {
-//        if (BALL_QRD < QRD_HIGH)
-//        {
-//            ball_color = 0; //ball is white
-//            WORDBIT3 = 1;
-//        }
-//        else
-//        {
-//            ball_color = 1; //ball is black
-//            WORDBIT4 = 1;
-//            
-//        SERVO_PERIOD = 9999;
-//        if (ball_color) //black
-//        {
-//            SERVO_ANGLE = BLACK_ANGLE; //tip it right (not sure about this angle)
-//        }
-//        else
-//        {
-//            SERVO_ANGLE = WHITE_ANGLE;
-//        } 
-//    }
-//        while (1);
-//}
 }
     

@@ -16,7 +16,7 @@ void __attribute__((interrupt, no_auto_psv))_OC3Interrupt(void)
     
     if (R_PERIOD > target_speed_R) //if period is bigger it needs to get smaller to go faster
     {
-        R_PERIOD -= 5;
+        R_PERIOD -= ACCEL_VAL;
         R_DUTY_CYCLE = R_PERIOD / 2;
     }
 }
@@ -27,7 +27,7 @@ void __attribute__((interrupt, no_auto_psv))_OC1Interrupt(void)
     
     if (FB_PERIOD > target_speed_FB) //if period is bigger it needs to get smaller to go faster
     {
-        FB_PERIOD -= 5;
+        FB_PERIOD -= ACCEL_VAL;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
 }
@@ -38,7 +38,7 @@ void __attribute__((interrupt, no_auto_psv))_OC2Interrupt(void)
     
     if (L_PERIOD > target_speed_L) //if period is bigger it needs to get smaller to go faster
     {
-        L_PERIOD -= 5;
+        L_PERIOD -= ACCEL_VAL;
         L_DUTY_CYCLE = L_PERIOD / 2;
     }
 }

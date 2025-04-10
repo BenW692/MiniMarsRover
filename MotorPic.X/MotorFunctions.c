@@ -18,7 +18,7 @@ void fourBit_FSM()
         return;
     }
     
-    disable_OC_interrupt(); // should only be on for strafing
+    disable_OC_interrupt(); // should only be enabled in certain set speed functions
     
     switch (bitWord)
     {
@@ -26,6 +26,13 @@ void fourBit_FSM()
         set_Straight_Speed(STRAIGHT_SPEED);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
+        break;
+        
+    case ACCEL_STRAIGHT:
+        RIGHT_DIR = 1;
+        LEFT_DIR = 1;
+        set_Accel_Straight_Speed(STRAIGHT_SPEED);
+        while(L_PERIOD > target_speed_L);
         break;
 
     case STRAIGHT:
@@ -176,6 +183,21 @@ void set_Straight_Speed(int speed) {
     R_DUTY_CYCLE = R_PERIOD / 2;
     L_PERIOD = speed;
     L_DUTY_CYCLE = L_PERIOD /2;
+}
+
+void set_Accel_Straight_Speed(int speed) {
+    enable_OC_interrupt();
+
+    FB_PERIOD = 0;
+    FB_DUTY_CYCLE = 0;
+    
+    target_speed_L = speed;
+    L_PERIOD = SLIP_SPEED;
+    L_DUTY_CYCLE = L_PERIOD / 2;
+
+    target_speed_R = speed;
+    R_PERIOD = SLIP_SPEED;
+    R_DUTY_CYCLE = R_PERIOD / 2;
 }
 
 void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)

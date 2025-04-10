@@ -11,7 +11,7 @@ BOOL isLanderSensed();
 
 BOOL isDropSensed();
 
-void pollLander();
+void pollLander2();
 
 void pollDrop();
 

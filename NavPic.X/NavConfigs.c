@@ -70,7 +70,7 @@ void config_ADC() {
     _NVCFG = 0;   // use VSS as negative reference
     _BUFREGEN = 1;// store results in buffer corresponding to channel number
     _CSCNA = 1;   // enable scanning mode
-    _SMPI = 9;    // begin new sampling sequence after 10 samples
+    _SMPI = 10;    // begin new sampling sequence after 10 samples
     _ALTS = 0;    // sample MUXA only
 
     // AD1CON3
@@ -79,8 +79,8 @@ void config_ADC() {
     _ADCS = 32; // TAD = 64*TCY // SHOULD WE CHANGE THIS??
 
     // AD1CSS -- Choose which channel/pin to scan
-    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN12 (pins 5, 6, 7, 15) and pin AN9 AN10 AN14 (18 17 8))
-    AD1CSSL = 0b0111011000011111; 
+    // Select AN0, AN1, AN2 (pins 2, 3, 4) && AN3, AN4, AN13, AN12 (pins 5, 6, 7, 15) and pin AN9 AN10 AN14 (18 17 8)) and AN11 (pin 16)
+    AD1CSSL = 0b0111111000011111; 
     
     _ADON = 1;    // enable module after configuration
 }
@@ -103,6 +103,17 @@ void config_Timers()
     T2CONbits.TCKPS = 0b01;
     T2CONbits.TCS = 0;
     PR2 = 9999;
+    
+    /* Timer 3 Interrupt */
+    T2CONbits.T32 = 0;
+    T3CONbits.TCS = 0;
+    T3CONbits.TCKPS = 0b11; // 256 presclaler
+    PR3 = 31250; // Period of 1 second
+    T3CONbits.TON = 0; //bit is off
+    TMR3 = 0; // reset timer
+    _T3IP = 4; // priority
+    _T3IF = 0; // clear flag
+    _T3IE = 1; // enable
 }
 
 void config_PWM() {

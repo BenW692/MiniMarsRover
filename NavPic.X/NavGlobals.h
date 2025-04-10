@@ -26,14 +26,18 @@
 #define ROTATE_CCW 0b1001
 
 // other
+#define ACCEL_STRAIGHT 0b1010
 #define STOP 0b1111
 
-#define QRD1 ADC1BUF0 //west
-#define QRD2 ADC1BUF1 //middle
-#define QRD3 ADC1BUF2 //east
+#define QRD1 ADC1BUF0 // west
+#define QRD2 ADC1BUF1 // middle
+#define QRD3 ADC1BUF2 // east
 
 #define LANDER_QRD ADC1BUF10 
-#define BALL_QRD ADC1BUF9 //pin 18
+#define BALL_QRD ADC1BUF9 // pin 18
+
+#define BALL_TOWER ADC1BUF11 // pin 16
+#define TOWER_DETECT 185
 
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
