@@ -61,28 +61,30 @@ void pollLander1() {
 }
 
 void poll_GPS() {
-        if (isCanyonSensed()) // this should maybe not be a while loop
+        if (isCanyonSensed())
         {
-            bitWord = DRIVE_NORTH; //initialize canyon
-            while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
-            {
-                locateTurn();
-                fourBit_FSM();
-            }
-            canyonDone = TRUE;
-            while(TRUE) //rotates if wall in the way
-            {
+            if (counter(0, 500, 600)) { // verifies that canyon is sensed after so many counts
+                bitWord = DRIVE_NORTH; //initialize canyon
+                while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
+                {
+                    locateTurn();
+                    fourBit_FSM();
+                }
+                canyonDone = TRUE;
+                while(TRUE) //rotates if wall in the way
+                {
+                    bitWord = STOP;
+                    fourBit_FSM();  
+                }
+                if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
+                {
+                    bitWord = ROTATE_CW;
+                    fourBit_FSM();
+                    delay(500); // to avoid triggering cross white line
+                    while (QRD2 > QRD_MED);     
+                }
                 bitWord = STOP;
-                fourBit_FSM();  
             }
-            if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
-            {
-                bitWord = ROTATE_CW;
-                fourBit_FSM();
-                delay(500); // to avoid triggering cross white line
-                while (QRD2 > QRD_MED);     
-            }
-            bitWord = STOP;
         }
 }
 
@@ -94,13 +96,9 @@ BOOL isCanyonSensed()
     }
     if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
-//        WORDBIT3 = 1;
-//        WORDBIT4 = 1;
 //        if (SONAR_W < W_WALL_DETECT) //for entering the canyon
         if (SONAR_W < W_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
-//            WORDBIT1 = 1;
-//            WORDBIT2 = 1;
             return TRUE;
         }
     } 
@@ -604,6 +602,21 @@ int filterSignal(int ADC_num, int numCounts) {
     }
     
     return value;
+}
+
+BOOL counter(int func, int threshhold, int numCounts) { // add TRUE/FALSE functions as needed 
+    long count = 0;
+    
+    for (int i = 0; i < 1000; i++) {
+        for (int j = 0; j < numCounts; j++) {
+            switch (func) {
+                case 0:
+                    count += isCanyonSensed();
+            }            
+        }
+    }
+    
+    return (count >= 1000 * threshhold);
 }
 
 //void dropBall()
