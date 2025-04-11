@@ -11,6 +11,9 @@
 #include "MotorFunctions.h"
 #include "MotorConfigs.h"
 
+#pragma config FWDTEN=OFF //watchdog
+#pragma config WINDIS=OFF //watchdog
+
 int main(void) {
     setupPins();
     config_OC_interrupt();

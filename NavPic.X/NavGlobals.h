@@ -96,6 +96,8 @@ extern int ball_qrd;
 
 extern BOOL drop_complete;
 extern BOOL past_drop;
+extern BOOL canyonDone;
+
 extern BOOL stateTimer3;
 
 typedef enum {

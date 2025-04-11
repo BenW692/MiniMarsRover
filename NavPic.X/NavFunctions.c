@@ -14,9 +14,11 @@ void DUMPYs_Favorite_Game() {
     
     /* Navigation */
     senseLine();
+    poll_GPS(); // also shifty... more issues
     fourBit_FSM();
-//    isCanyonSensed(); // also shifty... more issues
+    
 
+    
     /* Task Check-List */
     switch (roverState) {
         case state1: // In Lander
@@ -55,17 +57,41 @@ void pollLander1() {
 
     /* change roverState */
     roverState = state2;
+    canyonDone = FALSE;
 }
 
 void poll_GPS() {
-        while (isCanyonSensed) // this should maybe not be a while loop
+        if (isCanyonSensed()) // this should maybe not be a while loop
         {
-            locateTurn(); // change to pollCanyon() ??
+            bitWord = DRIVE_NORTH; //initialize canyon
+            while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
+            {
+                locateTurn();
+                fourBit_FSM();
+            }
+            canyonDone = TRUE;
+            while(TRUE) //rotates if wall in the way
+            {
+                bitWord = STOP;
+                fourBit_FSM();  
+            }
+            if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
+            {
+                bitWord = ROTATE_CW;
+                fourBit_FSM();
+                delay(500); // to avoid triggering cross white line
+                while (QRD2 > QRD_MED);     
+            }
+            bitWord = STOP;
         }
 }
 
 BOOL isCanyonSensed() 
 {
+    if (canyonDone)
+    {
+        return FALSE;
+    }
     if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
 //        WORDBIT3 = 1;
@@ -75,29 +101,10 @@ BOOL isCanyonSensed()
         {
 //            WORDBIT1 = 1;
 //            WORDBIT2 = 1;
-            bitWord = DRIVE_NORTH;
-            while (QRD2 > QRD_HIGH)
-            {
-                locateTurn();
-                fourBit_FSM();
-            }
-            while(TRUE)
-            {
-                bitWord = STOP;
-                fourBit_FSM();  
-            }
-            if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
-            {
-                bitWord = DRIVE_SOUTH;
-                fourBit_FSM();
-                delay(500);
-                bitWord = ROTATE_CW;
-                fourBit_FSM();
-                while (QRD2 > QRD_MED);     
-            }
-            bitWord = STOP;
+            return TRUE;
         }
     } 
+    return FALSE;
 }
 
 BOOL isLanderSensed() {
