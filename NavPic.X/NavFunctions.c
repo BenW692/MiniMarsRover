@@ -15,7 +15,7 @@ void DUMPYs_Favorite_Game() {
     /* Navigation */
     senseLine();
     fourBit_FSM();
-    isCanyonSensed(); // also shifty... more issues
+//    isCanyonSensed(); // also shifty... more issues
 
     /* Task Check-List */
     switch (roverState) {
@@ -86,12 +86,15 @@ BOOL isCanyonSensed()
                 bitWord = STOP;
                 fourBit_FSM();  
             }
-//            if (SONAR_N < N_WALL_DETECT)
-//            {
-//                bitWord = ROTATE_CW;
-//                fourBit_FSM();
-//                while (QRD2 > QRD_MED);
-//            }
+            if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
+            {
+                bitWord = DRIVE_SOUTH;
+                fourBit_FSM();
+                delay(500);
+                bitWord = ROTATE_CW;
+                fourBit_FSM();
+                while (QRD2 > QRD_MED);     
+            }
             bitWord = STOP;
         }
     } 
