@@ -61,31 +61,31 @@ void pollLander1() {
 }
 
 void poll_GPS() {
-        if (isCanyonSensed())
-        {
-            if (counter(0, 500, 600)) { // verifies that canyon is sensed after so many counts
-                bitWord = DRIVE_NORTH; //initialize canyon
-                while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
-                {
-                    locateTurn();
-                    fourBit_FSM();
-                }
-                canyonDone = TRUE;
-                while(TRUE) //rotates if wall in the way
-                {
-                    bitWord = STOP;
-                    fourBit_FSM();  
-                }
-                if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
-                {
-                    bitWord = ROTATE_CW;
-                    fourBit_FSM();
-                    delay(500); // to avoid triggering cross white line
-                    while (QRD2 > QRD_MED);     
-                }
-                bitWord = STOP;
-            }
-        }
+    if (!isCanyonSensed()) return;
+    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
+        if (!counter(0, 4, 5)) return ; 
+    }
+
+    bitWord = DRIVE_NORTH; //initialize canyon
+    while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
+    {
+        locateTurn();
+        fourBit_FSM();
+    }
+    canyonDone = TRUE;
+    while(TRUE) //rotates if wall in the way
+    {
+        bitWord = STOP;
+        fourBit_FSM();  
+    }
+    if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
+    {
+        bitWord = ROTATE_CW;
+        fourBit_FSM();
+        delay(500); // to avoid triggering cross white line
+        while (QRD2 > QRD_MED);     
+    }
+    bitWord = STOP;
 }
 
 BOOL isCanyonSensed() 

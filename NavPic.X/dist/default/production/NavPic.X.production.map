@@ -91,11 +91,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x622           0x933  (2355)
-.text                        0x822               0x974           0xe2e  (3630)
-.dinit                      0x1196                0x28            0x3c  (60)
-.text                       0x11be                0x20            0x30  (48)
+.text                        0x822               0x988           0xe4c  (3660)
+.dinit                      0x11aa                0x28            0x3c  (60)
+.text                       0x11d2                0x20            0x30  (48)
 
-                 Total "program" memory used (bytes):         0x17cd  (6093) 37%
+                 Total "program" memory used (bytes):         0x17eb  (6123) 37%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -180,33 +180,33 @@ External Symbols in Program Memory (by address):
                   0x000822                  _DUMPYs_Favorite_Game
                   0x000858                  _pollLander1
                   0x000888                  _poll_GPS
-                  0x0008be                  _isCanyonSensed
-                  0x000904                  _isLanderSensed
-                  0x000916                  _setTimer3
-                  0x000930                  _isDropSensed
-                  0x00095c                  _isTowerSensed
-                  0x000974                  _pollLander2
-                  0x0009b0                  _aimShootLaser
-                  0x000aea                  _pollTower
-                  0x000b34                  _pollDrop
-                  0x000bb4                  _locateTurn
-                  0x000c82                  _senseLine
-                  0x000d00                  _delay
-                  0x000d20                  _read_QRD
-                  0x000d42                  _fourBit_FSM
-                  0x000e18                  _sendWord
-                  0x000e82                  _test_sonars
-                  0x000ebe                  _test_canyon_detect
-                  0x000ef0                  _qrd_test
-                  0x000f10                  _read_ADC1BUF
-                  0x000f8a                  _alphaFilter
-                  0x000fd4                  _filterSignal
-                  0x00100c                  _counter
-                  0x001084                  _pinSetup
-                  0x0010be                  _config_ADC
-                  0x001110                  _config_Timers
-                  0x00116a                  _config_PWM
-                  0x0011be                  _main
+                  0x0008d2                  _isCanyonSensed
+                  0x000918                  _isLanderSensed
+                  0x00092a                  _setTimer3
+                  0x000944                  _isDropSensed
+                  0x000970                  _isTowerSensed
+                  0x000988                  _pollLander2
+                  0x0009c4                  _aimShootLaser
+                  0x000afe                  _pollTower
+                  0x000b48                  _pollDrop
+                  0x000bc8                  _locateTurn
+                  0x000c96                  _senseLine
+                  0x000d14                  _delay
+                  0x000d34                  _read_QRD
+                  0x000d56                  _fourBit_FSM
+                  0x000e2c                  _sendWord
+                  0x000e96                  _test_sonars
+                  0x000ed2                  _test_canyon_detect
+                  0x000f04                  _qrd_test
+                  0x000f24                  _read_ADC1BUF
+                  0x000f9e                  _alphaFilter
+                  0x000fe8                  _filterSignal
+                  0x001020                  _counter
+                  0x001098                  _pinSetup
+                  0x0010d2                  _config_ADC
+                  0x001124                  _config_Timers
+                  0x00117e                  _config_PWM
+                  0x0011d2                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -234,35 +234,35 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x000712                  __typef
                   0x0006b4                  __unpackdnrmf
-                  0x0009b0                  _aimShootLaser
-                  0x000f8a                  _alphaFilter
-                  0x0010be                  _config_ADC
-                  0x00116a                  _config_PWM
-                  0x001110                  _config_Timers
-                  0x00100c                  _counter
-                  0x000d00                  _delay
-                  0x000fd4                  _filterSignal
-                  0x000d42                  _fourBit_FSM
-                  0x0008be                  _isCanyonSensed
-                  0x000930                  _isDropSensed
-                  0x000904                  _isLanderSensed
-                  0x00095c                  _isTowerSensed
-                  0x000bb4                  _locateTurn
-                  0x0011be                  _main
-                  0x001084                  _pinSetup
-                  0x000b34                  _pollDrop
+                  0x0009c4                  _aimShootLaser
+                  0x000f9e                  _alphaFilter
+                  0x0010d2                  _config_ADC
+                  0x00117e                  _config_PWM
+                  0x001124                  _config_Timers
+                  0x001020                  _counter
+                  0x000d14                  _delay
+                  0x000fe8                  _filterSignal
+                  0x000d56                  _fourBit_FSM
+                  0x0008d2                  _isCanyonSensed
+                  0x000944                  _isDropSensed
+                  0x000918                  _isLanderSensed
+                  0x000970                  _isTowerSensed
+                  0x000bc8                  _locateTurn
+                  0x0011d2                  _main
+                  0x001098                  _pinSetup
+                  0x000b48                  _pollDrop
                   0x000858                  _pollLander1
-                  0x000974                  _pollLander2
-                  0x000aea                  _pollTower
+                  0x000988                  _pollLander2
+                  0x000afe                  _pollTower
                   0x000888                  _poll_GPS
-                  0x000ef0                  _qrd_test
-                  0x000f10                  _read_ADC1BUF
-                  0x000d20                  _read_QRD
-                  0x000e18                  _sendWord
-                  0x000c82                  _senseLine
-                  0x000916                  _setTimer3
-                  0x000ebe                  _test_canyon_detect
-                  0x000e82                  _test_sonars
+                  0x000f04                  _qrd_test
+                  0x000f24                  _read_ADC1BUF
+                  0x000d34                  _read_QRD
+                  0x000e2c                  _sendWord
+                  0x000c96                  _senseLine
+                  0x00092a                  _setTimer3
+                  0x000ed2                  _test_canyon_detect
+                  0x000e96                  _test_sonars
 
 Memory Configuration
 
@@ -403,25 +403,25 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3c77
+.debug_info       0x000000       0x3c8d
  *(.debug_info)
  .debug_info      0x000000        0x2d2 build/default/production/NavPic.o
- .debug_info      0x0002d2       0x106c build/default/production/NavFunctions.o
- .debug_info      0x00133e       0x1a0a build/default/production/NavConfigs.o
- .debug_info      0x002d48        0x5bb build/default/production/NavInterrupts.o
- .debug_info      0x003303        0x269 build/default/production/NavGlobals.o
- .debug_info      0x00356c         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_info      0x0035f9         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_info      0x003688         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_info      0x003715         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_info      0x0037b2         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_info      0x00384f         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_info      0x0038ef         0xa2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_info      0x003991         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_info      0x003a2d         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_info      0x003acc         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_info      0x003b5b         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_info      0x003bec         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_info      0x0002d2       0x1082 build/default/production/NavFunctions.o
+ .debug_info      0x001354       0x1a0a build/default/production/NavConfigs.o
+ .debug_info      0x002d5e        0x5bb build/default/production/NavInterrupts.o
+ .debug_info      0x003319        0x269 build/default/production/NavGlobals.o
+ .debug_info      0x003582         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_info      0x00360f         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_info      0x00369e         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_info      0x00372b         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_info      0x0037c8         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_info      0x003865         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_info      0x003905         0xa2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_info      0x0039a7         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_info      0x003a43         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_info      0x003ae2         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_info      0x003b71         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_info      0x003c02         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x65d
@@ -444,25 +444,25 @@ __FDS
  .debug_abbrev    0x000635         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
  .debug_abbrev    0x000649         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
-.debug_line       0x000000        0xb69
+.debug_line       0x000000        0xb6f
  *(.debug_line)
  .debug_line      0x000000         0xf6 build/default/production/NavPic.o
- .debug_line      0x0000f6        0x28c build/default/production/NavFunctions.o
- .debug_line      0x000382        0x12c build/default/production/NavConfigs.o
- .debug_line      0x0004ae         0xfd build/default/production/NavInterrupts.o
- .debug_line      0x0005ab         0x3a build/default/production/NavGlobals.o
- .debug_line      0x0005e5         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_line      0x00063b         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_line      0x000675         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_line      0x0006bf        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_line      0x0007f5         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_line      0x0008c1         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_line      0x000933         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_line      0x0009ad         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_line      0x000a0b         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_line      0x000a5c         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_line      0x000aa3         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_line      0x000b0f         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_line      0x0000f6        0x292 build/default/production/NavFunctions.o
+ .debug_line      0x000388        0x12c build/default/production/NavConfigs.o
+ .debug_line      0x0004b4         0xfd build/default/production/NavInterrupts.o
+ .debug_line      0x0005b1         0x3a build/default/production/NavGlobals.o
+ .debug_line      0x0005eb         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_line      0x000641         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_line      0x00067b         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_line      0x0006c5        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_line      0x0007fb         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_line      0x0008c7         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_line      0x000939         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_line      0x0009b3         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_line      0x000a11         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_line      0x000a62         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_line      0x000aa9         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_line      0x000b15         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
 .debug_frame      0x000000        0x3a2
  *(.debug_frame)
@@ -1240,42 +1240,42 @@ __c30_signature
  .ivt._T3Interrupt
                   0x000024          0x2 build/default/production/NavInterrupts.o
 
-.text             0x000822        0x974
- .text            0x000822        0x862 build/default/production/NavFunctions.o
+.text             0x000822        0x988
+ .text            0x000822        0x876 build/default/production/NavFunctions.o
                   0x000822                  _DUMPYs_Favorite_Game
                   0x000858                  _pollLander1
                   0x000888                  _poll_GPS
-                  0x0008be                  _isCanyonSensed
-                  0x000904                  _isLanderSensed
-                  0x000916                  _setTimer3
-                  0x000930                  _isDropSensed
-                  0x00095c                  _isTowerSensed
-                  0x000974                  _pollLander2
-                  0x0009b0                  _aimShootLaser
-                  0x000aea                  _pollTower
-                  0x000b34                  _pollDrop
-                  0x000bb4                  _locateTurn
-                  0x000c82                  _senseLine
-                  0x000d00                  _delay
-                  0x000d20                  _read_QRD
-                  0x000d42                  _fourBit_FSM
-                  0x000e18                  _sendWord
-                  0x000e82                  _test_sonars
-                  0x000ebe                  _test_canyon_detect
-                  0x000ef0                  _qrd_test
-                  0x000f10                  _read_ADC1BUF
-                  0x000f8a                  _alphaFilter
-                  0x000fd4                  _filterSignal
-                  0x00100c                  _counter
- .text            0x001084        0x112 build/default/production/NavConfigs.o
-                  0x001084                  _pinSetup
-                  0x0010be                  _config_ADC
-                  0x001110                  _config_Timers
-                  0x00116a                  _config_PWM
+                  0x0008d2                  _isCanyonSensed
+                  0x000918                  _isLanderSensed
+                  0x00092a                  _setTimer3
+                  0x000944                  _isDropSensed
+                  0x000970                  _isTowerSensed
+                  0x000988                  _pollLander2
+                  0x0009c4                  _aimShootLaser
+                  0x000afe                  _pollTower
+                  0x000b48                  _pollDrop
+                  0x000bc8                  _locateTurn
+                  0x000c96                  _senseLine
+                  0x000d14                  _delay
+                  0x000d34                  _read_QRD
+                  0x000d56                  _fourBit_FSM
+                  0x000e2c                  _sendWord
+                  0x000e96                  _test_sonars
+                  0x000ed2                  _test_canyon_detect
+                  0x000f04                  _qrd_test
+                  0x000f24                  _read_ADC1BUF
+                  0x000f9e                  _alphaFilter
+                  0x000fe8                  _filterSignal
+                  0x001020                  _counter
+ .text            0x001098        0x112 build/default/production/NavConfigs.o
+                  0x001098                  _pinSetup
+                  0x0010d2                  _config_ADC
+                  0x001124                  _config_Timers
+                  0x00117e                  _config_PWM
 
-.dinit            0x001196         0x28
- .dinit           0x001196         0x28 data_init
+.dinit            0x0011aa         0x28
+ .dinit           0x0011aa         0x28 data_init
 
-.text             0x0011be         0x20
- .text            0x0011be         0x20 build/default/production/NavPic.o
-                  0x0011be                  _main
+.text             0x0011d2         0x20
+ .text            0x0011d2         0x20 build/default/production/NavPic.o
+                  0x0011d2                  _main
