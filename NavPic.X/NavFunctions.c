@@ -62,23 +62,27 @@ void pollLander1() {
 
 void poll_GPS() {
     if (!isCanyonSensed()) return;
-    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
-        if (!counter(0, 4, 5)) return ; 
-    }
+//    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
+//        if (!counter(0, 2, 3)) return ; 
+//    }
 
     bitWord = DRIVE_NORTH; //initialize canyon
-    while (QRD2 > QRD_HIGH) //do canyon mode until middle qrd reads line
+    while (!counter(1, 4, 5)) //do canyon mode until middle qrd reads line
+    // while (QRD2 > QRD_HIGH)
     {
         locateTurn();
         fourBit_FSM();
     }
     canyonDone = TRUE;
-    while(TRUE) //rotates if wall in the way
-    {
-        bitWord = STOP;
-        fourBit_FSM();  
-    }
-    if (filterSignal(3, 100) < filterSignal(13, 100)) // SONAR_N < SONAR_S
+//    while(TRUE) //rotates if wall in the way
+//    {
+//        bitWord = STOP;
+//        fourBit_FSM();  
+//    }
+    bitWord = STOP;
+    fourBit_FSM();
+    
+    if (SONAR_N < N_WALL_DETECT) // SONAR_N < SONAR_S
     {
         bitWord = ROTATE_CW;
         fourBit_FSM();
@@ -96,8 +100,8 @@ BOOL isCanyonSensed()
     }
     if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
-//        if (SONAR_W < W_WALL_DETECT) //for entering the canyon
-        if (SONAR_W < W_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
+        if (SONAR_W < W_CANYON_DETECT || SONAR_N < N_WALL_DETECT) //for entering the canyon
+//        if (SONAR_W < W_WALL_DETECT || SONAR_N < N_WALL_DETECT || SONAR_S < S_WALL_DETECT) //for entering the canyon
         {
             return TRUE;
         }
@@ -105,9 +109,35 @@ BOOL isCanyonSensed()
     return FALSE;
 }
 
+BOOL isCanyonExitSensed()
+{
+    if (QRD2 < QRD_HIGH)
+    {
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
+}
+
 BOOL isLanderSensed() {
     return (read_QRD(LANDER_QRD)) ? TRUE : FALSE;
+//    if (counter(2, 4, 5))
+//    {
+//        return TRUE;
+//    }
+//    else
+//    {
+//        return FALSE;
+//    }
 }
+
+//BOOL isFinalLanderSensed()
+//{
+//    
+//}
+        
 
 int setTimer3(int ms) {
     stateTimer3 = TRUE;
@@ -138,7 +168,7 @@ BOOL isTowerSensed() {
 }
 
 void pollLander2() {
-    if (isLanderSensed()) 
+    if (!counter(2, 10, 11)) 
     {
         /* line follow into lander */
         bitWord = ROTATE_CCW;
@@ -204,7 +234,7 @@ void aimShootLaser() {
         lowerBound = commsArray[0][maxIndex - 1];
         upperBound = commsArray[0][maxIndex + 1];
     }
-    SERVO_ANGLE = commsArray[0][maxIndex];
+    SERVO_ANGLE = commsArray[2][maxIndex];
     
     /* shooting laser */
     
@@ -243,6 +273,7 @@ void pollTower() {
 
 void pollDrop() {
     if (isDropSensed()) {
+        delay(175); //500 was way past it
         bitWord = STOP;
         fourBit_FSM();
         
@@ -612,6 +643,13 @@ BOOL counter(int func, int threshhold, int numCounts) { // add TRUE/FALSE functi
             switch (func) {
                 case 0:
                     count += isCanyonSensed();
+                    break;
+                case 1:
+                    count += isCanyonExitSensed();
+                    break;
+                case 2:
+                    count += isLanderSensed();
+                    break;
             }            
         }
     }

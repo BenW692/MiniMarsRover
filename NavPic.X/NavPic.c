@@ -41,6 +41,8 @@ int main(void) {
 //        fourBit_FSM();
 //    }
     
+    roverState = state3;
+    
     while (TRUE) // Final FSM
     {
         DUMPYs_Favorite_Game();

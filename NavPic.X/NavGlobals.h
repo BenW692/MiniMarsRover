@@ -37,7 +37,7 @@
 #define BALL_QRD ADC1BUF9 // pin 18
 
 #define BALL_TOWER ADC1BUF11 // pin 16
-#define TOWER_DETECT 185
+#define TOWER_DETECT 125 //was 185, I had to lower it for psc course (tower is farther away))
 
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
@@ -60,18 +60,19 @@
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
 //for all of these thresholds I added 30 to the conversion number
-#define N_WALL_DETECT 340 //was 300
+#define N_WALL_DETECT 400 //was 300
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
 #define N_LANDER_WALL 425
 
-#define E_WALL_DETECT 320 //was 280
+#define E_WALL_DETECT 380   //was 280
 #define E_BALL_DROP_DETECT 170 //was 775
 
 #define S_WALL_DETECT 310 //was 260
 //#define S_BALL_DROP_DETECT 500 //WE DONT USE THIS
 
-#define W_WALL_DETECT 420 //was 370
+#define W_WALL_DETECT 420 //was 420
 #define W_BALL_DROP_DETECT 200
+#define W_CANYON_DETECT 550
 
 #define SATELLITE_DIODE ADC1BUF14
 #define SATELLITE_DETECT 25 //50mv

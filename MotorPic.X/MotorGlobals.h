@@ -44,7 +44,7 @@
 #define WORDBIT4 PORTBbits.RB12
 
 #define STRAFE_SPEED 1000 //1000 is too fast b/c. the struggles to change directions before hitting the wall
-#define SLIP_SPEED 3000
+#define SLIP_SPEED 3000    
 
 #define STRAIGHT_SPEED 1000 //2500 * .4 when driving straight
 #define NON_TURN_SPEED 2400 //6000 * .4 wheel that keeps going straight
