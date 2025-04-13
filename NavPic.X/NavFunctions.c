@@ -14,10 +14,8 @@ void DUMPYs_Favorite_Game() {
     
     /* Navigation */
     senseLine();
-    poll_GPS(); // also shifty... more issues
+    poll_GPS();
     fourBit_FSM();
-    
-
     
     /* Task Check-List */
     switch (roverState) {
@@ -34,7 +32,7 @@ void DUMPYs_Favorite_Game() {
             break;
             
         case state4: // pre-lander and laser transmission
-            pollLander2(); // shifty... has issues
+            pollLander2();
             break;
     }
 }

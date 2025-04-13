@@ -31,26 +31,7 @@ int main(void) {
     fourBit_FSM();
 
     delay(1000); //we need this delay so the ADC can configure
-    //at boot up it returns a random value for the sonar sensors that will trigger ball
-    //drop if we don't have this delay
-    
-//    while (TRUE)
-//    {
-//        senseLine();
-////        isCanyonSensed();
-//        fourBit_FSM();
-//    }
 
-//    roverState = state4;
-//    bitWord = DRIVE_NORTH;
-//    fourBit_FSM();
-//    
-//    while (TRUE)
-//    {
-//        locateTurn();
-//        fourBit_FSM();
-//    }
-//    
     while (TRUE) // Final FSM
     {
         DUMPYs_Favorite_Game();
