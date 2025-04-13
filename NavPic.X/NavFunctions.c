@@ -60,23 +60,20 @@ void pollLander1() {
 
 void poll_GPS() {
     if (!isCanyonSensed()) return;
-    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
-        if (!counter(0, 2, 3)) return ; 
-    }
+    
+    if (!nestedCounter(0, 2, 3, 5)) return; // reps used to be 10
 
     bitWord = DRIVE_NORTH; //initialize canyon
+    fourBit_FSM();
+    
     while (!counter(1, 4, 5)) //do canyon mode until middle qrd reads line
     // while (QRD2 > QRD_HIGH)
     {
         locateTurn();
         fourBit_FSM();
     }
+    
     canyonDone = TRUE;
-//    while(TRUE) //rotates if wall in the way
-//    {
-//        bitWord = STOP;
-//        fourBit_FSM();  
-//    }
     bitWord = STOP;
     fourBit_FSM();
     
@@ -96,6 +93,7 @@ BOOL isCanyonSensed()
     {
         return FALSE;
     }
+    
     if ( QRD1 > QRD_HIGH && QRD2 > QRD_HIGH && QRD3 > QRD_HIGH) // should we be calling read_QRD()???
     {
         if (SONAR_W < W_CANYON_DETECT || SONAR_N < N_WALL_DETECT) //for entering the canyon
@@ -188,11 +186,49 @@ void pollLander2() {
         fourBit_FSM();
         
         /* point and shoot laser (CREATE ARRAY or BISECTION) */        
-        aimShootLaser(); 
+        aimShootLaserNEW(); 
     }
 }
 
-void aimShootLaser() {
+void aimShootLaserNEW() {
+    int commsArray[2][30] = {0};
+
+    int lowerBound = (MIDDLE_ANGLE + BLACK_ANGLE) / 2;
+    int upperBound = WHITE_ANGLE;
+    int step = (upperBound - lowerBound) / 30;
+    int valCompare = 0;
+    int finalAngle = 0;
+    
+    SERVO_ANGLE = lowerBound;
+    delay(150);
+    
+    for (int i = 0; i < 30; i++) {
+        commsArray[0][i] = SERVO_ANGLE;
+        commsArray[1][i] = SATELLITE_DIODE;
+        if (i >= 29) break;
+        SERVO_ANGLE += step;
+        delay(50);
+    }
+    
+    for (int i = 0; i < 30; i++) {
+        if (valCompare < commsArray[1][i]) {
+            valCompare = commsArray[1][i];
+            finalAngle = commsArray[0][i];
+        }
+    }
+    
+    SERVO_ANGLE = finalAngle + 20;
+    
+    /* shooting laser */
+    /* END PROGRAM */
+    while(TRUE)
+    {   
+        LASER_OUT = 1;
+        // "gg Dumpy"
+    }
+}
+
+void aimShootLaserOLD() {
     int tol = 5; // was 6
     int commsArray[2][5] = {
         {0, 0, 0, 0, 0}, // OC1R - Duty Cycle
@@ -238,7 +274,6 @@ void aimShootLaser() {
     SERVO_ANGLE = commsArray[0][maxIndex]; //we need a tuning number here
 
     /* shooting laser */
-    
     /* END PROGRAM */
     while(TRUE)
     {   
@@ -393,10 +428,11 @@ void senseLine()
             delay(50); // this delays the signal to ensure that the motor pic receives it
             bitWord = STRAIGHT;
             break;
+        /* NOTE: ALL if statements used to be (qrd# == 2)... */
         case STRAIGHT:
-            if (qrd1 == 2)
+            if (qrd1)
             {
-                if (qrd2 == 2) 
+                if (qrd2) 
                 {
                     bitWord = STRAIGHT;
                 }
@@ -405,9 +441,9 @@ void senseLine()
                     bitWord = TURN_LEFT;   
                 }
             }
-            else if (qrd3 == 2)
+            else if (qrd3)
             {
-                if (qrd2 == 2) 
+                if (qrd2) 
                 {
                     bitWord = STRAIGHT;
                 }
@@ -419,17 +455,17 @@ void senseLine()
             
             break;
         case TURN_RIGHT:
-            if (qrd2 == 2)
+            if (qrd2)
             {
                 bitWord = STRAIGHT;
             }
             break;
         case TURN_LEFT:
-            if (qrd2 == 2)
+            if (qrd2)
             {
                 bitWord = STRAIGHT;
             }
-            if (qrd3 ==2)
+            if (qrd3)
             {
                 bitWord = STRAIGHT;
             }
@@ -447,13 +483,15 @@ void delay(int ms) {
 }
 
 int read_QRD(unsigned int QRD_val) {
-    if (QRD_val / QRD_HIGH) {
-        return 0; // off the line
-    } else if (QRD_val / QRD_LOW) { // USED TO BE MEDIUM
-        return 1; // kinda on the line
-    } else {
-        return 2; // on the line
-    }
+    return (QRD_val < QRD_LOW);
+    
+//    if (QRD_val / QRD_HIGH) {
+//        return 0; // off the line
+//    } else if (QRD_val / QRD_LOW) { // USED TO BE MEDIUM
+//        return 1; // kinda on the line
+//    } else {
+//        return 2; // on the line
+//    }
 }
 
 

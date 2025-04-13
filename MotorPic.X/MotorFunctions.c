@@ -12,7 +12,7 @@
 
 void fourBit_FSM()
 {
-    int multiplier = 3;
+    int multiplier = 3; // for SLOW_MOTORS
     
     if (oldWord == bitWord) 
     {

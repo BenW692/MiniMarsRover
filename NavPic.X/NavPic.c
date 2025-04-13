@@ -38,12 +38,12 @@ int main(void) {
     }
     
     while (TRUE) { // task spot checker
-//        senseLine();
-//        fourBit_FSM();
-//        pollTower();
-//        pollDrop();
-        pollLander2(); // shifty... has issues
-//        poll_GPS();
+        senseLine();
+        fourBit_FSM();
+        pollTower();
+        pollDrop();
+        pollLander2();
+        poll_GPS();
     }
 }
     
