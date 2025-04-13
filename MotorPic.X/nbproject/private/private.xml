@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/benwo/Desktop/Mechatronics/MiniMarsRover/MotorPic.X/MotorPic.c</file>
-            <file>file:/C:/Users/benwo/Desktop/Mechatronics/MiniMarsRover/MotorPic.X/MotorInterrupts.c</file>
-            <file>file:/C:/Users/benwo/Desktop/Mechatronics/MiniMarsRover/MotorPic.X/MotorFunctions.c</file>
-            <file>file:/C:/Users/benwo/Desktop/Mechatronics/MiniMarsRover/MotorPic.X/MotorGlobals.h</file>
+            <file>file:/C:/Users/benwo/Desktop/MiniMarsRover/MotorPic.X/MotorPic.c</file>
+            <file>file:/C:/Users/benwo/Desktop/MiniMarsRover/MotorPic.X/MotorGlobals.h</file>
+            <file>file:/C:/Users/benwo/Desktop/MiniMarsRover/MotorPic.X/MotorGlobals.c</file>
+            <file>file:/C:/Users/benwo/Desktop/MiniMarsRover/MotorPic.X/MotorFunctions.c</file>
         </group>
     </open-files>
 </project-private>

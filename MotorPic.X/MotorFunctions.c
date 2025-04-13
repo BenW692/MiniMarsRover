@@ -12,6 +12,7 @@
 
 void fourBit_FSM()
 {
+    int multiplier = 3;
     
     if (oldWord == bitWord) 
     {
@@ -23,7 +24,7 @@ void fourBit_FSM()
     switch (bitWord)
     {
     case NO_LINE:
-        set_Straight_Speed(STRAIGHT_SPEED);
+        set_Straight_Speed(straight_speed);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
@@ -31,50 +32,60 @@ void fourBit_FSM()
     case ACCEL_STRAIGHT:
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
-        set_Accel_Straight_Speed(STRAIGHT_SPEED);
+        set_Accel_Straight_Speed(straight_speed);
         while(L_PERIOD > target_speed_L);
         break;
 
     case STRAIGHT:
-        set_Straight_Speed(STRAIGHT_SPEED);
+        set_Straight_Speed(straight_speed);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
 
     case TURN_RIGHT:
-        set_Turn_Speed(1, NON_TURN_SPEED, MED_TURN_SPEED);
+        set_Turn_Speed(1, non_turn_speed, med_turn_speed);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
 
     case TURN_LEFT:
-        set_Turn_Speed(0, NON_TURN_SPEED, MED_TURN_SPEED);
+        set_Turn_Speed(0, non_turn_speed, med_turn_speed);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         break;
         
     case DRIVE_NORTH:
-        setStrafeSpeed(1, 1, -1, -1, STRAFE_SPEED); // Left & Right motors forward
+        setStrafeSpeed(1, 1, -1, -1, strafe_speed); // Left & Right motors forward
         break;
         
     case DRIVE_SOUTH:
-        setStrafeSpeed(0, 0, -1, -1, STRAFE_SPEED); // Left & Right motors backward
+        setStrafeSpeed(0, 0, -1, -1, strafe_speed); // Left & Right motors backward
         break;
         
     case DRIVE_WEST:
-        setStrafeSpeed(-1, -1, 1, 1, STRAFE_SPEED); // Front & Back motors forward
+        setStrafeSpeed(-1, -1, 1, 1, strafe_speed); // Front & Back motors forward
         break;
         
     case DRIVE_EAST:
-        setStrafeSpeed(-1, -1, 0, 0, STRAFE_SPEED); // Front & Back motors backward
+        setStrafeSpeed(-1, -1, 0, 0, strafe_speed); // Front & Back motors backward
         break;
         
     case ROTATE_CCW:
-        setRotateSpeed(0, STRAIGHT_SPEED);
+        setRotateSpeed(0, straight_speed);
         break;
         
     case ROTATE_CW:
-        setRotateSpeed(1, STRAIGHT_SPEED);
+        setRotateSpeed(1, straight_speed);
+        break;
+        
+    case SLOW_MOTORS:
+        strafe_speed *= multiplier;
+        slip_speed *= multiplier;
+
+        straight_speed *= multiplier;
+        non_turn_speed *= multiplier;
+        fb_turn_speed *= multiplier;
+        med_turn_speed *= multiplier;
         break;
         
     case STOP:
@@ -132,7 +143,7 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (front != -1 || back != -1) 
     { // Control Front-Back Motors
         target_speed_FB = speed;
-        FB_PERIOD = SLIP_SPEED;
+        FB_PERIOD = slip_speed;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     } 
     else 
@@ -144,11 +155,11 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
     if (left != -1 || right != -1) 
     { // Control Left-Right Motors
         target_speed_L = speed;
-        L_PERIOD = SLIP_SPEED;
+        L_PERIOD = slip_speed;
         L_DUTY_CYCLE = L_PERIOD / 2;
         
         target_speed_R = speed;
-        R_PERIOD = SLIP_SPEED;
+        R_PERIOD = slip_speed;
         R_DUTY_CYCLE = R_PERIOD / 2;
     } 
     else 
@@ -192,11 +203,11 @@ void set_Accel_Straight_Speed(int speed) {
     FB_DUTY_CYCLE = 0;
     
     target_speed_L = speed;
-    L_PERIOD = SLIP_SPEED;
+    L_PERIOD = slip_speed;
     L_DUTY_CYCLE = L_PERIOD / 2;
 
     target_speed_R = speed;
-    R_PERIOD = SLIP_SPEED;
+    R_PERIOD = slip_speed;
     R_DUTY_CYCLE = R_PERIOD / 2;
 }
 
@@ -213,7 +224,7 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         R_DUTY_CYCLE = R_PERIOD / 2;
         FRONT_DIR = 1;
         BACK_DIR = 0;
-        FB_PERIOD = FB_TURN_SPEED;
+        FB_PERIOD = fb_turn_speed;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
     else//turn left
@@ -224,7 +235,7 @@ void set_Turn_Speed(int turn_dir, int straight_speed, int turn_speed)
         L_DUTY_CYCLE = R_PERIOD / 2;
         FRONT_DIR = 0;
         BACK_DIR = 1;
-        FB_PERIOD = FB_TURN_SPEED;
+        FB_PERIOD = fb_turn_speed;
         FB_DUTY_CYCLE = FB_PERIOD / 2;
     }
             

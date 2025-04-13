@@ -27,6 +27,7 @@
 
 // other
 #define ACCEL_STRAIGHT 0b1010
+#define SLOW_MOTORS 0b1011
 #define STOP 0b1111
 
 #define QRD1 ADC1BUF0 // west
@@ -34,6 +35,8 @@
 #define QRD3 ADC1BUF2 // east
 
 #define LANDER_QRD ADC1BUF10 
+#define LANDER_DETECT 100
+
 #define BALL_QRD ADC1BUF9 // pin 18
 
 #define BALL_TOWER ADC1BUF11 // pin 16
@@ -41,6 +44,7 @@
 
 #define QRD_HIGH 682 // 2/3 of 1023
 #define QRD_MED 341  // 1/3 of 1023
+#define QRD_LOW 150
 
 #define SERVO_PERIOD OC1RS
 #define SERVO_ANGLE OC1R
@@ -60,9 +64,9 @@
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
 //for all of these thresholds I added 30 to the conversion number
-#define N_WALL_DETECT 400 //was 300
+#define N_WALL_DETECT 325 //was 300
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
-#define N_LANDER_WALL 425
+#define N_LANDER_WALL 275
 
 #define E_WALL_DETECT 380   //was 280
 #define E_BALL_DROP_DETECT 170 //was 775

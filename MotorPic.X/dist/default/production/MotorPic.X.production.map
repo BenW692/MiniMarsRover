@@ -69,19 +69,20 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x13c           0x1da  (474)
-.text                        0x33c               0x3d2           0x5bb  (1467)
-.dinit                       0x70e                0x10            0x18  (24)
+.text                        0x33c               0x412           0x61b  (1563)
+.dinit                       0x74e                0x18            0x24  (36)
+.text                        0x766                0x16            0x21  (33)
 
-                 Total "program" memory used (bytes):          0x7ad  (1965) 12%
+                 Total "program" memory used (bytes):          0x83a  (2106) 13%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                       0x800                   0             0xa  (10)
+.ndata                       0x800                   0            0x16  (22)
 
-                 Total "data" memory used (bytes):            0xa  (10) <1%
+                 Total "data" memory used (bytes):           0x16  (22) 1%
 
 
 Dynamic Memory Usage
@@ -89,28 +90,40 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x80a                               0x7f6  (2038)
+stack                        0x816                               0x7ea  (2026)
 
-                 Maximum dynamic memory (bytes):          0x7f6  (2038)
+                 Maximum dynamic memory (bytes):          0x7ea  (2026)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _target_speed_R
-                    0x0802                  _target_speed_L
-                    0x0804                  _target_speed_FB
-                    0x0806                  _oldWord
-                    0x0808                  _bitWord
+                    0x0800                  _strafe_speed
+                    0x0802                  _slip_speed
+                    0x0804                  _straight_speed
+                    0x0806                  _non_turn_speed
+                    0x0808                  _fb_turn_speed
+                    0x080a                  _med_turn_speed
+                    0x080c                  _target_speed_R
+                    0x080e                  _target_speed_L
+                    0x0810                  _target_speed_FB
+                    0x0812                  _oldWord
+                    0x0814                  _bitWord
 
 External Symbols in Data Memory (by name):
 
-                    0x0808                  _bitWord
-                    0x0806                  _oldWord
-                    0x0804                  _target_speed_FB
-                    0x0802                  _target_speed_L
-                    0x0800                  _target_speed_R
+                    0x0814                  _bitWord
+                    0x0808                  _fb_turn_speed
+                    0x080a                  _med_turn_speed
+                    0x0806                  _non_turn_speed
+                    0x0812                  _oldWord
+                    0x0802                  _slip_speed
+                    0x0800                  _strafe_speed
+                    0x0804                  _straight_speed
+                    0x0810                  _target_speed_FB
+                    0x080e                  _target_speed_L
+                    0x080c                  _target_speed_R
 
 External Symbols in Program Memory (by address):
 
@@ -123,18 +136,18 @@ External Symbols in Program Memory (by address):
                   0x000314                  __OC2Interrupt
                   0x000336                  __DefaultInterrupt
                   0x00033c                  _fourBit_FSM
-                  0x000426                  _poll_bitWord
-                  0x000460                  _setRotateSpeed
-                  0x0004ac                  _setStrafeSpeed
-                  0x000586                  _enable_OC_interrupt
-                  0x000592                  _disable_OC_interrupt
-                  0x00059e                  _set_Straight_Speed
-                  0x0005be                  _set_Accel_Straight_Speed
-                  0x0005e8                  _set_Turn_Speed
-                  0x000644                  _setupPins
-                  0x00065e                  _config_PWM
-                  0x0006ca                  _config_OC_interrupt
-                  0x0006f8                  _main
+                  0x00047c                  _poll_bitWord
+                  0x0004b6                  _setRotateSpeed
+                  0x000502                  _setStrafeSpeed
+                  0x0005dc                  _enable_OC_interrupt
+                  0x0005e8                  _disable_OC_interrupt
+                  0x0005f4                  _set_Straight_Speed
+                  0x000614                  _set_Accel_Straight_Speed
+                  0x00063e                  _set_Turn_Speed
+                  0x00069a                  _setupPins
+                  0x0006b4                  _config_PWM
+                  0x000720                  _config_OC_interrupt
+                  0x000766                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -146,19 +159,19 @@ External Symbols in Program Memory (by name):
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x0006ca                  _config_OC_interrupt
-                  0x00065e                  _config_PWM
-                  0x000592                  _disable_OC_interrupt
-                  0x000586                  _enable_OC_interrupt
+                  0x000720                  _config_OC_interrupt
+                  0x0006b4                  _config_PWM
+                  0x0005e8                  _disable_OC_interrupt
+                  0x0005dc                  _enable_OC_interrupt
                   0x00033c                  _fourBit_FSM
-                  0x0006f8                  _main
-                  0x000426                  _poll_bitWord
-                  0x000460                  _setRotateSpeed
-                  0x0004ac                  _setStrafeSpeed
-                  0x0005be                  _set_Accel_Straight_Speed
-                  0x00059e                  _set_Straight_Speed
-                  0x0005e8                  _set_Turn_Speed
-                  0x000644                  _setupPins
+                  0x000766                  _main
+                  0x00047c                  _poll_bitWord
+                  0x0004b6                  _setRotateSpeed
+                  0x000502                  _setStrafeSpeed
+                  0x000614                  _set_Accel_Straight_Speed
+                  0x0005f4                  _set_Straight_Speed
+                  0x00063e                  _set_Turn_Speed
+                  0x00069a                  _setupPins
 
 Memory Configuration
 
@@ -271,13 +284,13 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2968
+.debug_info       0x000000       0x2a74
  *(.debug_info)
- .debug_info      0x000000       0x1668 build/default/production/MotorConfigs.o
- .debug_info      0x001668        0xa46 build/default/production/MotorFunctions.o
- .debug_info      0x0020ae        0x1bc build/default/production/MotorGlobals.o
- .debug_info      0x00226a        0x539 build/default/production/MotorInterrupts.o
- .debug_info      0x0027a3        0x1c5 build/default/production/MotorPic.o
+ .debug_info      0x000000       0x165b build/default/production/MotorConfigs.o
+ .debug_info      0x00165b        0xadf build/default/production/MotorFunctions.o
+ .debug_info      0x00213a        0x256 build/default/production/MotorGlobals.o
+ .debug_info      0x002390        0x52c build/default/production/MotorInterrupts.o
+ .debug_info      0x0028bc        0x1b8 build/default/production/MotorPic.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x39a
@@ -288,13 +301,13 @@ __FDS
  .debug_abbrev    0x00027c         0xac build/default/production/MotorInterrupts.o
  .debug_abbrev    0x000328         0x72 build/default/production/MotorPic.o
 
-.debug_line       0x000000        0x4a0
+.debug_line       0x000000        0x4a8
  *(.debug_line)
  .debug_line      0x000000        0x139 build/default/production/MotorConfigs.o
- .debug_line      0x000139        0x1b8 build/default/production/MotorFunctions.o
- .debug_line      0x0002f1         0x2c build/default/production/MotorGlobals.o
- .debug_line      0x00031d        0x132 build/default/production/MotorInterrupts.o
- .debug_line      0x00044f         0x51 build/default/production/MotorPic.o
+ .debug_line      0x000139        0x1c0 build/default/production/MotorFunctions.o
+ .debug_line      0x0002f9         0x2c build/default/production/MotorGlobals.o
+ .debug_line      0x000325        0x132 build/default/production/MotorInterrupts.o
+ .debug_line      0x000457         0x51 build/default/production/MotorPic.o
 
 .debug_frame      0x000000        0x20e
  *(.debug_frame)
@@ -303,11 +316,11 @@ __FDS
  .debug_frame     0x000160         0x80 build/default/production/MotorInterrupts.o
  .debug_frame     0x0001e0         0x2e build/default/production/MotorPic.o
 
-.debug_str        0x000000        0x206
+.debug_str        0x000000        0x259
  *(.debug_str)
  .debug_str       0x000000        0x13c build/default/production/MotorConfigs.o
- .debug_str       0x00013c         0x8a build/default/production/MotorFunctions.o
- .debug_str       0x0001c6         0x40 build/default/production/MotorInterrupts.o
+ .debug_str       0x00013c         0xdd build/default/production/MotorFunctions.o
+ .debug_str       0x000219         0x40 build/default/production/MotorInterrupts.o
 
 .debug_loc
  *(.debug_loc)
@@ -316,18 +329,18 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x1df
+                  0x000000        0x24a
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x47 build/default/production/MotorConfigs.o
  .debug_pubnames
                   0x000047         0xd1 build/default/production/MotorFunctions.o
  .debug_pubnames
-                  0x000118         0x64 build/default/production/MotorGlobals.o
+                  0x000118         0xcf build/default/production/MotorGlobals.o
  .debug_pubnames
-                  0x00017c         0x48 build/default/production/MotorInterrupts.o
+                  0x0001e7         0x48 build/default/production/MotorInterrupts.o
  .debug_pubnames
-                  0x0001c4         0x1b build/default/production/MotorPic.o
+                  0x00022f         0x1b build/default/production/MotorPic.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -991,13 +1004,19 @@ __c30_signature
  __c30_signature
                   0x000354          0x6 c:/program files/microchip/xc16/v2.10/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
-.ndata              0x0800          0xa
- .ndata             0x0800          0xa build/default/production/MotorGlobals.o
-                    0x0800                  _target_speed_R
-                    0x0802                  _target_speed_L
-                    0x0804                  _target_speed_FB
-                    0x0806                  _oldWord
-                    0x0808                  _bitWord
+.ndata              0x0800         0x16
+ .ndata             0x0800         0x16 build/default/production/MotorGlobals.o
+                    0x0800                  _strafe_speed
+                    0x0802                  _slip_speed
+                    0x0804                  _straight_speed
+                    0x0806                  _non_turn_speed
+                    0x0808                  _fb_turn_speed
+                    0x080a                  _med_turn_speed
+                    0x080c                  _target_speed_R
+                    0x080e                  _target_speed_L
+                    0x0810                  _target_speed_FB
+                    0x0812                  _oldWord
+                    0x0814                  _bitWord
 
 .ivt._OC3Interrupt
                   0x000046          0x2
@@ -1018,23 +1037,25 @@ __c30_signature
  .config_WINDIS
                   0xf8000a          0x2 build/default/production/MotorPic.o
 
-.text             0x00033c        0x3d2
- .text            0x00033c        0x308 build/default/production/MotorFunctions.o
+.text             0x00033c        0x412
+ .text            0x00033c        0x35e build/default/production/MotorFunctions.o
                   0x00033c                  _fourBit_FSM
-                  0x000426                  _poll_bitWord
-                  0x000460                  _setRotateSpeed
-                  0x0004ac                  _setStrafeSpeed
-                  0x000586                  _enable_OC_interrupt
-                  0x000592                  _disable_OC_interrupt
-                  0x00059e                  _set_Straight_Speed
-                  0x0005be                  _set_Accel_Straight_Speed
-                  0x0005e8                  _set_Turn_Speed
- .text            0x000644         0xb4 build/default/production/MotorConfigs.o
-                  0x000644                  _setupPins
-                  0x00065e                  _config_PWM
-                  0x0006ca                  _config_OC_interrupt
- .text            0x0006f8         0x16 build/default/production/MotorPic.o
-                  0x0006f8                  _main
+                  0x00047c                  _poll_bitWord
+                  0x0004b6                  _setRotateSpeed
+                  0x000502                  _setStrafeSpeed
+                  0x0005dc                  _enable_OC_interrupt
+                  0x0005e8                  _disable_OC_interrupt
+                  0x0005f4                  _set_Straight_Speed
+                  0x000614                  _set_Accel_Straight_Speed
+                  0x00063e                  _set_Turn_Speed
+ .text            0x00069a         0xb4 build/default/production/MotorConfigs.o
+                  0x00069a                  _setupPins
+                  0x0006b4                  _config_PWM
+                  0x000720                  _config_OC_interrupt
 
-.dinit            0x00070e         0x10
- .dinit           0x00070e         0x10 data_init
+.dinit            0x00074e         0x18
+ .dinit           0x00074e         0x18 data_init
+
+.text             0x000766         0x16
+ .text            0x000766         0x16 build/default/production/MotorPic.o
+                  0x000766                  _main

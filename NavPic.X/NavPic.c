@@ -40,20 +40,28 @@ int main(void) {
 ////        isCanyonSensed();
 //        fourBit_FSM();
 //    }
-    
-    roverState = state3;
-    
+
+//    roverState = state4;
+//    bitWord = DRIVE_NORTH;
+//    fourBit_FSM();
+//    
+//    while (TRUE)
+//    {
+//        locateTurn();
+//        fourBit_FSM();
+//    }
+//    
     while (TRUE) // Final FSM
     {
         DUMPYs_Favorite_Game();
     }
     
     while (TRUE) { // task spot checker
-        senseLine();
-        fourBit_FSM();
-        pollTower();
-        pollDrop();
-//        pollLander(); // shifty... has issues
+//        senseLine();
+//        fourBit_FSM();
+//        pollTower();
+//        pollDrop();
+        pollLander2(); // shifty... has issues
 //        poll_GPS();
     }
 }

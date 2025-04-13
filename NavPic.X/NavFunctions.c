@@ -62,9 +62,9 @@ void pollLander1() {
 
 void poll_GPS() {
     if (!isCanyonSensed()) return;
-//    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
-//        if (!counter(0, 2, 3)) return ; 
-//    }
+    for (int i = 0; i < 10; i++) { // verifies that canyon is sensed after so many counts
+        if (!counter(0, 2, 3)) return ; 
+    }
 
     bitWord = DRIVE_NORTH; //initialize canyon
     while (!counter(1, 4, 5)) //do canyon mode until middle qrd reads line
@@ -122,7 +122,7 @@ BOOL isCanyonExitSensed()
 }
 
 BOOL isLanderSensed() {
-    return (read_QRD(LANDER_QRD)) ? TRUE : FALSE;
+    return (LANDER_QRD < LANDER_DETECT) ? TRUE : FALSE;
 //    if (counter(2, 4, 5))
 //    {
 //        return TRUE;
@@ -168,14 +168,17 @@ BOOL isTowerSensed() {
 }
 
 void pollLander2() {
-    if (!counter(2, 10, 11)) 
+    if (isLanderSensed())
     {
         /* line follow into lander */
+        bitWord = SLOW_MOTORS;
+        fourBit_FSM();
+        delay(50);
         bitWord = ROTATE_CCW;
         fourBit_FSM();
         delay(500); // to avoid triggering cross white line
         while (QRD2 > QRD_MED);
-        bitWord = STOP;
+        bitWord = STRAIGHT;
         while (SONAR_N > N_LANDER_WALL)
         {
             senseLine();
@@ -192,7 +195,7 @@ void pollLander2() {
 }
 
 void aimShootLaser() {
-    int tol = 6;
+    int tol = 5; // was 6
     int commsArray[2][5] = {
         {0, 0, 0, 0, 0}, // OC1R - Duty Cycle
         {0, 0 ,0, 0, 0}  // Associated Value
@@ -207,7 +210,7 @@ void aimShootLaser() {
     for (int j; j < tol; j++) {
         // reset to lower bound
         SERVO_ANGLE = lowerBound;
-        delay(600); // shorten this eventually
+        delay(300); // was 600
         int step = (upperBound - lowerBound) / 4; 
         
         // read in sensor array
@@ -216,7 +219,7 @@ void aimShootLaser() {
             commsArray[1][i] = SATELLITE_DIODE;
             if (i != 5) {
                 SERVO_ANGLE += step;
-                delay(300);
+                delay(200); // was 100 I slowed down hoping it could better detect laser
             }
         }
         
@@ -234,8 +237,8 @@ void aimShootLaser() {
         lowerBound = commsArray[0][maxIndex - 1];
         upperBound = commsArray[0][maxIndex + 1];
     }
-    SERVO_ANGLE = commsArray[2][maxIndex];
-    
+    SERVO_ANGLE = commsArray[0][maxIndex]; //we need a tuning number here
+
     /* shooting laser */
     
     /* END PROGRAM */
@@ -250,7 +253,7 @@ void pollTower() {
     if (isTowerSensed()) {
         bitWord = DRIVE_EAST;
         fourBit_FSM();
-        delay(1500);
+        delay(1800);
         bitWord = STOP;
         fourBit_FSM();
         delay(750);
@@ -260,7 +263,7 @@ void pollTower() {
         bitWord = STOP;
         fourBit_FSM();
         
-        setTimer3(3000);
+        setTimer3(3000); //I increased this from 3000 so it would work at slower speeds for vid
         while (stateTimer3) {
             senseLine();
             fourBit_FSM();
@@ -273,7 +276,7 @@ void pollTower() {
 
 void pollDrop() {
     if (isDropSensed()) {
-        delay(175); //500 was way past it
+        delay(125); // used to be 175
         bitWord = STOP;
         fourBit_FSM();
         
@@ -389,18 +392,33 @@ void senseLine()
             bitWord = ACCEL_STRAIGHT;
             break;
         case ACCEL_STRAIGHT:
-            delay(125); // this delays the signal to ensure that the motor pic receives it
+            delay(50); // this delays the signal to ensure that the motor pic receives it
             bitWord = STRAIGHT;
             break;
         case STRAIGHT:
             if (qrd1 == 2)
             {
-                bitWord = TURN_LEFT;
+                if (qrd2 == 2) 
+                {
+                    bitWord = STRAIGHT;
+                }
+                else 
+                {
+                    bitWord = TURN_LEFT;   
+                }
             }
             else if (qrd3 == 2)
             {
-                bitWord = TURN_RIGHT;
+                if (qrd2 == 2) 
+                {
+                    bitWord = STRAIGHT;
+                }
+                else
+                {
+                    bitWord = TURN_RIGHT;
+                }
             }
+            
             break;
         case TURN_RIGHT:
             if (qrd2 == 2)
@@ -410,6 +428,10 @@ void senseLine()
             break;
         case TURN_LEFT:
             if (qrd2 == 2)
+            {
+                bitWord = STRAIGHT;
+            }
+            if (qrd3 ==2)
             {
                 bitWord = STRAIGHT;
             }
@@ -429,7 +451,7 @@ void delay(int ms) {
 int read_QRD(unsigned int QRD_val) {
     if (QRD_val / QRD_HIGH) {
         return 0; // off the line
-    } else if (QRD_val / QRD_MED) {
+    } else if (QRD_val / QRD_LOW) { // USED TO BE MEDIUM
         return 1; // kinda on the line
     } else {
         return 2; // on the line
@@ -446,9 +468,6 @@ void fourBit_FSM() {
     switch(bitWord) {
         case NO_LINE:
             sendWord(0, 0, 0, 0);
-            break;
-        case ACCEL_STRAIGHT:
-            sendWord(1, 0, 1, 0);
             break;
         case STRAIGHT:
             sendWord(0, 0, 0, 1);
@@ -476,6 +495,12 @@ void fourBit_FSM() {
             break;
         case ROTATE_CCW:
             sendWord(1, 0, 0, 1);
+            break;
+        case ACCEL_STRAIGHT:
+            sendWord(1, 0, 1, 0);
+            break;
+        case SLOW_MOTORS:
+            sendWord(1, 0, 1, 1);
             break;
         case STOP:
             sendWord(1, 1, 1, 1);
@@ -633,6 +658,14 @@ int filterSignal(int ADC_num, int numCounts) {
     }
     
     return value;
+}
+
+BOOL nestedCounter(int func, int threshhold, int numCounts, int numReps) {
+    for (int i = 0; i < numReps; i++) {
+        if (!counter(func, threshhold, numCounts)) return FALSE;
+    }
+    
+    return TRUE;
 }
 
 BOOL counter(int func, int threshhold, int numCounts) { // add TRUE/FALSE functions as needed 
