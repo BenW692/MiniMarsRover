@@ -66,12 +66,12 @@ Default Scalar Model: Small
 
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
-.text                        0x200               0x136           0x1d1  (465)
-.text                        0x336               0x44a           0x66f  (1647)
-.dinit                       0x780                0x18            0x24  (36)
-.text                        0x798                0x16            0x21  (33)
+.text                        0x200               0x11e           0x1ad  (429)
+.text                        0x31e               0x44c           0x672  (1650)
+.dinit                       0x76a                0x18            0x24  (36)
+.text                        0x782                0x16            0x21  (33)
 
-                 Total "program" memory used (bytes):          0x885  (2181) 13%
+                 Total "program" memory used (bytes):          0x864  (2148) 13%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -127,49 +127,45 @@ External Symbols in Program Memory (by address):
 
                   0x000200                  __resetPRI
                   0x00023c                  __psv_init
-                  0x000252                  __data_init_standard
                   0x000252                  __data_init
-                  0x0002d0                  __OC3Interrupt
-                  0x0002f0                  __OC1Interrupt
-                  0x000310                  __OC2Interrupt
-                  0x000330                  __DefaultInterrupt
-                  0x000336                  _fourBit_FSM
-                  0x000474                  _poll_bitWord
-                  0x0004ae                  _setRotateSpeed
-                  0x000508                  _setStrafeSpeed
-                  0x000602                  _enable_OC_interrupt
-                  0x00060e                  _disable_OC_interrupt
-                  0x00061a                  _set_Straight_Speed
-                  0x00063a                  _set_Accel_Straight_Speed
-                  0x000664                  _set_Turn_Speed
-                  0x0006cc                  _setupPins
-                  0x0006e6                  _config_PWM
-                  0x000752                  _config_OC_interrupt
-                  0x000798                  _main
+                  0x000252                  __data_init_standard
+                  0x0002d0                  __T1Interrupt
+                  0x000318                  __DefaultInterrupt
+                  0x00031e                  _fourBit_FSM
+                  0x00046c                  _poll_bitWord
+                  0x0004a6                  _setRotateSpeed
+                  0x000500                  _setStrafeSpeed
+                  0x0005fa                  _enable_OC_interrupt
+                  0x000602                  _disable_ACCEL_interrupt
+                  0x00060a                  _set_Straight_Speed
+                  0x00062a                  _set_Accel_Straight_Speed
+                  0x000654                  _set_Turn_Speed
+                  0x0006bc                  _setupPins
+                  0x0006d6                  _config_PWM
+                  0x000742                  _config_ACCEL_interrupt
+                  0x000782                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x000330                  __DefaultInterrupt
-                  0x0002f0                  __OC1Interrupt
-                  0x000310                  __OC2Interrupt
-                  0x0002d0                  __OC3Interrupt
+                  0x000318                  __DefaultInterrupt
+                  0x0002d0                  __T1Interrupt
                   0x000252                  __data_init
                   0x000252                  __data_init_standard
                   0x00023c                  __psv_init
                   0x000200                  __resetPRI
-                  0x000752                  _config_OC_interrupt
-                  0x0006e6                  _config_PWM
-                  0x00060e                  _disable_OC_interrupt
-                  0x000602                  _enable_OC_interrupt
-                  0x000336                  _fourBit_FSM
-                  0x000798                  _main
-                  0x000474                  _poll_bitWord
-                  0x0004ae                  _setRotateSpeed
-                  0x000508                  _setStrafeSpeed
-                  0x00063a                  _set_Accel_Straight_Speed
-                  0x00061a                  _set_Straight_Speed
-                  0x000664                  _set_Turn_Speed
-                  0x0006cc                  _setupPins
+                  0x000742                  _config_ACCEL_interrupt
+                  0x0006d6                  _config_PWM
+                  0x000602                  _disable_ACCEL_interrupt
+                  0x0005fa                  _enable_OC_interrupt
+                  0x00031e                  _fourBit_FSM
+                  0x000782                  _main
+                  0x00046c                  _poll_bitWord
+                  0x0004a6                  _setRotateSpeed
+                  0x000500                  _setStrafeSpeed
+                  0x00062a                  _set_Accel_Straight_Speed
+                  0x00060a                  _set_Straight_Speed
+                  0x000654                  _set_Turn_Speed
+                  0x0006bc                  _setupPins
 
 Memory Configuration
 
@@ -223,7 +219,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                   0x000002          0x2 SHORT 0x0 ((ABSOLUTE (__reset) >> 0x10) & 0x7f)
                   0x000003          0x2 SHORT 0x0
 
-.text             0x000200        0x136
+.text             0x000200        0x11e
  *(.init)
  .init            0x000200         0x4c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
                   0x000200                  __resetPRI
@@ -235,20 +231,18 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002d0         0x60 build/default/production/MotorInterrupts.o
-                  0x0002d0                  __OC3Interrupt
-                  0x0002f0                  __OC1Interrupt
-                  0x000310                  __OC2Interrupt
- .isr             0x000330          0x4 default_isr
-                  0x000330                  __DefaultInterrupt
+ .isr.text        0x0002d0         0x48 build/default/production/MotorInterrupts.o
+                  0x0002d0                  __T1Interrupt
+ .isr             0x000318          0x4 default_isr
+                  0x000318                  __DefaultInterrupt
  *(.libc)
  *(.libm)
  *(.libdsp)
  *(.lib*)
  .libpic30_crt_start_mode
-                  0x000334          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
-                  0x000334                  __crt_start_mode
-                  0x000334                  __crt_start_mode_normal
+                  0x00031c          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
+                  0x00031c                  __crt_start_mode
+                  0x00031c                  __crt_start_mode_normal
 
 usercode
  *(usercode)
@@ -280,13 +274,13 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x2a2e
+.debug_info       0x000000       0x2748
  *(.debug_info)
- .debug_info      0x000000       0x164d build/default/production/MotorConfigs.o
- .debug_info      0x00164d        0xad1 build/default/production/MotorFunctions.o
- .debug_info      0x00211e        0x248 build/default/production/MotorGlobals.o
- .debug_info      0x002366        0x51e build/default/production/MotorInterrupts.o
- .debug_info      0x002884        0x1aa build/default/production/MotorPic.o
+ .debug_info      0x000000       0x15ec build/default/production/MotorConfigs.o
+ .debug_info      0x0015ec        0x9ac build/default/production/MotorFunctions.o
+ .debug_info      0x001f98        0x248 build/default/production/MotorGlobals.o
+ .debug_info      0x0021e0        0x3bb build/default/production/MotorInterrupts.o
+ .debug_info      0x00259b        0x1ad build/default/production/MotorPic.o
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x39a
@@ -297,26 +291,26 @@ __FDS
  .debug_abbrev    0x00027c         0xac build/default/production/MotorInterrupts.o
  .debug_abbrev    0x000328         0x72 build/default/production/MotorPic.o
 
-.debug_line       0x000000        0x425
+.debug_line       0x000000        0x422
  *(.debug_line)
- .debug_line      0x000000        0x10d build/default/production/MotorConfigs.o
- .debug_line      0x00010d        0x195 build/default/production/MotorFunctions.o
- .debug_line      0x0002a2         0x2c build/default/production/MotorGlobals.o
- .debug_line      0x0002ce        0x106 build/default/production/MotorInterrupts.o
- .debug_line      0x0003d4         0x51 build/default/production/MotorPic.o
+ .debug_line      0x000000        0x111 build/default/production/MotorConfigs.o
+ .debug_line      0x000111        0x194 build/default/production/MotorFunctions.o
+ .debug_line      0x0002a5         0x2c build/default/production/MotorGlobals.o
+ .debug_line      0x0002d1        0x100 build/default/production/MotorInterrupts.o
+ .debug_line      0x0003d1         0x51 build/default/production/MotorPic.o
 
-.debug_frame      0x000000        0x20e
+.debug_frame      0x000000        0x1c6
  *(.debug_frame)
  .debug_frame     0x000000         0x62 build/default/production/MotorConfigs.o
  .debug_frame     0x000062         0xfe build/default/production/MotorFunctions.o
- .debug_frame     0x000160         0x80 build/default/production/MotorInterrupts.o
- .debug_frame     0x0001e0         0x2e build/default/production/MotorPic.o
+ .debug_frame     0x000160         0x38 build/default/production/MotorInterrupts.o
+ .debug_frame     0x000198         0x2e build/default/production/MotorPic.o
 
-.debug_str        0x000000        0x259
+.debug_str        0x000000        0x23f
  *(.debug_str)
- .debug_str       0x000000        0x13c build/default/production/MotorConfigs.o
- .debug_str       0x00013c         0xdd build/default/production/MotorFunctions.o
- .debug_str       0x000219         0x40 build/default/production/MotorInterrupts.o
+ .debug_str       0x000000        0x134 build/default/production/MotorConfigs.o
+ .debug_str       0x000134         0xd4 build/default/production/MotorFunctions.o
+ .debug_str       0x000208         0x37 build/default/production/MotorInterrupts.o
 
 .debug_loc
  *(.debug_loc)
@@ -325,18 +319,18 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x24a
+                  0x000000        0x22b
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000         0x47 build/default/production/MotorConfigs.o
+                  0x000000         0x4a build/default/production/MotorConfigs.o
  .debug_pubnames
-                  0x000047         0xd1 build/default/production/MotorFunctions.o
+                  0x00004a         0xd4 build/default/production/MotorFunctions.o
  .debug_pubnames
-                  0x000118         0xcf build/default/production/MotorGlobals.o
+                  0x00011e         0xcf build/default/production/MotorGlobals.o
  .debug_pubnames
-                  0x0001e7         0x48 build/default/production/MotorInterrupts.o
+                  0x0001ed         0x23 build/default/production/MotorInterrupts.o
  .debug_pubnames
-                  0x00022f         0x1b build/default/production/MotorPic.o
+                  0x000210         0x1b build/default/production/MotorPic.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -971,34 +965,34 @@ LOAD default_isr
 LOAD data_init
 
 .debug_pubtypes
-                  0x000060        0x2d0
+                  0x000060        0x27b
  .debug_pubtypes
-                  0x000060        0x1a1 build/default/production/MotorConfigs.o
+                  0x000060        0x186 build/default/production/MotorConfigs.o
  .debug_pubtypes
-                  0x000201         0xb2 build/default/production/MotorFunctions.o
+                  0x0001e6         0x95 build/default/production/MotorFunctions.o
  .debug_pubtypes
-                  0x0002b3         0x12 build/default/production/MotorGlobals.o
+                  0x00027b         0x12 build/default/production/MotorGlobals.o
  .debug_pubtypes
-                  0x0002c5         0x59 build/default/production/MotorInterrupts.o
+                  0x00028d         0x3c build/default/production/MotorInterrupts.o
  .debug_pubtypes
-                  0x00031e         0x12 build/default/production/MotorPic.o
+                  0x0002c9         0x12 build/default/production/MotorPic.o
 
 __c30_signature
-                  0x000330         0x2a
+                  0x0002db         0x2a
  __c30_signature
-                  0x000330          0x6 build/default/production/MotorConfigs.o
+                  0x0002db          0x6 build/default/production/MotorConfigs.o
  __c30_signature
-                  0x000336          0x6 build/default/production/MotorFunctions.o
+                  0x0002e1          0x6 build/default/production/MotorFunctions.o
  __c30_signature
-                  0x00033c          0x6 build/default/production/MotorGlobals.o
+                  0x0002e7          0x6 build/default/production/MotorGlobals.o
  __c30_signature
-                  0x000342          0x6 build/default/production/MotorInterrupts.o
+                  0x0002ed          0x6 build/default/production/MotorInterrupts.o
  __c30_signature
-                  0x000348          0x6 build/default/production/MotorPic.o
+                  0x0002f3          0x6 build/default/production/MotorPic.o
  __c30_signature
-                  0x00034e          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
+                  0x0002f9          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
-                  0x000354          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
+                  0x0002ff          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_init_standard.o)
 
 .ndata              0x0800         0x16
  .ndata             0x0800         0x16 build/default/production/MotorGlobals.o
@@ -1014,44 +1008,34 @@ __c30_signature
                     0x0812                  _oldWord
                     0x0814                  _bitWord
 
-.ivt._OC3Interrupt
-                  0x000046          0x2
- .ivt._OC3Interrupt
-                  0x000046          0x2 build/default/production/MotorInterrupts.o
-
-.ivt._OC1Interrupt
-                  0x000018          0x2
- .ivt._OC1Interrupt
-                  0x000018          0x2 build/default/production/MotorInterrupts.o
-
-.ivt._OC2Interrupt
-                  0x000020          0x2
- .ivt._OC2Interrupt
-                  0x000020          0x2 build/default/production/MotorInterrupts.o
+.ivt._T1Interrupt
+                  0x00001a          0x2
+ .ivt._T1Interrupt
+                  0x00001a          0x2 build/default/production/MotorInterrupts.o
 
 .config_WINDIS    0xf8000a          0x2
  .config_WINDIS
                   0xf8000a          0x2 build/default/production/MotorPic.o
 
-.text             0x000336        0x44a
- .text            0x000336        0x396 build/default/production/MotorFunctions.o
-                  0x000336                  _fourBit_FSM
-                  0x000474                  _poll_bitWord
-                  0x0004ae                  _setRotateSpeed
-                  0x000508                  _setStrafeSpeed
-                  0x000602                  _enable_OC_interrupt
-                  0x00060e                  _disable_OC_interrupt
-                  0x00061a                  _set_Straight_Speed
-                  0x00063a                  _set_Accel_Straight_Speed
-                  0x000664                  _set_Turn_Speed
- .text            0x0006cc         0xb4 build/default/production/MotorConfigs.o
-                  0x0006cc                  _setupPins
-                  0x0006e6                  _config_PWM
-                  0x000752                  _config_OC_interrupt
+.text             0x00031e        0x44c
+ .text            0x00031e        0x39e build/default/production/MotorFunctions.o
+                  0x00031e                  _fourBit_FSM
+                  0x00046c                  _poll_bitWord
+                  0x0004a6                  _setRotateSpeed
+                  0x000500                  _setStrafeSpeed
+                  0x0005fa                  _enable_OC_interrupt
+                  0x000602                  _disable_ACCEL_interrupt
+                  0x00060a                  _set_Straight_Speed
+                  0x00062a                  _set_Accel_Straight_Speed
+                  0x000654                  _set_Turn_Speed
+ .text            0x0006bc         0xae build/default/production/MotorConfigs.o
+                  0x0006bc                  _setupPins
+                  0x0006d6                  _config_PWM
+                  0x000742                  _config_ACCEL_interrupt
 
-.dinit            0x000780         0x18
- .dinit           0x000780         0x18 data_init
+.dinit            0x00076a         0x18
+ .dinit           0x00076a         0x18 data_init
 
-.text             0x000798         0x16
- .text            0x000798         0x16 build/default/production/MotorPic.o
-                  0x000798                  _main
+.text             0x000782         0x16
+ .text            0x000782         0x16 build/default/production/MotorPic.o
+                  0x000782                  _main

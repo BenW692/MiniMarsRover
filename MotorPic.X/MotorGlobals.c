@@ -10,7 +10,7 @@
 
 #include "MotorGlobals.h"
 
-int strafe_speed = 850; //1000 is pretty safe
+int strafe_speed = 800; //1000 is pretty safe
 int slip_speed = 2250; //I increased this so slipping didn't occur after ball drop from 2500 I think?
 
 int straight_speed = 800; //1000

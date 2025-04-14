@@ -60,14 +60,28 @@ void config_PWM() {
     L_DUTY_CYCLE = 0;
 }
 
-void config_OC_interrupt()
+void config_ACCEL_interrupt()
 {
-    _OC3IP = 4; //sets priority
-    _OC3IF = 0; //clears interrupt flag
+// OLD INTERRUPT
+//    _OC3IP = 4; //sets priority
+//    _OC3IF = 0; //clears interrupt flag
+//    
+//    _OC2IP = 3; //sets priority
+//    _OC2IF = 0; //clears interrupt flag
+//    
+//    _OC1IP = 5; //sets priority
+//    _OC1IF = 0; //clears interrupt flag
     
-    _OC2IP = 3; //sets priority
-    _OC2IF = 0; //clears interrupt flag
+    /* Timer 1 */
+    T1CONbits.TCS = 0; // Use internal clock
+    T1CONbits.TCKPS = 0b10; // 64 prescalar
     
-    _OC1IP = 5; //sets priority
-    _OC1IF = 0; //clears interrupt flag
+    PR1 = 32; // Period for (2250-800)/.75= 1933 cycles per second
+    T1CONbits.TON = 1; //bit is off
+    
+	/* Configure Timer1 interrupt */
+	_T1IP = 4;	// Select interrupt priority
+	_T1IF = 0;	// Clear interrupt flag
+	_T1IE = 0;	// Disable interrupt
+    TMR1 = 0;   // reset timer
 }

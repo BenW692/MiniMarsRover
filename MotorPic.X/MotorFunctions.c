@@ -12,14 +12,14 @@
 
 void fourBit_FSM()
 {
-    int multiplier = 3; // for SLOW_MOTORS
+    int multiplier = 2; // for SLOW_MOTORS
     
     if (oldWord == bitWord) 
     {
         return;
     }
     
-    disable_OC_interrupt(); // should only be enabled in certain set speed functions
+    disable_ACCEL_interrupt(); // should only be enabled in certain set speed functions
     
     switch (bitWord)
     {
@@ -33,7 +33,9 @@ void fourBit_FSM()
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
         set_Accel_Straight_Speed(straight_speed);
-        while(L_PERIOD > target_speed_L);
+        while(L_PERIOD > target_speed_L) {
+            if (poll_bitWord() != ACCEL_STRAIGHT && poll_bitWord() != STRAIGHT) break;
+        }
         break;
 
     case STRAIGHT:
@@ -175,16 +177,22 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
 
 void enable_OC_interrupt()
 {
-    _OC3IE = 1;
-    _OC2IE = 1;
-    _OC1IE = 1;
+// OLD CODE
+//    _OC3IE = 1;
+//    _OC2IE = 1;
+//    _OC1IE = 1;
+    
+    _T1IE = 1;	// Enable interrupt
 }
 
-void disable_OC_interrupt()
+void disable_ACCEL_interrupt()
 {
-    _OC3IE = 0;
-    _OC2IE = 0;
-    _OC1IE = 0;
+// OLD CODE
+//    _OC3IE = 0;
+//    _OC2IE = 0;
+//    _OC1IE = 0;
+
+	_T1IE = 0;	// Disable interrupt    
 }
 
 void set_Straight_Speed(int speed) {

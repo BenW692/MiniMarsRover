@@ -88,7 +88,7 @@ void config_ADC() {
 void config_Timers()
 {
         // Configure a 16-bit timer using Timer1
-    T1CONbits.TCS = 0;
+    T1CONbits.TCS = 0; // use internal clock
     T1CONbits.TCKPS = 0b11; // 256 presclaler
     PR1 = 31250; // Period of 1 second
     T1CONbits.TON = 0; //bit is off

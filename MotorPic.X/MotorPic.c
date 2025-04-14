@@ -16,7 +16,7 @@
 
 int main(void) {
     setupPins();
-    config_OC_interrupt();
+    config_ACCEL_interrupt();
     config_PWM();
     
     bitWord = STOP;
