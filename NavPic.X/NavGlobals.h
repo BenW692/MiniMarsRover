@@ -63,20 +63,27 @@
 #define SONAR_LOW 200 // Close enough to wall to change direction
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
-//for all of these thresholds I added 30 to the conversion number
-#define N_WALL_DETECT 325 //was 300
+
+#define N_WALL_DETECT 350    //was 325
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
-#define N_LANDER_WALL 275
+#define N_LANDER_WALL 375 //was 275
+#define N_WALL_COLLISION 80 //WAS 100
 
 #define E_WALL_DETECT 380   //was 280
-#define E_BALL_DROP_DETECT 170 //was 775
+#define E_BALL_DROP_DETECT 170
+#define E_WALL_COLLISION 140//was 200 (may have to double this one because of noise)
 
 #define S_WALL_DETECT 310 //was 260
 //#define S_BALL_DROP_DETECT 500 //WE DONT USE THIS
+#define S_WALL_COLLISION 85 //was 125
 
 #define W_WALL_DETECT 420 //was 420
+#define W_WALL_COLLISION 80 //was 100
 #define W_BALL_DROP_DETECT 200
 #define W_CANYON_DETECT 550
+
+
+#define GRADIENT_THRESH 100
 
 #define SATELLITE_DIODE ADC1BUF14
 #define SATELLITE_DETECT 25 //50mv
@@ -102,6 +109,11 @@ extern int ball_qrd;
 extern BOOL drop_complete;
 extern BOOL past_drop;
 extern BOOL canyonDone;
+
+extern int dir1;
+extern int detect1;
+extern int dir2;
+extern int detect2;
 
 extern BOOL stateTimer3;
 

@@ -91,23 +91,22 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x622           0x933  (2355)
-.text                        0x822               0xb24          0x10b6  (4278)
-.dinit                      0x1346                0x28            0x3c  (60)
-.text                       0x136e                0x20            0x30  (48)
+.text                        0x822               0xc02          0x1203  (4611)
+.dinit                      0x1424                0x28            0x3c  (60)
+.text                       0x144c                0x20            0x30  (48)
 
-                 Total "program" memory used (bytes):         0x1a55  (6741) 41%
+                 Total "program" memory used (bytes):         0x1ba2  (7074) 43%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.ndata                       0x800                   0             0xe  (14)
-.nbss                        0x80e                   0             0xa  (10)
-.ndata                       0x818                   0             0x4  (4)
-.nbss                        0x81c                   0             0x4  (4)
+.nbss                        0x800                   0            0x12  (18)
+.ndata                       0x812                   0            0x12  (18)
+.nbss                        0x824                   0             0x4  (4)
 
-                 Total "data" memory used (bytes):           0x20  (32) 1%
+                 Total "data" memory used (bytes):           0x28  (40) 1%
 
 
 Dynamic Memory Usage
@@ -115,42 +114,50 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0x820                               0x7e0  (2016)
+stack                        0x828                               0x7d8  (2008)
 
-                 Maximum dynamic memory (bytes):          0x7e0  (2016)
+                 Maximum dynamic memory (bytes):          0x7d8  (2008)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _bitWord
-                    0x0802                  _oldState
-                    0x0804                  _qrd2
-                    0x0806                  _ball_color
-                    0x0808                  _past_drop
-                    0x080a                  _stateTimer3
-                    0x080c                  _canyonDone
-                    0x080e                  _qrd1
-                    0x0810                  _qrd3
-                    0x0812                  _ball_qrd
-                    0x0814                  _drop_complete
-                    0x0816                  _roverState
+                    0x0800                  _qrd1
+                    0x0802                  _qrd3
+                    0x0804                  _ball_qrd
+                    0x0806                  _dir1
+                    0x0808                  _detect1
+                    0x080a                  _dir2
+                    0x080c                  _detect2
+                    0x080e                  _drop_complete
+                    0x0810                  _roverState
+                    0x0812                  _bitWord
+                    0x0814                  _oldState
+                    0x0816                  _qrd2
+                    0x0818                  _ball_color
+                    0x081a                  _past_drop
+                    0x081c                  _stateTimer3
+                    0x081e                  _canyonDone
 
 External Symbols in Data Memory (by name):
 
-                    0x0806                  _ball_color
-                    0x0812                  _ball_qrd
-                    0x0800                  _bitWord
-                    0x080c                  _canyonDone
-                    0x0814                  _drop_complete
-                    0x0802                  _oldState
-                    0x0808                  _past_drop
-                    0x080e                  _qrd1
-                    0x0804                  _qrd2
-                    0x0810                  _qrd3
-                    0x0816                  _roverState
-                    0x080a                  _stateTimer3
+                    0x0818                  _ball_color
+                    0x0804                  _ball_qrd
+                    0x0812                  _bitWord
+                    0x081e                  _canyonDone
+                    0x0808                  _detect1
+                    0x080c                  _detect2
+                    0x0806                  _dir1
+                    0x080a                  _dir2
+                    0x080e                  _drop_complete
+                    0x0814                  _oldState
+                    0x081a                  _past_drop
+                    0x0800                  _qrd1
+                    0x0816                  _qrd2
+                    0x0802                  _qrd3
+                    0x0810                  _roverState
+                    0x081c                  _stateTimer3
 
 External Symbols in Program Memory (by address):
 
@@ -164,12 +171,12 @@ External Symbols in Program Memory (by address):
                   0x000306                  ___fixsfsi
                   0x000348                  ___floatsisf
                   0x00034e                  __funpack
-                  0x000378                  ___subsf3x
                   0x000378                  ___subsf3
+                  0x000378                  ___subsf3x
                   0x00038a                  ___addsf3
                   0x00038a                  ___addsf3x
-                  0x000554                  ___mulsf3x
                   0x000554                  ___mulsf3
+                  0x000554                  ___mulsf3x
                   0x000660                  __dnrmpackf
                   0x0006b4                  __unpackdnrmf
                   0x000712                  __typef
@@ -188,28 +195,29 @@ External Symbols in Program Memory (by address):
                   0x000996                  _isTowerSensed
                   0x0009ae                  _pollLander2
                   0x0009f4                  _aimShootLaserNEW
-                  0x000ade                  _aimShootLaserOLD
-                  0x000c18                  _pollTower
-                  0x000c62                  _pollDrop
-                  0x000ce6                  _locateTurn
-                  0x000db4                  _senseLine
-                  0x000e54                  _delay
-                  0x000e74                  _read_QRD
-                  0x000e88                  _fourBit_FSM
-                  0x000f6a                  _sendWord
-                  0x000fd4                  _test_sonars
-                  0x001010                  _test_canyon_detect
-                  0x001042                  _qrd_test
-                  0x001062                  _read_ADC1BUF
-                  0x0010dc                  _alphaFilter
-                  0x001126                  _filterSignal
-                  0x00115e                  _nestedCounter
-                  0x00119e                  _counter
-                  0x001234                  _pinSetup
-                  0x00126e                  _config_ADC
-                  0x0012c0                  _config_Timers
-                  0x00131a                  _config_PWM
-                  0x00136e                  _main
+                  0x000adc                  _aimShootLaserOLD
+                  0x000c16                  _pollTower
+                  0x000c60                  _pollDrop
+                  0x000ce4                  _adjustProximity
+                  0x000d84                  _locateTurn
+                  0x000e92                  _senseLine
+                  0x000f32                  _delay
+                  0x000f52                  _read_QRD
+                  0x000f66                  _fourBit_FSM
+                  0x001048                  _sendWord
+                  0x0010b2                  _test_sonars
+                  0x0010ee                  _test_canyon_detect
+                  0x001120                  _qrd_test
+                  0x001140                  _read_ADC1BUF
+                  0x0011ba                  _alphaFilter
+                  0x001204                  _filterSignal
+                  0x00123c                  _nestedCounter
+                  0x00127c                  _counter
+                  0x001312                  _pinSetup
+                  0x00134c                  _config_ADC
+                  0x00139e                  _config_Timers
+                  0x0013f8                  _config_PWM
+                  0x00144c                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -237,38 +245,39 @@ External Symbols in Program Memory (by name):
                   0x000200                  __resetPRI
                   0x000712                  __typef
                   0x0006b4                  __unpackdnrmf
+                  0x000ce4                  _adjustProximity
                   0x0009f4                  _aimShootLaserNEW
-                  0x000ade                  _aimShootLaserOLD
-                  0x0010dc                  _alphaFilter
-                  0x00126e                  _config_ADC
-                  0x00131a                  _config_PWM
-                  0x0012c0                  _config_Timers
-                  0x00119e                  _counter
-                  0x000e54                  _delay
-                  0x001126                  _filterSignal
-                  0x000e88                  _fourBit_FSM
+                  0x000adc                  _aimShootLaserOLD
+                  0x0011ba                  _alphaFilter
+                  0x00134c                  _config_ADC
+                  0x0013f8                  _config_PWM
+                  0x00139e                  _config_Timers
+                  0x00127c                  _counter
+                  0x000f32                  _delay
+                  0x001204                  _filterSignal
+                  0x000f66                  _fourBit_FSM
                   0x00092a                  _isCanyonExitSensed
                   0x0008ec                  _isCanyonSensed
                   0x00096a                  _isDropSensed
                   0x00093e                  _isLanderSensed
                   0x000996                  _isTowerSensed
-                  0x000ce6                  _locateTurn
-                  0x00136e                  _main
-                  0x00115e                  _nestedCounter
-                  0x001234                  _pinSetup
-                  0x000c62                  _pollDrop
+                  0x000d84                  _locateTurn
+                  0x00144c                  _main
+                  0x00123c                  _nestedCounter
+                  0x001312                  _pinSetup
+                  0x000c60                  _pollDrop
                   0x000858                  _pollLander1
                   0x0009ae                  _pollLander2
-                  0x000c18                  _pollTower
+                  0x000c16                  _pollTower
                   0x000888                  _poll_GPS
-                  0x001042                  _qrd_test
-                  0x001062                  _read_ADC1BUF
-                  0x000e74                  _read_QRD
-                  0x000f6a                  _sendWord
-                  0x000db4                  _senseLine
+                  0x001120                  _qrd_test
+                  0x001140                  _read_ADC1BUF
+                  0x000f52                  _read_QRD
+                  0x001048                  _sendWord
+                  0x000e92                  _senseLine
                   0x000950                  _setTimer3
-                  0x001010                  _test_canyon_detect
-                  0x000fd4                  _test_sonars
+                  0x0010ee                  _test_canyon_detect
+                  0x0010b2                  _test_sonars
 
 Memory Configuration
 
@@ -409,80 +418,80 @@ __FDS
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x3de5
+.debug_info       0x000000       0x3f2b
  *(.debug_info)
  .debug_info      0x000000        0x2d2 build/default/production/NavPic.o
- .debug_info      0x0002d2       0x11da build/default/production/NavFunctions.o
- .debug_info      0x0014ac       0x1a0a build/default/production/NavConfigs.o
- .debug_info      0x002eb6        0x5bb build/default/production/NavInterrupts.o
- .debug_info      0x003471        0x269 build/default/production/NavGlobals.o
- .debug_info      0x0036da         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_info      0x003767         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_info      0x0037f6         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_info      0x003883         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_info      0x003920         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_info      0x0039bd         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_info      0x003a5d         0xa2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_info      0x003aff         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_info      0x003b9b         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_info      0x003c3a         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_info      0x003cc9         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_info      0x003d5a         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_info      0x0002d2       0x12ce build/default/production/NavFunctions.o
+ .debug_info      0x0015a0       0x1a0a build/default/production/NavConfigs.o
+ .debug_info      0x002faa        0x5bb build/default/production/NavInterrupts.o
+ .debug_info      0x003565        0x2bb build/default/production/NavGlobals.o
+ .debug_info      0x003820         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_info      0x0038ad         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_info      0x00393c         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_info      0x0039c9         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_info      0x003a66         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_info      0x003b03         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_info      0x003ba3         0xa2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_info      0x003c45         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_info      0x003ce1         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_info      0x003d80         0x8f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_info      0x003e0f         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_info      0x003ea0         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev     0x000000        0x65b
+.debug_abbrev     0x000000        0x66e
  *(.debug_abbrev)
  .debug_abbrev    0x000000         0xe8 build/default/production/NavPic.o
- .debug_abbrev    0x0000e8        0x282 build/default/production/NavFunctions.o
- .debug_abbrev    0x00036a         0xd8 build/default/production/NavConfigs.o
- .debug_abbrev    0x000442         0xd6 build/default/production/NavInterrupts.o
- .debug_abbrev    0x000518         0x53 build/default/production/NavGlobals.o
- .debug_abbrev    0x00056b         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_abbrev    0x00057f         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_abbrev    0x000593         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_abbrev    0x0005a7         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_abbrev    0x0005bb         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_abbrev    0x0005cf         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_abbrev    0x0005e3         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_abbrev    0x0005f7         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_abbrev    0x00060b         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_abbrev    0x00061f         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_abbrev    0x000633         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_abbrev    0x000647         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_abbrev    0x0000e8        0x295 build/default/production/NavFunctions.o
+ .debug_abbrev    0x00037d         0xd8 build/default/production/NavConfigs.o
+ .debug_abbrev    0x000455         0xd6 build/default/production/NavInterrupts.o
+ .debug_abbrev    0x00052b         0x53 build/default/production/NavGlobals.o
+ .debug_abbrev    0x00057e         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_abbrev    0x000592         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_abbrev    0x0005a6         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_abbrev    0x0005ba         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_abbrev    0x0005ce         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_abbrev    0x0005e2         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_abbrev    0x0005f6         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_abbrev    0x00060a         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_abbrev    0x00061e         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_abbrev    0x000632         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_abbrev    0x000646         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_abbrev    0x00065a         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
-.debug_line       0x000000        0xbba
+.debug_line       0x000000        0xbd9
  *(.debug_line)
- .debug_line      0x000000         0xf4 build/default/production/NavPic.o
- .debug_line      0x0000f4        0x2df build/default/production/NavFunctions.o
- .debug_line      0x0003d3        0x12c build/default/production/NavConfigs.o
- .debug_line      0x0004ff         0xfd build/default/production/NavInterrupts.o
- .debug_line      0x0005fc         0x3a build/default/production/NavGlobals.o
- .debug_line      0x000636         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_line      0x00068c         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_line      0x0006c6         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_line      0x000710        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_line      0x000846         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_line      0x000912         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_line      0x000984         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_line      0x0009fe         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_line      0x000a5c         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_line      0x000aad         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_line      0x000af4         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_line      0x000b60         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_line      0x000000         0xf6 build/default/production/NavPic.o
+ .debug_line      0x0000f6        0x2fc build/default/production/NavFunctions.o
+ .debug_line      0x0003f2        0x12c build/default/production/NavConfigs.o
+ .debug_line      0x00051e         0xfd build/default/production/NavInterrupts.o
+ .debug_line      0x00061b         0x3a build/default/production/NavGlobals.o
+ .debug_line      0x000655         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_line      0x0006ab         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_line      0x0006e5         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_line      0x00072f        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_line      0x000865         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_line      0x000931         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_line      0x0009a3         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_line      0x000a1d         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_line      0x000a7b         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_line      0x000acc         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_line      0x000b13         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_line      0x000b7f         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
-.debug_frame      0x000000        0x3f0
+.debug_frame      0x000000        0x40a
  *(.debug_frame)
  .debug_frame     0x000000         0x2e build/default/production/NavPic.o
- .debug_frame     0x00002e        0x2f4 build/default/production/NavFunctions.o
- .debug_frame     0x000322         0x7c build/default/production/NavConfigs.o
- .debug_frame     0x00039e         0x52 build/default/production/NavInterrupts.o
+ .debug_frame     0x00002e        0x30e build/default/production/NavFunctions.o
+ .debug_frame     0x00033c         0x7c build/default/production/NavConfigs.o
+ .debug_frame     0x0003b8         0x52 build/default/production/NavInterrupts.o
 
-.debug_str        0x000000        0x281
+.debug_str        0x000000        0x28e
  *(.debug_str)
  .debug_str       0x000000          0xb build/default/production/NavPic.o
- .debug_str       0x00000b        0x184 build/default/production/NavFunctions.o
- .debug_str       0x00018f         0xb2 build/default/production/NavConfigs.o
- .debug_str       0x000241         0x40 build/default/production/NavInterrupts.o
+ .debug_str       0x00000b        0x191 build/default/production/NavFunctions.o
+ .debug_str       0x00019c         0xb2 build/default/production/NavConfigs.o
+ .debug_str       0x00024e         0x40 build/default/production/NavInterrupts.o
 
 .debug_loc
  *(.debug_loc)
@@ -491,18 +500,18 @@ __FDS
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x32e
+                  0x000000        0x36c
  *(.debug_pubnames)
  .debug_pubnames
                   0x000000         0x1b build/default/production/NavPic.o
  .debug_pubnames
-                  0x00001b        0x1e0 build/default/production/NavFunctions.o
+                  0x00001b        0x1f4 build/default/production/NavFunctions.o
  .debug_pubnames
-                  0x0001fb         0x4f build/default/production/NavConfigs.o
+                  0x00020f         0x4f build/default/production/NavConfigs.o
  .debug_pubnames
-                  0x00024a         0x34 build/default/production/NavInterrupts.o
+                  0x00025e         0x34 build/default/production/NavInterrupts.o
  .debug_pubnames
-                  0x00027e         0xb0 build/default/production/NavGlobals.o
+                  0x000292         0xda build/default/production/NavGlobals.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1202,29 +1211,31 @@ __c30_signature
  __c30_signature
                   0x000571          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
-.ndata              0x0800          0xe
- .ndata             0x0800          0xe build/default/production/NavGlobals.o
-                    0x0800                  _bitWord
-                    0x0802                  _oldState
-                    0x0804                  _qrd2
-                    0x0806                  _ball_color
-                    0x0808                  _past_drop
-                    0x080a                  _stateTimer3
-                    0x080c                  _canyonDone
+.nbss               0x0800         0x12
+ .nbss              0x0800         0x12 build/default/production/NavGlobals.o
+                    0x0800                  _qrd1
+                    0x0802                  _qrd3
+                    0x0804                  _ball_qrd
+                    0x0806                  _dir1
+                    0x0808                  _detect1
+                    0x080a                  _dir2
+                    0x080c                  _detect2
+                    0x080e                  _drop_complete
+                    0x0810                  _roverState
 
-.nbss               0x080e          0xa
- .nbss              0x080e          0xa build/default/production/NavGlobals.o
-                    0x080e                  _qrd1
-                    0x0810                  _qrd3
-                    0x0812                  _ball_qrd
-                    0x0814                  _drop_complete
-                    0x0816                  _roverState
+.ndata              0x0812         0x12
+ .ndata             0x0812          0xe build/default/production/NavGlobals.o
+                    0x0812                  _bitWord
+                    0x0814                  _oldState
+                    0x0816                  _qrd2
+                    0x0818                  _ball_color
+                    0x081a                  _past_drop
+                    0x081c                  _stateTimer3
+                    0x081e                  _canyonDone
+ .ndata             0x0820          0x4 build/default/production/NavFunctions.o
 
-.ndata              0x0818          0x4
- .ndata             0x0818          0x4 build/default/production/NavFunctions.o
-
-.nbss               0x081c          0x4
- .nbss              0x081c          0x4 build/default/production/NavFunctions.o
+.nbss               0x0824          0x4
+ .nbss              0x0824          0x4 build/default/production/NavFunctions.o
 
 .config_WINDIS    0xf8000a          0x2
  .config_WINDIS
@@ -1246,8 +1257,8 @@ __c30_signature
  .ivt._T3Interrupt
                   0x000024          0x2 build/default/production/NavInterrupts.o
 
-.text             0x000822        0xb24
- .text            0x000822        0xa12 build/default/production/NavFunctions.o
+.text             0x000822        0xc02
+ .text            0x000822        0xaf0 build/default/production/NavFunctions.o
                   0x000822                  _DUMPYs_Favorite_Game
                   0x000858                  _pollLander1
                   0x000888                  _poll_GPS
@@ -1259,32 +1270,33 @@ __c30_signature
                   0x000996                  _isTowerSensed
                   0x0009ae                  _pollLander2
                   0x0009f4                  _aimShootLaserNEW
-                  0x000ade                  _aimShootLaserOLD
-                  0x000c18                  _pollTower
-                  0x000c62                  _pollDrop
-                  0x000ce6                  _locateTurn
-                  0x000db4                  _senseLine
-                  0x000e54                  _delay
-                  0x000e74                  _read_QRD
-                  0x000e88                  _fourBit_FSM
-                  0x000f6a                  _sendWord
-                  0x000fd4                  _test_sonars
-                  0x001010                  _test_canyon_detect
-                  0x001042                  _qrd_test
-                  0x001062                  _read_ADC1BUF
-                  0x0010dc                  _alphaFilter
-                  0x001126                  _filterSignal
-                  0x00115e                  _nestedCounter
-                  0x00119e                  _counter
- .text            0x001234        0x112 build/default/production/NavConfigs.o
-                  0x001234                  _pinSetup
-                  0x00126e                  _config_ADC
-                  0x0012c0                  _config_Timers
-                  0x00131a                  _config_PWM
+                  0x000adc                  _aimShootLaserOLD
+                  0x000c16                  _pollTower
+                  0x000c60                  _pollDrop
+                  0x000ce4                  _adjustProximity
+                  0x000d84                  _locateTurn
+                  0x000e92                  _senseLine
+                  0x000f32                  _delay
+                  0x000f52                  _read_QRD
+                  0x000f66                  _fourBit_FSM
+                  0x001048                  _sendWord
+                  0x0010b2                  _test_sonars
+                  0x0010ee                  _test_canyon_detect
+                  0x001120                  _qrd_test
+                  0x001140                  _read_ADC1BUF
+                  0x0011ba                  _alphaFilter
+                  0x001204                  _filterSignal
+                  0x00123c                  _nestedCounter
+                  0x00127c                  _counter
+ .text            0x001312        0x112 build/default/production/NavConfigs.o
+                  0x001312                  _pinSetup
+                  0x00134c                  _config_ADC
+                  0x00139e                  _config_Timers
+                  0x0013f8                  _config_PWM
 
-.dinit            0x001346         0x28
- .dinit           0x001346         0x28 data_init
+.dinit            0x001424         0x28
+ .dinit           0x001424         0x28 data_init
 
-.text             0x00136e         0x20
- .text            0x00136e         0x20 build/default/production/NavPic.o
-                  0x00136e                  _main
+.text             0x00144c         0x20
+ .text            0x00144c         0x20 build/default/production/NavPic.o
+                  0x00144c                  _main

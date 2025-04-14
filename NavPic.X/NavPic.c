@@ -32,18 +32,26 @@ int main(void) {
 
     delay(1000); //we need this delay so the ADC can configure
 
+//    bitWord = DRIVE_NORTH;
+//    fourBit_FSM();
+//    
+//    canyonDone = FALSE;
+
+//    roverState = state4;
+    
     while (TRUE) // Final FSM
     {
         DUMPYs_Favorite_Game();
     }
     
     while (TRUE) { // task spot checker
-        senseLine();
-        fourBit_FSM();
-        pollTower();
-        pollDrop();
-        pollLander2();
+//        senseLine();
+//        fourBit_FSM();
+//        pollTower();
+//        pollDrop();
+//        pollLander2();
         poll_GPS();
+
     }
 }
     

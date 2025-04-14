@@ -19,6 +19,11 @@ int qrd3 = 0;
 int ball_color = -1;
 int ball_qrd = 0;
 
+int dir1 = 0;
+int detect1 = 0;
+int dir2 = 0;
+int detect2 = 0;
+
 
 BOOL drop_complete = FALSE;
 BOOL past_drop = TRUE;
