@@ -295,13 +295,14 @@ void pollTower() {
     if (isTowerSensed()) {
         bitWord = DRIVE_EAST;
         fourBit_FSM();
-        delay(1200);
+        delay(900); //was 1200
         bitWord = STOP;
         fourBit_FSM();
         delay(750);
         bitWord = DRIVE_WEST;
         fourBit_FSM();
-        while (QRD2 > QRD_MED);
+//        while (QRD2 > QRD_MED);
+        delay(750);
         bitWord = STOP;
         fourBit_FSM();
         

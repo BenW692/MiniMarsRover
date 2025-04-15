@@ -76,8 +76,8 @@ void fourBit_FSM()
         setRotateSpeed(0, straight_speed);
         break;
         
-    case ROTATE_CW:
-        setRotateSpeed(1, straight_speed);
+    case ROTATE_CW: //I made this one slower for canyon exit
+        setRotateSpeed(1, fb_turn_speed);
         break;
         
     case SLOW_MOTORS:

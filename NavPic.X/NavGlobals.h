@@ -64,22 +64,22 @@
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
 
-#define N_WALL_DETECT 400    //was 325
+#define N_WALL_DETECT 475    //was 400 repeatedly slamming into north wall. 475 much better
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
 #define N_LANDER_WALL 350 //was 275, then 375
-#define N_WALL_COLLISION 75 //WAS 100
+#define N_WALL_COLLISION 100 //WAS 75
 #define N_CANYON_ENTRANCE 800
 
 #define E_WALL_DETECT 380   //was 280
 #define E_BALL_DROP_DETECT 170
-#define E_WALL_COLLISION 140//was 200 (may have to double this one because of noise)
+#define E_WALL_COLLISION 165//was 140 
 
 #define S_WALL_DETECT 310 //was 260
 //#define S_BALL_DROP_DETECT 500 //WE DONT USE THIS
-#define S_WALL_COLLISION 85 //was 125
+#define S_WALL_COLLISION 110 //was 85
 
 #define W_WALL_DETECT 420 //was 420
-#define W_WALL_COLLISION 80 //was 100
+#define W_WALL_COLLISION 105 //was 80
 #define W_BALL_DROP_DETECT 200
 #define W_CANYON_DETECT 550
 
