@@ -76,7 +76,7 @@ void config_ACCEL_interrupt()
     T1CONbits.TCS = 0; // Use internal clock
     T1CONbits.TCKPS = 0b10; // 64 prescalar
     
-    PR1 = 32; // Period for (2250-800)/.75= 1933 cycles per second
+    PR1 = 8; // Period for (2250-800)/.75= 1933 cycles per second
     T1CONbits.TON = 1; //bit is off
     
 	/* Configure Timer1 interrupt */

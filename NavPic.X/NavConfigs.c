@@ -87,7 +87,7 @@ void config_ADC() {
 
 void config_Timers()
 {
-        // Configure a 16-bit timer using Timer1
+    // Configure a 16-bit timer using Timer1
     T1CONbits.TCS = 0; // use internal clock
     T1CONbits.TCKPS = 0b11; // 256 presclaler
     PR1 = 31250; // Period of 1 second
@@ -98,15 +98,30 @@ void config_Timers()
 	_T1IF = 0;	// Clear interrupt flag
 	_T1IE = 1;	// Enable interrupt
     TMR1 = 0;
-    
+  
+    /* Timer 2 */
+    /* ONLY for servos */
     T2CONbits.TON = 1;
     T2CONbits.TCKPS = 0b01;
     T2CONbits.TCS = 0;
     PR2 = 9999;
     
+//    /* Timer 4 Interrupt */
+//    /* ONLY for turn counter */
+////    T4CONbits.T45 = 0; // separate timers 4 and 5 UNKNOWN
+//    T4CONbits.TCS = 0; // use internal clock
+//    T4CONbits.TCKPS = 0b11; // 256x prescalar 
+//    PR4 = 9999; // period
+//    T4CONbits.TON = 1; // turn on timer 2
+//    TMR4 = 0; // reset timer
+//    _T4IP = 4; // priority
+//    _T4IF = 0; // clear flag
+//    _T4IE = 0; // disable
+    
     /* Timer 3 Interrupt */
-    T2CONbits.T32 = 0;
-    T3CONbits.TCS = 0;
+    /* ONLY for setTimer3 stateTimer3 functions */
+    T2CONbits.T32 = 0; // separate timers 2 and 3
+    T3CONbits.TCS = 0; // use internal clock
     T3CONbits.TCKPS = 0b11; // 256 presclaler
     PR3 = 31250; // Period of 1 second
     T3CONbits.TON = 0; //bit is off

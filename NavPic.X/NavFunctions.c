@@ -59,6 +59,14 @@ void pollLander1() {
     canyonDone = FALSE;
 }
 
+void enableTimer2Interrupt() {
+    _T3IE = 1;
+}
+
+void disableTimer2Interrupt() {
+    _T3IE = 0;
+}
+
 void poll_GPS() {
     if (!isCanyonSensed()) return;
     
@@ -217,8 +225,8 @@ void aimShootLaserNEW() {
             finalAngle = commsArray[0][i];
         }
     }
-    
-    SERVO_ANGLE = finalAngle; //it missed high just barely twice in a row so we took off the extra 20
+    int tuningFactor = ((finalAngle - lowerBound)/(upperBound - lowerBound)) * 130;
+    SERVO_ANGLE = finalAngle + tuningFactor; //it missed high just barely twice in a row so we took off the extra 20
     
     /* shooting laser */
     /* END PROGRAM */
@@ -310,7 +318,7 @@ void pollTower() {
 
 void pollDrop() {
     if (isDropSensed()) {
-        delay(100); // used to be 125
+//        delay(50); // used to be 100
         bitWord = STOP;
         fourBit_FSM();
         
@@ -406,16 +414,16 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
         //turn toward dir1
         bitWord = dir2;
         fourBit_FSM();
-//        delay(140);
-        while (read_ADC1BUF(sensor1_buf) < detect1);
+        delay(140);
+//        while (read_ADC1BUF(sensor1_buf) < detect1);
     }
     else if (sensor2 < detect2)
     {
         //turn toward dir2
         bitWord = dir1;
         fourBit_FSM();
-//        delay(140);
-        while (read_ADC1BUF(sensor2_buf) < detect2);
+        delay(140);
+//        while (read_ADC1BUF(sensor2_buf) < detect2);
     }
     bitWord = orig_dir;
     fourBit_FSM();
@@ -563,7 +571,7 @@ void delay(int ms) {
 }
 
 int read_QRD(unsigned int QRD_val) {
-    return (QRD_val < QRD_LOW);
+    return (QRD_val < QRD_HIGH);
     
 //    if (QRD_val / QRD_HIGH) {
 //        return 0; // off the line

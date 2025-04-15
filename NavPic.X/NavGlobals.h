@@ -42,7 +42,7 @@
 #define BALL_TOWER ADC1BUF11 // pin 16
 #define TOWER_DETECT 125 //was 185, I had to lower it for psc course (tower is farther away))
 
-#define QRD_HIGH 682 // 2/3 of 1023
+#define QRD_HIGH 475 //
 #define QRD_MED 341  // 1/3 of 1023
 #define QRD_LOW 150
 
@@ -64,10 +64,11 @@
 #define SONAR_DROP 100 // close enough to wall to drop the ball
 
 
-#define N_WALL_DETECT 350    //was 325
+#define N_WALL_DETECT 400    //was 325
 //#define N_BALL_DROP_DETECT 140 //was 600 WE DONT USE THIS
-#define N_LANDER_WALL 375 //was 275
-#define N_WALL_COLLISION 80 //WAS 100
+#define N_LANDER_WALL 350 //was 275, then 375
+#define N_WALL_COLLISION 75 //WAS 100
+#define N_CANYON_ENTRANCE 800
 
 #define E_WALL_DETECT 380   //was 280
 #define E_BALL_DROP_DETECT 170
@@ -105,6 +106,7 @@ extern int qrd3;
 
 extern int ball_color;
 extern int ball_qrd;
+extern long turnCount;
 
 extern BOOL drop_complete;
 extern BOOL past_drop;

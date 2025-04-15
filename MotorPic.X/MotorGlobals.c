@@ -10,17 +10,17 @@
 
 #include "MotorGlobals.h"
 
-int strafe_speed = 800; //1000 is pretty safe
-int slip_speed = 2250; //I increased this so slipping didn't occur after ball drop from 2500 I think?
+int strafe_speed = 1355; //800 is pretty safe
+int slip_speed = 3812; //I increased this so slipping didn't occur after ball drop from 2500 I think?
 
-int straight_speed = 800; //1000
-int non_turn_speed = 1920;
-int fb_turn_speed = 1280;
-int med_turn_speed = 480;
+int straight_speed = 1355; //800
+int non_turn_speed = 3253;
+int fb_turn_speed = 2168;
+int med_turn_speed = 813;
 
-int target_speed_R = 2250;
-int target_speed_L = 2250;
-int target_speed_FB = 2250;
+int target_speed_R = 3812;
+int target_speed_L = 3812;
+int target_speed_FB = 3812;
 
 int oldWord = -1;
 int bitWord = -1;

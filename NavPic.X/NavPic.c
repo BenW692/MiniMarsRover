@@ -20,7 +20,6 @@
 
 
 int main(void) {
-    
     _RCDIV = 0;
     pinSetup();
     config_ADC();
@@ -37,21 +36,27 @@ int main(void) {
 //    
 //    canyonDone = FALSE;
 
-//    roverState = state4;
     
     while (TRUE) // Final FSM
     {
         DUMPYs_Favorite_Game();
     }
     
+    bitWord = 0;
+    fourBit_FSM();
     while (TRUE) { // task spot checker
 //        senseLine();
 //        fourBit_FSM();
 //        pollTower();
-//        pollDrop();
+        pollDrop();
 //        pollLander2();
-        poll_GPS();
+//        poll_GPS();
 
+        if (SONAR_N < N_CANYON_ENTRANCE) {
+            WORDBIT4 = 1;
+        } else {
+            WORDBIT4 = 0;
+        }
     }
 }
     

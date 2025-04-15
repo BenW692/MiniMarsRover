@@ -18,6 +18,7 @@ int qrd3 = 0;
 
 int ball_color = -1;
 int ball_qrd = 0;
+long turnCount = 0;
 
 int dir1 = 0;
 int detect1 = 0;
