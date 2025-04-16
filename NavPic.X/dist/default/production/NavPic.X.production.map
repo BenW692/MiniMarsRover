@@ -91,11 +91,11 @@ Default Scalar Model: Small
 section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200               0x622           0x933  (2355)
-.text                        0x822               0xcc8          0x132c  (4908)
-.dinit                      0x14ea                0x28            0x3c  (60)
-.text                       0x1512                0x20            0x30  (48)
+.text                        0x822               0xd08          0x138c  (5004)
+.dinit                      0x152a                0x28            0x3c  (60)
+.text                       0x1552                0x20            0x30  (48)
 
-                 Total "program" memory used (bytes):         0x1ccb  (7371) 45%
+                 Total "program" memory used (bytes):         0x1d2b  (7467) 46%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x800]
@@ -206,24 +206,24 @@ External Symbols in Program Memory (by address):
                   0x000d52                  _adjustProximity
                   0x000dda                  _adjustCourse
                   0x000e66                  _locateTurn
-                  0x000f34                  _senseLine
-                  0x000fe0                  _delay
-                  0x001000                  _read_QRD
-                  0x001014                  _fourBit_FSM
-                  0x00110e                  _sendWord
-                  0x001178                  _test_sonars
-                  0x0011b4                  _test_canyon_detect
-                  0x0011e6                  _qrd_test
-                  0x001206                  _read_ADC1BUF
-                  0x001280                  _alphaFilter
-                  0x0012ca                  _filterSignal
-                  0x001302                  _nestedCounter
-                  0x001342                  _counter
-                  0x0013d8                  _pinSetup
-                  0x001412                  _config_ADC
-                  0x001464                  _config_Timers
-                  0x0014be                  _config_PWM
-                  0x001512                  _main
+                  0x000f74                  _senseLine
+                  0x001020                  _delay
+                  0x001040                  _read_QRD
+                  0x001054                  _fourBit_FSM
+                  0x00114e                  _sendWord
+                  0x0011b8                  _test_sonars
+                  0x0011f4                  _test_canyon_detect
+                  0x001226                  _qrd_test
+                  0x001246                  _read_ADC1BUF
+                  0x0012c0                  _alphaFilter
+                  0x00130a                  _filterSignal
+                  0x001342                  _nestedCounter
+                  0x001382                  _counter
+                  0x001418                  _pinSetup
+                  0x001452                  _config_ADC
+                  0x0014a4                  _config_Timers
+                  0x0014fe                  _config_PWM
+                  0x001552                  _main
 
 External Symbols in Program Memory (by name):
 
@@ -255,38 +255,38 @@ External Symbols in Program Memory (by name):
                   0x000d52                  _adjustProximity
                   0x000a0a                  _aimShootLaserNEW
                   0x000b1e                  _aimShootLaserOLD
-                  0x001280                  _alphaFilter
-                  0x001412                  _config_ADC
-                  0x0014be                  _config_PWM
-                  0x001464                  _config_Timers
-                  0x001342                  _counter
-                  0x000fe0                  _delay
+                  0x0012c0                  _alphaFilter
+                  0x001452                  _config_ADC
+                  0x0014fe                  _config_PWM
+                  0x0014a4                  _config_Timers
+                  0x001382                  _counter
+                  0x001020                  _delay
                   0x000890                  _disableTimer2Interrupt
                   0x000888                  _enableTimer2Interrupt
-                  0x0012ca                  _filterSignal
-                  0x001014                  _fourBit_FSM
+                  0x00130a                  _filterSignal
+                  0x001054                  _fourBit_FSM
                   0x000940                  _isCanyonExitSensed
                   0x000902                  _isCanyonSensed
                   0x000980                  _isDropSensed
                   0x000954                  _isLanderSensed
                   0x0009ac                  _isTowerSensed
                   0x000e66                  _locateTurn
-                  0x001512                  _main
-                  0x001302                  _nestedCounter
-                  0x0013d8                  _pinSetup
+                  0x001552                  _main
+                  0x001342                  _nestedCounter
+                  0x001418                  _pinSetup
                   0x000cbe                  _pollDrop
                   0x000858                  _pollLander1
                   0x0009c4                  _pollLander2
                   0x000c58                  _pollTower
                   0x000898                  _poll_GPS
-                  0x0011e6                  _qrd_test
-                  0x001206                  _read_ADC1BUF
-                  0x001000                  _read_QRD
-                  0x00110e                  _sendWord
-                  0x000f34                  _senseLine
+                  0x001226                  _qrd_test
+                  0x001246                  _read_ADC1BUF
+                  0x001040                  _read_QRD
+                  0x00114e                  _sendWord
+                  0x000f74                  _senseLine
                   0x000966                  _setTimer3
-                  0x0011b4                  _test_canyon_detect
-                  0x001178                  _test_sonars
+                  0x0011f4                  _test_canyon_detect
+                  0x0011b8                  _test_sonars
 
 Memory Configuration
 
@@ -468,25 +468,25 @@ __FDS
  .debug_abbrev    0x00066a         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
  .debug_abbrev    0x00067e         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
-.debug_line       0x000000        0xc0b
+.debug_line       0x000000        0xc0f
  *(.debug_line)
  .debug_line      0x000000         0xf4 build/default/production/NavPic.o
- .debug_line      0x0000f4        0x32e build/default/production/NavFunctions.o
- .debug_line      0x000422        0x12e build/default/production/NavConfigs.o
- .debug_line      0x000550         0xfd build/default/production/NavInterrupts.o
- .debug_line      0x00064d         0x3a build/default/production/NavGlobals.o
- .debug_line      0x000687         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
- .debug_line      0x0006dd         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
- .debug_line      0x000717         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_line      0x000761        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_line      0x000897         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
- .debug_line      0x000963         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_line      0x0009d5         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
- .debug_line      0x000a4f         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_line      0x000aad         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_line      0x000afe         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
- .debug_line      0x000b45         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_line      0x000bb1         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_line      0x0000f4        0x332 build/default/production/NavFunctions.o
+ .debug_line      0x000426        0x12e build/default/production/NavConfigs.o
+ .debug_line      0x000554         0xfd build/default/production/NavInterrupts.o
+ .debug_line      0x000651         0x3a build/default/production/NavGlobals.o
+ .debug_line      0x00068b         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
+ .debug_line      0x0006e1         0x3a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
+ .debug_line      0x00071b         0x4a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_line      0x000765        0x136 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_line      0x00089b         0xcc c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
+ .debug_line      0x000967         0x72 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_line      0x0009d9         0x7a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
+ .debug_line      0x000a53         0x5e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_line      0x000ab1         0x51 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_line      0x000b02         0x47 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatdisf.XX_o)
+ .debug_line      0x000b49         0x6c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_line      0x000bb5         0x5a c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
 
 .debug_frame      0x000000        0x458
  *(.debug_frame)
@@ -1269,8 +1269,8 @@ __c30_signature
  .ivt._T3Interrupt
                   0x000024          0x2 build/default/production/NavInterrupts.o
 
-.text             0x000822        0xcc8
- .text            0x000822        0xbb6 build/default/production/NavFunctions.o
+.text             0x000822        0xd08
+ .text            0x000822        0xbf6 build/default/production/NavFunctions.o
                   0x000822                  _DUMPYs_Favorite_Game
                   0x000858                  _pollLander1
                   0x000888                  _enableTimer2Interrupt
@@ -1290,28 +1290,28 @@ __c30_signature
                   0x000d52                  _adjustProximity
                   0x000dda                  _adjustCourse
                   0x000e66                  _locateTurn
-                  0x000f34                  _senseLine
-                  0x000fe0                  _delay
-                  0x001000                  _read_QRD
-                  0x001014                  _fourBit_FSM
-                  0x00110e                  _sendWord
-                  0x001178                  _test_sonars
-                  0x0011b4                  _test_canyon_detect
-                  0x0011e6                  _qrd_test
-                  0x001206                  _read_ADC1BUF
-                  0x001280                  _alphaFilter
-                  0x0012ca                  _filterSignal
-                  0x001302                  _nestedCounter
-                  0x001342                  _counter
- .text            0x0013d8        0x112 build/default/production/NavConfigs.o
-                  0x0013d8                  _pinSetup
-                  0x001412                  _config_ADC
-                  0x001464                  _config_Timers
-                  0x0014be                  _config_PWM
+                  0x000f74                  _senseLine
+                  0x001020                  _delay
+                  0x001040                  _read_QRD
+                  0x001054                  _fourBit_FSM
+                  0x00114e                  _sendWord
+                  0x0011b8                  _test_sonars
+                  0x0011f4                  _test_canyon_detect
+                  0x001226                  _qrd_test
+                  0x001246                  _read_ADC1BUF
+                  0x0012c0                  _alphaFilter
+                  0x00130a                  _filterSignal
+                  0x001342                  _nestedCounter
+                  0x001382                  _counter
+ .text            0x001418        0x112 build/default/production/NavConfigs.o
+                  0x001418                  _pinSetup
+                  0x001452                  _config_ADC
+                  0x0014a4                  _config_Timers
+                  0x0014fe                  _config_PWM
 
-.dinit            0x0014ea         0x28
- .dinit           0x0014ea         0x28 data_init
+.dinit            0x00152a         0x28
+ .dinit           0x00152a         0x28 data_init
 
-.text             0x001512         0x20
- .text            0x001512         0x20 build/default/production/NavPic.o
-                  0x001512                  _main
+.text             0x001552         0x20
+ .text            0x001552         0x20 build/default/production/NavPic.o
+                  0x001552                  _main

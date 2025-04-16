@@ -25,7 +25,7 @@
 
 /*1/8th Step Values*/
 int strafe_speed = 678; //800 is pretty safe
-int slip_speed = 1906; //I increased this so slipping didn't occur after ball drop from 2500 I think?
+int slip_speed = 3000; //I increased this so slipping didn't occur after ball drop from 2500 I think?
 
 int straight_speed = 678; //800
 int non_turn_speed = 1627;

@@ -31,7 +31,8 @@ int main(void) {
 
     delay(1000); //we need this delay so the ADC can configure
 
-//    roverState = state3;
+//    roverState = state2;
+//    canyonDone = FALSE;
     
     while (TRUE) // Final FSM
     {
