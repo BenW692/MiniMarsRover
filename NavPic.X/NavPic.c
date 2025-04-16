@@ -29,9 +29,9 @@ int main(void) {
     bitWord = STOP; // should be stop to enable acceleration
     fourBit_FSM();
 
-    delay(1000); //we need this delay so the ADC can configure
+    delay(250); //we need this delay so the ADC can configure (was 1000 but way too long)
 
-//    roverState = state2;
+//    roverState = state3;
 //    canyonDone = FALSE;
     
     while (TRUE) // Final FSM

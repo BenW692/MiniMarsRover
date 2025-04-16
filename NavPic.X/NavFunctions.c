@@ -82,7 +82,7 @@ void poll_GPS() {
         fourBit_FSM();
     }
     
-    canyonDone = TRUE;
+//    canyonDone = TRUE; 
     bitWord = STOP;
     fourBit_FSM();
     
@@ -333,9 +333,17 @@ void pollDrop() {
         bitWord = DECEL_STRAIGHT;
         fourBit_FSM();
         delay(500);
+        
+        bitWord = SLOW_MOTORS;
+        fourBit_FSM();
+        delay(25);
         bitWord = DRIVE_SOUTH;
         fourBit_FSM();
-        delay(350);
+        delay(1500); //750 and fast before
+        bitWord = QUICKEN_MOTORS;
+        fourBit_FSM();
+        delay(25);
+        
         bitWord = STOP;
         fourBit_FSM();
         
@@ -343,7 +351,7 @@ void pollDrop() {
         {
             bitWord = DRIVE_WEST; // white decision
             fourBit_FSM();
-            delay(400); //was 600
+            delay(500); //400 didn't quite get to the drop
             bitWord = STOP;
             fourBit_FSM();
             SERVO_ANGLE = WHITE_ANGLE;
@@ -355,7 +363,7 @@ void pollDrop() {
         {
             bitWord = DRIVE_EAST; // black decision
             fourBit_FSM();
-            delay(600);
+            delay(500); //600 overshot the box
             bitWord = STOP;
             fourBit_FSM();
             SERVO_ANGLE = BLACK_ANGLE;
@@ -389,7 +397,7 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
         //turn toward dir1
         bitWord = dir2;
         fourBit_FSM();
-        delay(200);
+        delay(125); //200 delay was really jittery
 //        while (read_ADC1BUF(sensor1_buf) < detect1);
     }
     else if (sensor2 < detect2)
@@ -397,7 +405,7 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
         //turn toward dir2
         bitWord = dir1;
         fourBit_FSM();
-        delay(200);
+        delay(125); //200 delay was really jittery
 //        while (read_ADC1BUF(sensor2_buf) < detect2);
     }
     else 
@@ -407,6 +415,7 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
     
     bitWord = orig_dir;
     fourBit_FSM();
+    delay(125);
 }
 
 void adjustCourse(int bitDir, int bufVal1, int bufVal2, int bufVal3, int thresh1 , int thresh2, int thresh3) {
