@@ -38,3 +38,6 @@ int target_speed_FB = 1906;
 
 int oldWord = -1;
 int bitWord = -1;
+
+BOOL isDecelerate = FALSE;
+

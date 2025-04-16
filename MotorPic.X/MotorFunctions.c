@@ -11,9 +11,7 @@
 #include "MotorFunctions.h"
 
 void fourBit_FSM()
-{
-    int multiplier = 2; // for SLOW_MOTORS
-    
+{    
     if (oldWord == bitWord) 
     {
         return;
@@ -27,15 +25,6 @@ void fourBit_FSM()
         set_Straight_Speed(straight_speed);
         RIGHT_DIR = 1;
         LEFT_DIR = 1;
-        break;
-        
-    case ACCEL_STRAIGHT:
-        RIGHT_DIR = 1;
-        LEFT_DIR = 1;
-        set_Accel_Straight_Speed(straight_speed);
-        while(L_PERIOD > target_speed_L) {
-            if (poll_bitWord() != ACCEL_STRAIGHT && poll_bitWord() != STRAIGHT) break;
-        }
         break;
 
     case STRAIGHT:
@@ -80,22 +69,56 @@ void fourBit_FSM()
         setRotateSpeed(1, fb_turn_speed);
         break;
         
-    case SLOW_MOTORS:
-        strafe_speed *= multiplier;
-        slip_speed *= multiplier;
-
-        straight_speed *= multiplier;
-        non_turn_speed *= multiplier;
-        fb_turn_speed *= multiplier;
-        med_turn_speed *= multiplier;
+    case ACCEL_STRAIGHT:
+        RIGHT_DIR = 1;
+        LEFT_DIR = 1;
+        set_Accel_Straight_Speed(straight_speed);
+        while(L_PERIOD > target_speed_L) {
+            if (poll_bitWord() != ACCEL_STRAIGHT && poll_bitWord() != STRAIGHT) break;
+        }
         break;
         
+    case SLOW_MOTORS:
+        slowMotors();
+        break;
+        
+    case QUICKEN_MOTORS:
+        quickenMotors();
+        break;
+        
+    case DECEL_STRAIGHT:
+        isDecelerate = TRUE;
+        enable_ACCEL_interrupt();
+        while(isDecelerate) {
+            if (poll_bitWord() != DECEL_STRAIGHT && poll_bitWord() != STRAIGHT) break; // I don't think we need this for deceleration
+        }
+            
     case STOP:
         setStrafeSpeed(-1, -1, -1, -1, 0);
         break;
 
     }
     oldWord = bitWord;
+}
+
+void slowMotors() {
+    strafe_speed *= SPEED_MULTIPLIER;
+    slip_speed *= SPEED_MULTIPLIER;
+
+    straight_speed *= SPEED_MULTIPLIER;
+    non_turn_speed *= SPEED_MULTIPLIER;
+    fb_turn_speed *= SPEED_MULTIPLIER;
+    med_turn_speed *= SPEED_MULTIPLIER;
+}
+
+void quickenMotors() {
+    strafe_speed /= SPEED_MULTIPLIER;
+    slip_speed /= SPEED_MULTIPLIER;
+
+    straight_speed /= SPEED_MULTIPLIER;
+    non_turn_speed /= SPEED_MULTIPLIER;
+    fb_turn_speed /= SPEED_MULTIPLIER;
+    med_turn_speed /= SPEED_MULTIPLIER;
 }
 
 
@@ -136,7 +159,7 @@ void setRotateSpeed(int dir, int speed) {
 void setStrafeSpeed(int left, int right, int front, int back, int speed)
 // 1 is forward, 0 is backward, -1 turns off PWM to those motors and lock those wheels
 {
-    enable_OC_interrupt();
+    enable_ACCEL_interrupt();
     LEFT_DIR = (left == -1) ? 0 : left;
     RIGHT_DIR = (right == -1) ? 0 : right;
     FRONT_DIR = (front == -1) ? 0 : front;
@@ -175,7 +198,7 @@ void setStrafeSpeed(int left, int right, int front, int back, int speed)
 }
 
 
-void enable_OC_interrupt()
+void enable_ACCEL_interrupt()
 {
 // OLD CODE
 //    _OC3IE = 1;
@@ -205,7 +228,7 @@ void set_Straight_Speed(int speed) {
 }
 
 void set_Accel_Straight_Speed(int speed) {
-    enable_OC_interrupt();
+    enable_ACCEL_interrupt();
 
     FB_PERIOD = 0;
     FB_DUTY_CYCLE = 0;

@@ -28,6 +28,8 @@
 // other
 #define ACCEL_STRAIGHT 0b1010
 #define SLOW_MOTORS 0b1011
+#define QUICKEN_MOTORS 0b1100
+#define DECEL_STRAIGHT 0b1101
 #define STOP 0b1111
 
 #define QRD1 ADC1BUF0 // west

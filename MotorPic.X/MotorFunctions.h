@@ -10,7 +10,7 @@ int poll_bitWord();
 
 void setStrafeSpeed(int left, int right, int front, int back, int speed);
 
-void enable_OC_interrupt();
+void enable_ACCEL_interrupt();
 
 void disable_ACCEL_interrupt();
 

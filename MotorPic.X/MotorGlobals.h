@@ -3,6 +3,10 @@
 
 #include "xc.h"
 
+#define TRUE 1
+#define FALSE 0
+#define BOOL int
+
 // turning
 #define NO_LINE 0b0000
 #define STRAIGHT 0b0001 
@@ -22,9 +26,12 @@
 // other
 #define ACCEL_STRAIGHT 0b1010
 #define SLOW_MOTORS 0b1011
+#define QUICKEN_MOTORS 0b1100
+#define DECEL_STRAIGHT 0b1101
 #define STOP 0b1111
 
 #define ACCEL_VAL 2 // was 5 which was a little too fast
+#define SPEED_MULTIPLIER 2
 
 #define L_PERIOD OC2RS
 #define L_DUTY_CYCLE OC2R
@@ -67,5 +74,7 @@ extern int target_speed_FB;
 
 extern int oldWord;
 extern int bitWord;
+
+extern BOOL isDecelerate;
 
 #endif

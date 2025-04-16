@@ -94,6 +94,8 @@ void poll_GPS() {
         while (QRD2 > QRD_MED);     
     }
     bitWord = STOP;
+    fourBit_FSM();
+    delay(100);
 }
 
 BOOL isCanyonSensed() 
@@ -299,12 +301,21 @@ void pollTower() {
         bitWord = STOP;
         fourBit_FSM();
         delay(750);
+        
+        bitWord = SLOW_MOTORS;
+        fourBit_FSM();
+        delay(25);
         bitWord = DRIVE_WEST;
         fourBit_FSM();
-//        while (QRD2 > QRD_MED);
-        delay(750);
+        while (QRD2 > QRD_MED);
+//        delay(750);
         bitWord = STOP;
         fourBit_FSM();
+        delay(25);
+        bitWord = QUICKEN_MOTORS;
+        fourBit_FSM();
+        delay(25);
+        bitWord = STOP;
         
         setTimer3(3000); //I increased this from 3000 so it would work at slower speeds for vid
         while (stateTimer3) {
@@ -319,7 +330,12 @@ void pollTower() {
 
 void pollDrop() {
     if (isDropSensed()) {
-//        delay(50); // used to be 100
+        bitWord = DECEL_STRAIGHT;
+        fourBit_FSM();
+        delay(500);
+        bitWord = DRIVE_SOUTH;
+        fourBit_FSM();
+        delay(350);
         bitWord = STOP;
         fourBit_FSM();
         
@@ -362,44 +378,6 @@ void pollDrop() {
         roverState = state4; // change roverState
     }
 }
-// parameters are og direction, perpindicular bitWords, sensors, and thresholds
-//void adjustProximity(int orig_dir, int dir1, int sensor1, int detect1, int dir2, int sensor2, int detect2) 
-//{
-//    if (sensor1 > detect1 && sensor2 > detect2)
-//    {
-//        return;
-//    }
-////    while (sensor1 < detect1) //i will leave in the if and else if in case we can figure out turning rather than rotating
-////    {
-////        //turn toward dir1
-////        bitWord = dir2;
-////        fourBit_FSM();
-//////        delay(50);
-////    }
-////    while (sensor2 < detect2)
-////    {
-////        //turn toward dir2
-////        bitWord = dir1;
-////        fourBit_FSM();
-//////        delay(50);
-////    }
-//    else if (sensor1 < detect1) //i will leave in the if and else if in case we can figure out turning rather than rotating
-//    {
-//        //turn toward dir1
-//        bitWord = dir2;
-//        fourBit_FSM();
-//        delay(140);
-//    }
-//    else if (sensor2 < detect2)
-//    {
-//        //turn toward dir2
-//        bitWord = dir1;
-//        fourBit_FSM();
-//        delay(140);
-//    }
-//    bitWord = orig_dir;
-//    fourBit_FSM();
-//}
 
 void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int dir2, int sensor2_buf, int detect2) 
 {
@@ -430,11 +408,46 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
     fourBit_FSM();
 }
 
+void adjustCourse(int bitDir, int bufVal1, int bufVal2, int bufVal3, int thresh1 , int thresh2, int thresh3) {
+    static int sensor1;
+    static int sensor3;
+    static int delayVal;
+    
+    sensor1 = read_ADC1BUF(bufVal1);
+    sensor3 = read_ADC1BUF(bufVal3);
+    delayVal = 100;
+    
+    
+    if (sensor1 < thresh1) //i will leave in the if and else if in case we can figure out turning rather than rotating
+    {
+        bitWord = ROTATE_CW;
+        fourBit_FSM();
+        delay(delayVal);
+    }
+    else if (sensor3 < thresh3)
+    {
+        bitWord = ROTATE_CCW;
+        fourBit_FSM();
+        delay(delayVal);
+    }
+    else 
+    {
+        return;
+    }
+
+    bitWord = bitDir;
+    fourBit_FSM(); 
+    setTimer3(500);
+    while(stateTimer3) {
+        if (read_ADC1BUF(bufVal2) < thresh2 || read_ADC1BUF(1) < QRD_LOW) break;
+    }
+}
+
 void locateTurn() {
      switch(bitWord) {
         case DRIVE_NORTH:
-//            adjustProximity(DRIVE_NORTH, DRIVE_EAST, SONAR_E, E_WALL_COLLISION, DRIVE_WEST, SONAR_W, W_WALL_COLLISION);
-            adjustProximity(DRIVE_NORTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
+//            adjustProximity(DRIVE_NORTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
+            adjustCourse(DRIVE_NORTH, 4, 3, 12, W_WALL_COLLISION , N_WALL_DETECT, E_WALL_COLLISION);
             if (SONAR_N < N_WALL_DETECT)
             {
                 if (SONAR_E < E_WALL_DETECT)
@@ -449,8 +462,8 @@ void locateTurn() {
             }
             break;
         case DRIVE_EAST:
-//            adjustProximity(DRIVE_EAST, DRIVE_NORTH, SONAR_N, N_WALL_COLLISION, DRIVE_SOUTH, SONAR_S, S_WALL_COLLISION);
-            adjustProximity(DRIVE_EAST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
+//            adjustProximity(DRIVE_EAST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
+            adjustCourse(DRIVE_EAST, 3, 12, 13, N_WALL_COLLISION , E_WALL_DETECT, S_WALL_COLLISION);
             if (SONAR_E < E_WALL_DETECT)
             {
                 if (SONAR_N < N_WALL_DETECT) 
@@ -464,8 +477,8 @@ void locateTurn() {
             }
             break;
         case DRIVE_SOUTH:
-//            adjustProximity(DRIVE_NORTH, DRIVE_EAST, SONAR_E, E_WALL_COLLISION, DRIVE_WEST, SONAR_W, W_WALL_COLLISION);
-            adjustProximity(DRIVE_SOUTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
+//            adjustProximity(DRIVE_SOUTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
+            adjustCourse(DRIVE_SOUTH, 12, 13, 4, E_WALL_COLLISION , S_WALL_DETECT, W_WALL_COLLISION);
             if (SONAR_S < S_WALL_DETECT)
             {
                 if (SONAR_W < W_WALL_DETECT) 
@@ -479,8 +492,8 @@ void locateTurn() {
             }
             break;
         case DRIVE_WEST:
-//            adjustProximity(DRIVE_EAST, DRIVE_NORTH, SONAR_N, N_WALL_COLLISION, DRIVE_SOUTH, SONAR_S, S_WALL_COLLISION);
-            adjustProximity(DRIVE_WEST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
+//            adjustProximity(DRIVE_WEST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
+            adjustCourse(DRIVE_WEST, 13, 4, 3, S_WALL_COLLISION , W_WALL_DETECT, N_WALL_COLLISION);
             if (SONAR_W < W_WALL_DETECT)
             {
                 if (SONAR_N < N_WALL_DETECT) 
@@ -513,6 +526,9 @@ void senseLine()
             bitWord = STRAIGHT;
             break;
         /* NOTE: ALL if statements used to be (qrd# == 2)... */
+        case DECEL_STRAIGHT:
+            bitWord = STRAIGHT;
+            break;
         case STRAIGHT:
             if (qrd1)
             {
@@ -626,6 +642,12 @@ void fourBit_FSM() {
             break;
         case SLOW_MOTORS:
             sendWord(1, 0, 1, 1);
+            break;
+        case QUICKEN_MOTORS:
+            sendWord(1, 1, 0, 0);
+            break;
+        case DECEL_STRAIGHT:
+            sendWord(1, 1, 0, 1);
             break;
         case STOP:
             sendWord(1, 1, 1, 1);
