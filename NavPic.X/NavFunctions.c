@@ -384,16 +384,12 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
     int sensor1 = read_ADC1BUF(sensor1_buf);
     int sensor2 = read_ADC1BUF(sensor2_buf);
     
-    if (sensor1 > detect1 && sensor2 > detect2)
-    {
-        return;
-    }
-    else if (sensor1 < detect1) //i will leave in the if and else if in case we can figure out turning rather than rotating
+    if (sensor1 < detect1) //i will leave in the if and else if in case we can figure out turning rather than rotating
     {
         //turn toward dir1
         bitWord = dir2;
         fourBit_FSM();
-        delay(140);
+        delay(200);
 //        while (read_ADC1BUF(sensor1_buf) < detect1);
     }
     else if (sensor2 < detect2)
@@ -401,9 +397,14 @@ void adjustProximity(int orig_dir, int dir1, int sensor1_buf, int detect1, int d
         //turn toward dir2
         bitWord = dir1;
         fourBit_FSM();
-        delay(140);
+        delay(200);
 //        while (read_ADC1BUF(sensor2_buf) < detect2);
     }
+    else 
+    {
+        return;
+    }
+    
     bitWord = orig_dir;
     fourBit_FSM();
 }
