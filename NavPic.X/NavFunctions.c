@@ -447,7 +447,7 @@ void locateTurn() {
      switch(bitWord) {
         case DRIVE_NORTH:
 //            adjustProximity(DRIVE_NORTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
-            adjustCourse(DRIVE_NORTH, 4, 3, 12, W_WALL_COLLISION , N_WALL_DETECT, E_WALL_COLLISION);
+//            adjustCourse(DRIVE_NORTH, 4, 3, 12, W_WALL_COLLISION , N_WALL_DETECT, E_WALL_COLLISION);
             if (SONAR_N < N_WALL_DETECT)
             {
                 if (SONAR_E < E_WALL_DETECT)
@@ -463,7 +463,7 @@ void locateTurn() {
             break;
         case DRIVE_EAST:
 //            adjustProximity(DRIVE_EAST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
-            adjustCourse(DRIVE_EAST, 3, 12, 13, N_WALL_COLLISION , E_WALL_DETECT, S_WALL_COLLISION);
+//            adjustCourse(DRIVE_EAST, 3, 12, 13, N_WALL_COLLISION , E_WALL_DETECT, S_WALL_COLLISION);
             if (SONAR_E < E_WALL_DETECT)
             {
                 if (SONAR_N < N_WALL_DETECT) 
@@ -478,7 +478,7 @@ void locateTurn() {
             break;
         case DRIVE_SOUTH:
 //            adjustProximity(DRIVE_SOUTH, DRIVE_EAST, 12, E_WALL_COLLISION, DRIVE_WEST, 4, W_WALL_COLLISION);
-            adjustCourse(DRIVE_SOUTH, 12, 13, 4, E_WALL_COLLISION , S_WALL_DETECT, W_WALL_COLLISION);
+//            adjustCourse(DRIVE_SOUTH, 12, 13, 4, E_WALL_COLLISION , S_WALL_DETECT, W_WALL_COLLISION);
             if (SONAR_S < S_WALL_DETECT)
             {
                 if (SONAR_W < W_WALL_DETECT) 
@@ -493,7 +493,7 @@ void locateTurn() {
             break;
         case DRIVE_WEST:
 //            adjustProximity(DRIVE_WEST, DRIVE_NORTH, 3, N_WALL_COLLISION, DRIVE_SOUTH, 13, S_WALL_COLLISION);
-            adjustCourse(DRIVE_WEST, 13, 4, 3, S_WALL_COLLISION , W_WALL_DETECT, N_WALL_COLLISION);
+//            adjustCourse(DRIVE_WEST, 13, 4, 3, S_WALL_COLLISION , W_WALL_DETECT, N_WALL_COLLISION);
             if (SONAR_W < W_WALL_DETECT)
             {
                 if (SONAR_N < N_WALL_DETECT) 
